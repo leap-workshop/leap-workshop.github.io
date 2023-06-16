@@ -171,6 +171,7 @@
 
             // randomly shuffling order of organizers upon load!
             shuffle(organizers);
+
             for (var x = 0; x < organizers.length; x++) {
                 let img_element = document.createElement("img");
                 img_element.src = organizers[x].img;
@@ -186,12 +187,14 @@
                 let aff_element = document.createElement("p");
                 aff_element.textContent = organizers[x].affiliation;
 
-                let thumbnail = document.createElement("thumbnail");
+                let thumbnail = document.createElement("div");
+                thumbnail.classList.add("thumbnail")
                 thumbnail.appendChild(img_element);
                 thumbnail.appendChild(name_element);
                 thumbnail.appendChild(aff_element);
 
-                let column = document.createElement("col-sm-4");
+                let column = document.createElement("div");
+                thumbnail.classList.add("col-sm-4")
                 column.appendChild(thumbnail);
 
                 if (x < organizers.length / 2) {
