@@ -181,8 +181,10 @@
                 let strong_element = document.createElement("strong");
                 let p = document.createElement("p");
                 p.textContent = organizers[x].name;
-                p.href = organizers[x].website;
-                p.target = "_blank";
+                let a = document.createElement("a");
+                a.href = organizers[x].website;
+                a.target = "_blank";
+                p.appendChild(a);
                 strong_element.appendChild(p);
                 name_element.appendChild(strong_element);
 
