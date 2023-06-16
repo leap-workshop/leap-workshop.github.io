@@ -179,9 +179,11 @@
 
                 let name_element = document.createElement("p");
                 let strong_element = document.createElement("strong");
-                strong_element.textContent = organizers[x].name;
-                strong_element.href = organizers[x].website;
-                strong_element.target = "_blank";
+                let p = document.createElement("p");
+                p.textContent = organizers[x].name;
+                p.href = organizers[x].website;
+                p.target = "_blank";
+                strong_element.appendChild(p);
                 name_element.appendChild(strong_element);
 
                 let aff_element = document.createElement("p");
@@ -194,7 +196,7 @@
                 thumbnail.appendChild(aff_element);
 
                 let column = document.createElement("div");
-                thumbnail.classList.add("col-sm-4")
+                column.classList.add("col-sm-4")
                 column.appendChild(thumbnail);
 
                 if (x < organizers.length / 2) {
