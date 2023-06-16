@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Learning Effective Abstractions for Planning (LEAP) Workshop</title>
   <meta charset="utf-8">
@@ -10,126 +11,142 @@
 </head>
 
 <style>
-.jumbotron {
-  background-color: #2596be; 
-  color: #ffffff;
-}
+  .jumbotron {
+    background-color: #2596be;
+    color: #ffffff;
+  }
 
-.banner {
-  max-width: 20%;
-}
+  .banner {
+    max-width: 20%;
+  }
 
-.thumbnail img {
-  height: 200px;
-  margin-bottom: 10px;
-}
+  .thumbnail img {
+    height: 200px;
+    margin-bottom: 10px;
+  }
 
-.bg-grey {
-  background-color: #f6f6f6;
-}
+  .bg-grey {
+    background-color: #f6f6f6;
+  }
 
 
-.container-fluid {
-  padding: 60px 50px;
-}
-
+  .container-fluid {
+    padding: 60px 50px;
+  }
 </style>
 
-<!-- TODO: Give credit to https://www.craiyon.com/ for images--> 
+<!-- TODO: Give credit to https://www.craiyon.com/ for images-->
 
 <body>
 
   <div class="jumbotron text-center">
-  	<img src="imgs/banner1.png" alt="Banner" class="banner">
-	<img src="imgs/banner2.png" alt="Banner" class="banner">
-	<img src="imgs/banner3.png" alt="Banner" class="banner">
-  <br>
-    <small>*Images generated from a <a href="https://www.craiyon.com/">text-to-image model</a> with the prompt ``Robot learning and planning''</small>
+    <img src="imgs/banner1.png" alt="Banner" class="banner">
+    <img src="imgs/banner2.png" alt="Banner" class="banner">
+    <img src="imgs/banner3.png" alt="Banner" class="banner">
+    <br>
+    <small>*Images generated from a <a href="https://www.craiyon.com/">text-to-image model</a> with the prompt ``Robot
+      learning and planning''</small>
     <h2>Learning Effective Abstractions for Planning (LEAP)</h2>
     <p>Conference on Robot Learning (CoRL) 2023 Workshop, DATE (TBD)</p>
   </div>
 
-<div class="container-fluid">
-  <h2><center>Overview</center></h2>
-  <h4>
-<br>
-Despite significant recent advances, planning remains a fundamentally hard problem, especially when considering robotic applications to long-horizon tasks with sparse feedback and continuous state and action spaces.
-<b>Abstraction</b> is one of the main tools we have to overcome such challenges, as they enable robots to carry out complex long-horizon tasks by reducing their state and action spaces. 
-<b>State abstraction</b> allows agents to focus on the important aspects of a planning problem, while <b>action abstraction</b> allows agents to reason across long horizons and exploit hierarchy in task execution. 
-These principles have been used to great effect in many different subfields of AI and in many different forms mainly in robotics as well as embodied AI and reinforcement learning.
+  <div class="container-fluid">
+    <h2>
+      <center>Overview</center>
+    </h2>
+    <h4>
+      <br>
+      Despite significant recent advances, planning remains a fundamentally hard problem, especially when considering
+      robotic applications to long-horizon tasks with sparse feedback and continuous state and action spaces.
+      <b>Abstraction</b> is one of the main tools we have to overcome such challenges, as they enable robots to carry
+      out complex long-horizon tasks by reducing their state and action spaces.
+      <b>State abstraction</b> allows agents to focus on the important aspects of a planning problem, while <b>action
+        abstraction</b> allows agents to reason across long horizons and exploit hierarchy in task execution.
+      These principles have been used to great effect in many different subfields of AI and in many different forms
+      mainly in robotics as well as embodied AI and reinforcement learning.
 
-<br><br>
+      <br><br>
 
-Humans have a special ability to design abstractions for their own use. 
-However, designing abstractions by hand is labor-intensive and difficult: even for an expert, it is difficult to anticipate the influence of the abstraction on downward refinable planning performance.
-This motivates an important research question that has gained significant traction in recent works: <b><i>Can we automatically learn abstract representations that enable efficient robot planning?</i></b>
+      Humans have a special ability to design abstractions for their own use.
+      However, designing abstractions by hand is labor-intensive and difficult: even for an expert, it is difficult to
+      anticipate the influence of the abstraction on downward refinable planning performance.
+      This motivates an important research question that has gained significant traction in recent works: <b><i>Can we
+          automatically learn abstract representations that enable efficient robot planning?</i></b>
 
-<br><br>
+      <br><br>
 
-Current research on this topic is fragmented into several different communities. 
-This workshop aims to create a common forum for highlighting diversely related research on this topic, elucidate the key questions that must be answered when learning abstractions for planning, and suggest some possible answers. 
-For this to succeed, we will need to establish a common understanding of what abstraction means in the context of robot planning. 
-This will require bridge-building between different sub-disciplines, which we will facilitate in two ways: (1) a diverse selection of papers and invited speakers; and (2) a highly interactive workshop format.
-	  
-</h4>
-</div>
+      Current research on this topic is fragmented into several different communities.
+      This workshop aims to create a common forum for highlighting diversely related research on this topic, elucidate
+      the key questions that must be answered when learning abstractions for planning, and suggest some possible
+      answers.
+      For this to succeed, we will need to establish a common understanding of what abstraction means in the context of
+      robot planning.
+      This will require bridge-building between different sub-disciplines, which we will facilitate in two ways: (1) a
+      diverse selection of papers and invited speakers; and (2) a highly interactive workshop format.
 
-<div class="container-fluid bg-grey">
-  <h2><center>Schedule</center></h2>
-  <br>
-  <h2><center><b>TBA</b></center></h2>
-</div>
-
-<!-- TODO: More padding between organizers and images? -->
-
-<div class="container-fluid text-center">
-  <h2>Organizers</h2>
-  <div class="row text-center">
-    <div class="col-sm-3">
-      <div class="thumbnail">
-        <img src="imgs/naman.jpg" alt="Georgia Chalvatzaki">
-        <p><strong><a href="https://irosalab.com/people/georgia-chalvatzaki/">Georgia Chalvatzaki</a></strong></p>
-        <p>TU Darmstadt</p>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="thumbnail">
-        <img src="https://beomjoonkim.github.io/images/profile-1.jpg" alt="Beomjoon Kim">
-        <p><strong><a href="https://beomjoonkim.github.io/">Beomjoon Kim</a></strong></p>
-        <p>KAIST</p>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="thumbnail">
-        <img src="imgs/David_Paulius.jpg" alt="David Paulius">
-      	<p><strong><a href="https://davidpaulius.github.io/">David Paulius</a></strong></p>
-        <p>Brown University</p>
-      </div>
-    </div>
+    </h4>
   </div>
-  <div class="row text-center">
-    <div class="col-sm-3">
-      <div class="thumbnail">
-        <img src="imgs/eric.jpg" alt="Eric Rosen">
-        <p><strong><a href="https://cs.brown.edu/people/er35/home.html">Eric Rosen</a></strong></p>
-        <p>Boston Dynamics AI Institute</p>
+
+  <div class="container-fluid bg-grey">
+    <h2>
+      <center>Schedule</center>
+    </h2>
+    <br>
+    <h2>
+      <center><b>TBA</b></center>
+    </h2>
+  </div>
+
+  <!-- TODO: More padding between organizers and images? -->
+
+  <div class="container-fluid text-center">
+    <h2>Organizers</h2>
+    <div class="row text-center">
+      <div class="col-sm-3">
+        <div class="thumbnail">
+          <img src="imgs/naman.jpg" alt="Georgia Chalvatzaki">
+          <p><strong><a href="https://irosalab.com/people/georgia-chalvatzaki/">Georgia Chalvatzaki</a></strong></p>
+          <p>TU Darmstadt</p>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="thumbnail">
+          <img src="https://beomjoonkim.github.io/images/profile-1.jpg" alt="Beomjoon Kim">
+          <p><strong><a href="https://beomjoonkim.github.io/">Beomjoon Kim</a></strong></p>
+          <p>KAIST</p>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="thumbnail">
+          <img src="imgs/David_Paulius.jpg" alt="David Paulius">
+          <p><strong><a href="https://davidpaulius.github.io/">David Paulius</a></strong></p>
+          <p>Brown University</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="col-sm-3">
+        <div class="thumbnail">
+          <img src="imgs/eric.jpg" alt="Eric Rosen">
+          <p><strong><a href="https://cs.brown.edu/people/er35/home.html">Eric Rosen</a></strong></p>
+          <p>Boston Dynamics AI Institute</p>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="thumbnail">
+          <img src="imgs/naman.jpg" alt="Naman Shah">
+          <p><strong><a href="https://www.namanshah.net/">Naman Shah</a></strong></p>
+          <p>Arizona State University</p>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="thumbnail">
+          <img src="imgs/tom.jpg" alt="Tom Silver">
+          <p><strong><a href="https://web.mit.edu/tslvr/www/">Tom Silver</a></strong></p>
+          <p>MIT</p>
+        </div>
       </div>
     </div>
-    <div class="col-sm-3">
-      <div class="thumbnail">
-        <img src="imgs/naman.jpg" alt="Naman Shah">
-        <p><strong><a href="https://www.namanshah.net/">Naman Shah</a></strong></p>
-        <p>Arizona State University</p>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="thumbnail">
-        <img src="imgs/tom.jpg" alt="Tom Silver">
-        <p><strong><a href="https://web.mit.edu/tslvr/www/">Tom Silver</a></strong></p>
-        <p>MIT</p>
-      </div>
-    </div>
-</div>
 
 </body>
+
 </html>
