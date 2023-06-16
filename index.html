@@ -12,90 +12,6 @@
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
 
-    <script type="text/javascript">
-        var organizers = [
-            {
-                "name": "Georgia Chalvatzaki",
-                "affiliation": "TU Darmstadt",
-                "website": "https://cs.brown.edu/people/er35/home.html",
-                "img": "imgs/georgia.jpg"
-            },
-            {
-                "name": "Beomjoon Kim",
-                "affiliation": "KAIST",
-                "website": "https://beomjoonkim.github.io/",
-                "img": "imgs/beomjoon.jpg"
-            },
-            {
-                "name": "Eric Rosen",
-                "affiliation": "Boston Dynamics AI Institute",
-                "website": "https://cs.brown.edu/people/er35/home.html",
-                "img": "imgs/eric.jpg"
-            },
-            {
-                "name": "David Paulius",
-                "affiliation": "Brown University",
-                "website": "https://davidpaulius.github.io/",
-                "img": "imgs/david.jpg"
-            },
-            {
-                "name": "Naman Shah",
-                "affiliation": "Arizona State University",
-                "website": "https://www.namanshah.net/",
-                "img": "imgs/naman.jpg"
-            },
-            {
-                "name": "Tom Silver",
-                "affiliation": "MIT",
-                "website": "https://web.mit.edu/tslvr/www/",
-                "img": "imgs/tom.jpg"
-            }
-        ];
-
-        // Source: https://stackoverflow.com/a/6274381
-        function shuffle(a) {
-            var j, x, i;
-            for (i = a.length - 1; i > 0; i--) {
-                j = Math.floor(Math.random() * (i + 1));
-                x = a[i];
-                a[i] = a[j];
-                a[j] = x;
-            }
-            return a;
-        }
-
-        // randomly shuffling order of organizers upon load!
-        shuffle(organizers);
-        for (var x = 0; x < organizers.length; x++) {
-            let img_element = document.createElement("img");
-            img_element.src = organizers[x].img;
-            img_element.alt = organizers[x].name;
-
-            let name_element = document.createElement("p");
-            let strong_element = document.createElement("strong");
-            strong_element.textContent = organizers[x].name;
-            strong_element.href = organizers[x].website;
-            strong_element.target = "_blank";
-            name_element.appendChild(strong_element);
-
-            let aff_element = document.createElement("p");
-            aff_element.textContent = organizers[x].affiliation;
-
-            let thumbnail = document.createElement("thumbnail");
-            thumbnail.appendChild(img_element);
-            thumbnail.appendChild(name_element);
-            thumbnail.appendChild(aff_element);
-
-            let column = document.createElement("col-sm-4");
-            column.appendChild(thumbnail);
-
-            if (x < organizers.length / 2) {
-                document.getElementById("orgrow_1").appendChild(column);
-            } else {
-                document.getElementById("orgrow_2").appendChild(column);
-            }
-        }
-    </script>
 </head>
 
 <style>
@@ -130,7 +46,7 @@
 
 <!-- TODO: Give credit to https://www.craiyon.com/ for images-->
 
-<body>
+<body onload="randomize_organizers()">
 
     <div class="jumbotron text-center">
         <img src="imgs/banner1.png" alt="Banner" class="banner">
@@ -200,6 +116,94 @@
         </h2>
     </div>
 
+    <script type="text/javascript">
+        var organizers = [
+            {
+                "name": "Georgia Chalvatzaki",
+                "affiliation": "TU Darmstadt",
+                "website": "https://cs.brown.edu/people/er35/home.html",
+                "img": "imgs/georgia.jpg"
+            },
+            {
+                "name": "Beomjoon Kim",
+                "affiliation": "KAIST",
+                "website": "https://beomjoonkim.github.io/",
+                "img": "imgs/beomjoon.jpg"
+            },
+            {
+                "name": "Eric Rosen",
+                "affiliation": "Boston Dynamics AI Institute",
+                "website": "https://cs.brown.edu/people/er35/home.html",
+                "img": "imgs/eric.jpg"
+            },
+            {
+                "name": "David Paulius",
+                "affiliation": "Brown University",
+                "website": "https://davidpaulius.github.io/",
+                "img": "imgs/david.jpg"
+            },
+            {
+                "name": "Naman Shah",
+                "affiliation": "Arizona State University",
+                "website": "https://www.namanshah.net/",
+                "img": "imgs/naman.jpg"
+            },
+            {
+                "name": "Tom Silver",
+                "affiliation": "MIT",
+                "website": "https://web.mit.edu/tslvr/www/",
+                "img": "imgs/tom.jpg"
+            }
+        ];
+
+        function randomize_organizers() {
+            // Source: https://stackoverflow.com/a/6274381
+            function shuffle(a) {
+                var j, x, i;
+                for (i = a.length - 1; i > 0; i--) {
+                    j = Math.floor(Math.random() * (i + 1));
+                    x = a[i];
+                    a[i] = a[j];
+                    a[j] = x;
+                }
+                return a;
+            }
+
+            // randomly shuffling order of organizers upon load!
+            shuffle(organizers);
+            for (var x = 0; x < organizers.length; x++) {
+                let img_element = document.createElement("img");
+                img_element.src = organizers[x].img;
+                img_element.alt = organizers[x].name;
+
+                let name_element = document.createElement("p");
+                let strong_element = document.createElement("strong");
+                strong_element.textContent = organizers[x].name;
+                strong_element.href = organizers[x].website;
+                strong_element.target = "_blank";
+                name_element.appendChild(strong_element);
+
+                let aff_element = document.createElement("p");
+                aff_element.textContent = organizers[x].affiliation;
+
+                let thumbnail = document.createElement("thumbnail");
+                thumbnail.appendChild(img_element);
+                thumbnail.appendChild(name_element);
+                thumbnail.appendChild(aff_element);
+
+                let column = document.createElement("col-sm-4");
+                column.appendChild(thumbnail);
+
+                if (x < organizers.length / 2) {
+                    document.getElementById("orgrow_1").appendChild(column);
+                } else {
+                    document.getElementById("orgrow_2").appendChild(column);
+                }
+            }
+        }
+    </script>
+
+
     <!-- TODO: More padding between organizers and images? -->
     <div class="container-fluid text-center">
         <h2>
@@ -208,6 +212,8 @@
         </h2>
         <div class="row text-center row-centered" id="orgrow_1"></div>
         <div class="row text-center row-centered" id="orgrow_2"></div>
+    </div>
+
 </body>
 
 </html>
