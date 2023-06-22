@@ -67,41 +67,57 @@
         <h4>
             <br>
             Despite significant recent advances, planning remains a fundamentally hard problem, especially when
-            considering
-            robotic applications to long-horizon tasks with sparse feedback and continuous state and action spaces.
-            <b>Abstraction</b> is one of the main tools we have to overcome such challenges, as they enable robots to
-            carry
-            out complex long-horizon tasks by reducing their state and action spaces.
-            <b>State abstraction</b> allows agents to focus on the important aspects of a planning problem, while
-            <b>action
-                abstraction</b> allows agents to reason across long horizons and exploit hierarchy in task execution.
-            These principles have been used to great effect in many different subfields of AI and in many different
-            forms
-            mainly in robotics as well as embodied AI and reinforcement learning.
+            considering robotic applications with long-horizon tasks, sparse feedback, and continuous state and action
+            spaces [1]. Abstraction is one of the main tools we have to overcome such challenges [2-7]. State
+            abstraction allows agents to focus on the important aspects of a planning problem, and action abstraction
+            allows agents to reason across long horizons and exploit hierarchy in task execution. Designing abstractions
+            by hand is labor-intensive and difficult: even for an expert, it is difficult to anticipate the influence of
+            the abstraction on planning performance. This motivates learning abstractions for efficient and effective
+            robotic planning [8-13].
+            <br><br>
+            This workshop will bring together researchers from several related but often disjoint subcommunities who
+            share an interest in learning abstractions for robotic planning. Key questions for discussion include:
+            <ol>
+                <li>
+                    What is the right objective for abstraction learning for robotic planning? To what extent should we
+                    consider soundness, completeness, planning efficiency, task distributions?
+                </li>
+                <li>
+                    To what extent should the abstractions used for robotic planning be interpretable or explainable to
+                    a human? How can this be achieved?
+                </li>
+                <li>
+                    When, where, and from what data should abstractions be learned? In the robot factory once and for
+                    all? In the “wild” from interaction with humans or the world?
+                </li>
+                <li>
+                    How can and should pretrained language models (e.g., GPT-4) and vision-language models (e.g., CLIP)
+                    be leveraged towards abstraction learning for robotic planning?
+                </li>
+                <li>
+                    To what extent is natural language a useful representation for abstraction learning? What are the
+                    virtues of alternative or additional representations?
+                </li>
+            </ol>
 
             <br><br>
 
-            Humans have a special ability to design abstractions for their own use.
-            However, designing abstractions by hand is labor-intensive and difficult: even for an expert, it is
-            difficult to
-            anticipate the influence of the abstraction on downward refinable planning performance.
-            This motivates an important research question that has gained significant traction in recent works:
-            <b><i>Can we
-                    automatically learn abstract representations that enable efficient robot planning?</i></b>
+            This workshop comes at a pivotal time as the field works to understand the implications of large pretrained
+            language and vision models for robotic planning. As suggested by the latter discussion questions, these
+            foundation models will be a central workshop theme. We believe there are rich opportunities not only for
+            foundation models to aid robotic planning, but also for robotic planning research to inform the further
+            development of foundation models. For example, the “right objective” for abstraction learning could be used
+            for foundation model training if those models are ultimately meant for robotic planning.
 
             <br><br>
 
-            Current research on this topic is fragmented into several different communities.
-            This workshop aims to create a common forum for highlighting diversely related research on this topic,
-            elucidate
-            the key questions that must be answered when learning abstractions for planning, and suggest some possible
-            answers.
-            For this to succeed, we will need to establish a common understanding of what abstraction means in the
-            context of
-            robot planning.
-            This will require bridge-building between different sub-disciplines, which we will facilitate in two ways:
-            (1) a
-            diverse selection of papers and invited speakers; and (2) a highly interactive workshop format.
+            Current research on abstraction learning for robotic planning is fragmented across several subcommunities
+            including task and motion planning, reinforcement learning (hierarchical, model-based), planning with linear
+            temporal logic, planning with natural language, and neuro-symbolic AI. This workshop aims to create a common
+            forum to share insights, discuss key questions, and chart a path forward. For this to succeed, we will need
+            to establish a shared understanding of what abstraction means in the context of robot planning. This will
+            require bridge-building between different sub-disciplines, which we will facilitate in two ways: (1) a
+            diverse selection of papers and invited speakers; and (2) a highly interactive workshop.
 
         </h4>
     </div>
