@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Learning Effective Abstractions for Planning (LEAP) Workshop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%22-.1em%22 y=%22.9em%22 font-size=%2280%22>🤖</text></svg>">
+
+</head>
+
+<style>
+    .jumbotron {
+        background-color: #2596be;
+        color: #ffffff;
+    }
+
+    .banner {
+        max-width: 20%;
+    }
+
+    .thumbnail img {
+        height: 200px;
+        margin-bottom: 10px;
+    }
+
+    .bg-grey {
+        background-color: #f6f6f6;
+    }
+
+
+    .container-fluid {
+        padding: 60px 50px;
+    }
+
+    .row-centered {
+        float: none;
+        margin: 0 auto;
+    }
+</style>
+
+<!-- TODO: Give credit to https://www.craiyon.com/ for images-->
+
+<body onload="randomize_organizers()">
+
+    <div class="jumbotron text-center">
+        <img src="imgs/banner1.png" alt="Banner" class="banner">
+        <img src="imgs/banner2.png" alt="Banner" class="banner">
+        <img src="imgs/banner3.png" alt="Banner" class="banner">
+        <br><br>
+        <small>*Images generated from a <a href="https://www.craiyon.com/">text-to-image model</a> with the prompt
+            ``Robot
+            learning and planning''</small>
+        <h2>Learning Effective Abstractions for Planning (LEAP)</h2>
+        <p>Conference on Robot Learning (CoRL) Workshop</p>
+    </div>
+
+    <div class="container-fluid">
+        <h2>
+            <center>
+                <p><b>Submission deadline: September 17</b></p>
+        <p><b><a href="https://2024.ieee-icra.org/call-for-contributions.html">Submission template is the same as ICRA 2024</a></b></p>
+        </center>
+        </h2>
+        <h2>
+            <center>Overview</center>
+        </h2>
+        <h4>
+            <br>
+            Despite significant recent advances, planning remains a fundamentally hard problem, especially when
+            considering robotic applications with long-horizon tasks, sparse feedback, and continuous state and action
+            spaces [1]. Abstraction is one of the main tools we have to overcome such challenges [2-7]. State
+            abstraction allows agents to focus on the important aspects of a planning problem, and action abstraction
+            allows agents to reason across long horizons and exploit hierarchy in task execution. Designing abstractions
+            by hand is labor-intensive and difficult: even for an expert, it is difficult to anticipate the influence of
+            the abstraction on planning performance. This motivates learning abstractions for efficient and effective
+            robotic planning [8-13].
+            <br><br>
+            This workshop will bring together researchers from several related but often disjoint subcommunities who
+            share an interest in learning abstractions for robotic planning. Key questions for discussion include:
+            <ol>
+                <li>
+                    What is the right objective for abstraction learning for robotic planning? To what extent should we
+                    consider soundness, completeness, planning efficiency, task distributions?
+                </li>
+                <li>
+                    To what extent should the abstractions used for robotic planning be interpretable or explainable to
+                    a human? How can this be achieved?
+                </li>
+                <li>
+                    When, where, and from what data should abstractions be learned? In the robot factory once and for
+                    all? In the “wild” from interaction with humans or the world?
+                </li>
+                <li>
+                    How can and should pretrained language models (e.g., GPT-4) and vision-language models (e.g., CLIP)
+                    be leveraged towards abstraction learning for robotic planning?
+                </li>
+                <li>
+                    To what extent is natural language a useful representation for abstraction learning? What are the
+                    virtues of alternative or additional representations?
+                </li>
+            </ol>
+
+            <br><br>
+
+            This workshop comes at a pivotal time as the field works to understand the implications of large pretrained
+            language and vision models for robotic planning. As suggested by the latter discussion questions, these
+            foundation models will be a central workshop theme. We believe there are rich opportunities not only for
+            foundation models to aid robotic planning, but also for robotic planning research to inform the further
+            development of foundation models. For example, the “right objective” for abstraction learning could be used
+            for foundation model training if those models are ultimately meant for robotic planning.
+
+            <br><br>
+
+            Current research on abstraction learning for robotic planning is fragmented across several subcommunities
+            including task and motion planning, reinforcement learning (hierarchical, model-based), planning with linear
+            temporal logic, planning with natural language, and neuro-symbolic AI. This workshop aims to create a common
+            forum to share insights, discuss key questions, and chart a path forward. For this to succeed, we will need
+            to establish a shared understanding of what abstraction means in the context of robot planning. This will
+            require bridge-building between different sub-disciplines, which we will facilitate in two ways: <font color="#2596be"><b>(1) a
+            diverse selection of papers and invited speakers</b></font>; and <font color="#2596be"><b>(2) a highly interactive workshop</b></font>.
+
+        </h4>
+    </div>
+
+    <div class="container-fluid bg-grey">
+        <h2>
+            <center>Schedule</center>
+        </h2>
+        <br>
+        <h2>
+            <center><b>TBA</b></center>
+        </h2>
+    </div>
+
+    <script type="text/javascript">
+        var organizers = [
+            {
+                "name": "Georgia Chalvatzaki",
+                "affiliation": "TU Darmstadt",
+                "website": "https://irosalab.com/people/georgia-chalvatzaki/",
+                "img": "imgs/georgia.jpg"
+            },
+            {
+                "name": "Beomjoon Kim",
+                "affiliation": "KAIST",
+                "website": "https://beomjoonkim.github.io/",
+                "img": "imgs/beomjoon.jpg"
+            },
+            {
+                "name": "Eric Rosen",
+                "affiliation": "Boston Dynamics AI Institute",
+                "website": "https://cs.brown.edu/people/er35/home.html",
+                "img": "imgs/eric.jpg"
+            },
+            {
+                "name": "David Paulius",
+                "affiliation": "Brown University",
+                "website": "https://davidpaulius.github.io/",
+                "img": "imgs/david.jpg"
+            },
+            {
+                "name": "Naman Shah",
+                "affiliation": "Arizona State University",
+                "website": "https://www.namanshah.net/",
+                "img": "imgs/naman.jpg"
+            },
+            {
+                "name": "Tom Silver",
+                "affiliation": "MIT",
+                "website": "https://web.mit.edu/tslvr/www/",
+                "img": "imgs/tom.jpg"
+            }
+        ];
+
+        function randomize_organizers() {
+            // Source: https://stackoverflow.com/a/6274381
+            function shuffle(a) {
+                var j, x, i;
+                for (i = a.length - 1; i > 0; i--) {
+                    j = Math.floor(Math.random() * (i + 1));
+                    x = a[i];
+                    a[i] = a[j];
+                    a[j] = x;
+                }
+                return a;
+            }
+
+            // randomly shuffling order of organizers upon load!
+            shuffle(organizers);
+
+            for (var x = 0; x < organizers.length; x++) {
+                let img_element = document.createElement("img");
+                img_element.src = organizers[x].img;
+                img_element.alt = organizers[x].name;
+
+                let name_element = document.createElement("p");
+                let strong_element = document.createElement("strong");
+                let p = document.createElement("p");
+                let a = document.createElement("a");
+                a.href = organizers[x].website;
+                a.target = "_blank";
+                a.textContent = organizers[x].name;
+                p.appendChild(a);
+                strong_element.appendChild(p);
+                name_element.appendChild(strong_element);
+
+                let aff_element = document.createElement("p");
+                aff_element.textContent = organizers[x].affiliation;
+
+                let thumbnail = document.createElement("div");
+                thumbnail.classList.add("thumbnail")
+                thumbnail.appendChild(img_element);
+                thumbnail.appendChild(name_element);
+                thumbnail.appendChild(aff_element);
+
+                let column = document.createElement("div");
+                column.classList.add("col-sm-4")
+                column.appendChild(thumbnail);
+
+                if (x < organizers.length / 2) {
+                    document.getElementById("orgrow_1").appendChild(column);
+                } else {
+                    document.getElementById("orgrow_2").appendChild(column);
+                }
+            }
+        }
+    </script>
+
+
+    <!-- TODO: More padding between organizers and images? -->
+    <div class="container-fluid text-center">
+        <h2>
+            <center>Organizers (in <a href="https://researchonresearch.blog/2018/11/28/theres-lots-in-a-name/"
+                    target="_blank">random order</a>)</center>
+        </h2>
+        <br>
+        <div class="row text-center row-centered" id="orgrow_1"></div>
+        <br>
+        <div class="row text-center row-centered" id="orgrow_2"></div>
+    </div>
+
+</body>
+
+</html>

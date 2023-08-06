@@ -1,250 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- css from https://github.com/ai-workshops/ai-workshops.github.io/blob/master/generalizable-policy-learning-in-the-physical-world/style.css -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+  integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+<link rel="icon"
+  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%22-.1em%22 y=%22.9em%22 font-size=%2280%22>🤖</text></svg>">
+
+<!-- jQuery library -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+  integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 
 <head>
-    <title>Learning Effective Abstractions for Planning (LEAP) Workshop</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <title>LEAP: Learning Effective Abstractions for Planning | CoRL 2023</title>
+  <link rel="stylesheet" href="css/style.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var organizers = [
+      {
+        "name": "Georgia Chalvatzaki",
+        "affiliation": "TU Darmstadt",
+        "website": "https://irosalab.com/people/georgia-chalvatzaki/",
+        "img": "imgs/georgia.jpg"
+      },
+      {
+        "name": "Beomjoon Kim",
+        "affiliation": "KAIST",
+        "website": "https://beomjoonkim.github.io/",
+        "img": "imgs/beomjoon.jpg"
+      },
+      {
+        "name": "Eric Rosen",
+        "affiliation": "Boston Dynamics AI Institute",
+        "website": "https://cs.brown.edu/people/er35/home.html",
+        "img": "imgs/eric.jpg"
+      },
+      {
+        "name": "David Paulius",
+        "affiliation": "Brown University",
+        "website": "https://davidpaulius.github.io/",
+        "img": "imgs/david.jpg"
+      },
+      {
+        "name": "Naman Shah",
+        "affiliation": "Arizona State University",
+        "website": "https://www.namanshah.net/",
+        "img": "imgs/naman.jpg"
+      },
+      {
+        "name": "Tom Silver",
+        "affiliation": "MIT",
+        "website": "https://web.mit.edu/tslvr/www/",
+        "img": "imgs/tom.jpg"
+      }
+    ];
 
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%22-.1em%22 y=%22.9em%22 font-size=%2280%22>🤖</text></svg>">
+    function randomize_organizers() {
+      // Source: https://stackoverflow.com/a/6274381
+      function shuffle(a) {
+        var j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+          j = Math.floor(Math.random() * (i + 1));
+          x = a[i];
+          a[i] = a[j];
+          a[j] = x;
+        }
+        return a;
+      }
+
+      // randomly shuffling order of organizers upon load!
+      shuffle(organizers);
+
+      for (var x = 0; x < organizers.length; x++) {
+        let img_element = document.createElement("img");
+        img_element.src = organizers[x].img;
+        img_element.alt = organizers[x].name;
+
+        let name_element = document.createElement("p");
+        let strong_element = document.createElement("strong");
+        let p = document.createElement("p");
+        let a = document.createElement("a");
+        a.href = organizers[x].website;
+        a.target = "_blank";
+        a.textContent = organizers[x].name;
+        p.appendChild(a);
+        strong_element.appendChild(p);
+        name_element.appendChild(strong_element);
+
+        let aff_element = document.createElement("p");
+        aff_element.textContent = organizers[x].affiliation;
+
+        let thumbnail = document.createElement("div");
+        thumbnail.classList.add("thumbnail")
+        thumbnail.appendChild(img_element);
+        thumbnail.appendChild(name_element);
+        thumbnail.appendChild(aff_element);
+
+        let column = document.createElement("div");
+        column.classList.add("col-sm-4")
+        column.appendChild(thumbnail);
+
+        if (x < organizers.length / 2) {
+          document.getElementById("orgrow_1").appendChild(column);
+        } else {
+          document.getElementById("orgrow_2").appendChild(column);
+        }
+      }
+    }
+  </script>
 
 </head>
 
-<style>
-    .jumbotron {
-        background-color: #2596be;
-        color: #ffffff;
-    }
+<body>
+  <nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-custom navbar-fixed-top sticky-nav">
+    <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#main-navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="main-navigation">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#call">Call for Papers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#dates">Dates</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#talks">Invited Speakers</a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link" href="index.html#program">Program</a>
+          </li> -->
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="index.html#related">Related Workshops</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#committee">Committees</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-    .banner {
-        max-width: 20%;
-    }
+  <div class="title-container">
+    <div style="text-align: center;">
+      <a href="https://www.corl2023.org/" target="_blank"><img src="imgs/corl_logo_name.png" style="width:250px;"></a>
+      <br>
+      <div class="subtitle">1st Workshop on </div>
+      <h1 style="width:80%;margin:auto;">Learning Effective Abstractions for Planning (LEAP)</h1>
+      <div class="subtitle" style="color: #ccc; margin: 20px; margin-bottom: -10px;">
+        CoRL 2023, Atlanta, GA, USA | November 6, 2023
+      </div>
+      <br>
+      <h3>Email: <a href="mailto:leap-workshop@googlegroups.com">leap-workshop@googlegroups.com</a></h3>
+    </div>
+  </div>
 
-    .thumbnail img {
-        height: 200px;
-        margin-bottom: 10px;
-    }
+  <div class="container" style="padding-bottom: 0px;">
+    <div class="section" id="overview">
+      <h2>Overview</h2>
+      <p>
+        Despite significant recent advances, planning remains a fundamentally hard problem, especially when
+        considering robotic applications with long-horizon tasks, sparse feedback, and continuous state and action
+        spaces. Abstraction is one of the main tools we have to overcome such challenges. State
+        abstraction allows agents to focus on the important aspects of a planning problem, and action abstraction
+        allows agents to reason across long horizons and exploit hierarchy in task execution. Designing abstractions
+        by hand is labor-intensive and difficult: even for an expert, it is difficult to anticipate the influence of
+        the abstraction on planning performance.
+        <i>This motivates learning abstractions for efficient and effective robotic planning.</i>
+      </p>
 
-    .bg-grey {
-        background-color: #f6f6f6;
-    }
+      <p>
+        This workshop will bring together researchers from several related but often disjoint subcommunities who
+        share an interest in learning abstractions for robotic planning. Key questions for discussion include:
+      <ol>
+        <li>
+          What is the right objective for abstraction learning for robotic planning? To what extent should we
+          consider soundness, completeness, planning efficiency, task distributions?
+        </li>
+        <li>
+          To what extent should the abstractions used for robotic planning be interpretable or explainable to
+          a human? How can this be achieved?
+        </li>
+        <li>
+          When, where, and from what data should abstractions be learned? In the robot factory once and for
+          all? In the “wild” from interaction with humans or the world?
+        </li>
+        <li>
+          How can and should pretrained language models (e.g., GPT-4) and vision-language models (e.g., CLIP)
+          be leveraged towards abstraction learning for robotic planning?
+        </li>
+        <li>
+          To what extent is natural language a useful representation for abstraction learning? What are the
+          virtues of alternative or additional representations?
+        </li>
+      </ol>
+      </p>
 
+      <p>
+        This workshop comes at a pivotal time as the field works to understand the implications of large pretrained
+        language and vision models for robotic planning. As suggested by the latter discussion questions, these
+        foundation models will be a central workshop theme. We believe there are rich opportunities not only for
+        foundation models to aid robotic planning, but also for robotic planning research to inform the further
+        development of foundation models. For example, the “right objective” for abstraction learning could be used
+        for foundation model training if those models are ultimately meant for robotic planning.
+      </p>
 
-    .container-fluid {
-        padding: 60px 50px;
-    }
+      <h3 style="text-align: center;">Objectives of the Workshop</h3>
+      <p>
+        Current research on abstraction learning for robotic planning is fragmented across several subcommunities
+        including task and motion planning, reinforcement learning (hierarchical, model-based), planning with linear
+        temporal logic, planning with natural language, and neuro-symbolic AI. This workshop aims to create a common
+        forum to share insights, discuss key questions, and chart a path forward. For this to succeed, we will need
+        to establish a shared understanding of what abstraction means in the context of robot planning. This will
+        require bridge-building between different sub-disciplines, which we will facilitate in two ways: <b>(1) a
+          diverse selection of papers and invited speakers</b>; and <b>(2) a highly interactive workshop</b>.
+      </p>
 
-    .row-centered {
-        float: none;
-        margin: 0 auto;
-    }
-</style>
-
-<!-- TODO: Give credit to https://www.craiyon.com/ for images-->
-
-<body onload="randomize_organizers()">
-
-    <div class="jumbotron text-center">
-        <img src="imgs/banner1.png" alt="Banner" class="banner">
-        <img src="imgs/banner2.png" alt="Banner" class="banner">
-        <img src="imgs/banner3.png" alt="Banner" class="banner">
-        <br><br>
-        <small>*Images generated from a <a href="https://www.craiyon.com/">text-to-image model</a> with the prompt
-            ``Robot
-            learning and planning''</small>
-        <h2>Learning Effective Abstractions for Planning (LEAP)</h2>
-        <p>Conference on Robot Learning (CoRL) Workshop</p>
+      <h3 style="text-align: center;">Areas of Interest</h3>
+      <p>We solicit papers of the following topics:
+      <ul>
+        <li>Learning state abstractions and action abstractions</li>
+        <li>Natural language as an abstraction for learning-based planning</li>
+        <li>Learning other knowledge representations for planning</li>
+        <li>Learning for LTL-based planning</li>
+        <li>Learning for task and motion planning (TAMP)</li>
+        <li>Learning for hierarchical planning</li>
+        <li>Neuro-symbolic approaches for planning</li>
+        <li>Hierarchical reinforcement learning</li>
+        <li>Model-based reinforcement learning with latent representations</li>
+        <li>Large Language Models/Foundation Models for Robot Planning </li>
+      </ul>
+      </p>
     </div>
 
-    <div class="container-fluid">
-        <h2>
-            <center>
-                <p><b>Submission deadline: September 17</b></p>
-        <p><b><a href="https://2024.ieee-icra.org/call-for-contributions.html">Submission template is the same as ICRA 2024</a></b></p>
-        </center>
-        </h2>
-        <h2>
-            <center>Overview</center>
-        </h2>
-        <h4>
-            <br>
-            Despite significant recent advances, planning remains a fundamentally hard problem, especially when
-            considering robotic applications with long-horizon tasks, sparse feedback, and continuous state and action
-            spaces [1]. Abstraction is one of the main tools we have to overcome such challenges [2-7]. State
-            abstraction allows agents to focus on the important aspects of a planning problem, and action abstraction
-            allows agents to reason across long horizons and exploit hierarchy in task execution. Designing abstractions
-            by hand is labor-intensive and difficult: even for an expert, it is difficult to anticipate the influence of
-            the abstraction on planning performance. This motivates learning abstractions for efficient and effective
-            robotic planning [8-13].
-            <br><br>
-            This workshop will bring together researchers from several related but often disjoint subcommunities who
-            share an interest in learning abstractions for robotic planning. Key questions for discussion include:
-            <ol>
-                <li>
-                    What is the right objective for abstraction learning for robotic planning? To what extent should we
-                    consider soundness, completeness, planning efficiency, task distributions?
-                </li>
-                <li>
-                    To what extent should the abstractions used for robotic planning be interpretable or explainable to
-                    a human? How can this be achieved?
-                </li>
-                <li>
-                    When, where, and from what data should abstractions be learned? In the robot factory once and for
-                    all? In the “wild” from interaction with humans or the world?
-                </li>
-                <li>
-                    How can and should pretrained language models (e.g., GPT-4) and vision-language models (e.g., CLIP)
-                    be leveraged towards abstraction learning for robotic planning?
-                </li>
-                <li>
-                    To what extent is natural language a useful representation for abstraction learning? What are the
-                    virtues of alternative or additional representations?
-                </li>
-            </ol>
+    <!-- <div class="section" id="call" style="padding:0px 0x;" >
+      <h2>Call for Papers</h2>
+      <p>
+        Current research on abstraction learning for robotic planning is fragmented across several subcommunities
+        including task and motion planning, reinforcement learning (hierarchical, model-based), planning with linear
+        temporal logic, planning with natural language, and neuro-symbolic AI.
 
-            <br><br>
-
-            This workshop comes at a pivotal time as the field works to understand the implications of large pretrained
-            language and vision models for robotic planning. As suggested by the latter discussion questions, these
-            foundation models will be a central workshop theme. We believe there are rich opportunities not only for
-            foundation models to aid robotic planning, but also for robotic planning research to inform the further
-            development of foundation models. For example, the “right objective” for abstraction learning could be used
-            for foundation model training if those models are ultimately meant for robotic planning.
-
-            <br><br>
-
-            Current research on abstraction learning for robotic planning is fragmented across several subcommunities
-            including task and motion planning, reinforcement learning (hierarchical, model-based), planning with linear
-            temporal logic, planning with natural language, and neuro-symbolic AI. This workshop aims to create a common
-            forum to share insights, discuss key questions, and chart a path forward. For this to succeed, we will need
-            to establish a shared understanding of what abstraction means in the context of robot planning. This will
-            require bridge-building between different sub-disciplines, which we will facilitate in two ways: <font color="#2596be"><b>(1) a
-            diverse selection of papers and invited speakers</b></font>; and <font color="#2596be"><b>(2) a highly interactive workshop</b></font>.
-
-        </h4>
+        This workshop aims to create a common forum to share insights, discuss key questions, and chart a path forward
+        for abstraction learning. For this to succeed, we will need to establish a shared understanding of what
+        abstraction means in the context of robot planning. This will require bridge-building between different
+        sub-disciplines, which we will facilitate in two ways: (1) a diverse selection of papers and invited speakers;
+        and (2) a highly interactive workshop.
+      </p>
     </div>
+ -->
+    <div class="section" id="call">
 
-    <div class="container-fluid bg-grey">
-        <h2>
-            <center>Schedule</center>
-        </h2>
-        <br>
-        <h2>
-            <center><b>TBA</b></center>
-        </h2>
+      <h2 >Submission Guidelines</h2>
+
+      <p>
+        We solicit workshop paper submissions relevant to the above call of the following types:
+      <ul>
+        <li> Long papers - up to 8 pages plus unlimited references / appendices</li>
+        <li> Short papers - up to 4 pages plus unlimited references / appendices</li>
+      </ul>
+      </p>
+
+      <p>Please format submissions in CoRL or IEEE conference (ICRA or IROS) styles. To authors submitting papers
+        rejected from other conferences: please ensure that comments given by the reviewers are addressed prior to
+        submission.
+      </p>
+
+      <i>Note: Please feel free to submit work under review or accepted at other workshops and/or conferences as we will
+        not require copyright transfer.</i>
+
+        <h3 style="text-align: center;">Submission is through <a href="https://openreview.net/group?id=robot-learning.org/CoRL/2023/Workshop/LEAP">OpenReview</a>.</h3>
+
     </div>
+  </div>
+  </div>
 
-    <script type="text/javascript">
-        var organizers = [
-            {
-                "name": "Georgia Chalvatzaki",
-                "affiliation": "TU Darmstadt",
-                "website": "https://irosalab.com/people/georgia-chalvatzaki/",
-                "img": "imgs/georgia.jpg"
-            },
-            {
-                "name": "Beomjoon Kim",
-                "affiliation": "KAIST",
-                "website": "https://beomjoonkim.github.io/",
-                "img": "imgs/beomjoon.jpg"
-            },
-            {
-                "name": "Eric Rosen",
-                "affiliation": "Boston Dynamics AI Institute",
-                "website": "https://cs.brown.edu/people/er35/home.html",
-                "img": "imgs/eric.jpg"
-            },
-            {
-                "name": "David Paulius",
-                "affiliation": "Brown University",
-                "website": "https://davidpaulius.github.io/",
-                "img": "imgs/david.jpg"
-            },
-            {
-                "name": "Naman Shah",
-                "affiliation": "Arizona State University",
-                "website": "https://www.namanshah.net/",
-                "img": "imgs/naman.jpg"
-            },
-            {
-                "name": "Tom Silver",
-                "affiliation": "MIT",
-                "website": "https://web.mit.edu/tslvr/www/",
-                "img": "imgs/tom.jpg"
-            }
-        ];
+  <div class="section" id="dates" style="align-content: center;">
+    <h2>Important Dates</h2>
+    <table class="calculator table-borderless" style="text-align:center; margin: 0 auto;">
+      <tr>
+        <td class="noborder">Announcement and Call for Submissions
+        </td>
+        <td class="noborder"><b class="font-weight-bold">Aug 1, 2023</b>
+        </td>
+      </tr>
+      <tr>
+        <td class="noborder">Paper Submission Deadline
+        </td>
+        <td class="noborder"><b class="font-weight-bold">September 18, 2023</b> (11:59 PM UTC-12)
+        </td>
+      </tr>
+      <tr>
+        <td class="noborder">Paper Acceptance
+        </td>
+        <td class="noborder"><b class="font-weight-bold">October 4, 2023</b>
+        </td>
+      </tr>
+      <tr>
+        <td class="noborder">Camera-ready Version Due
+        </td>
+        <td class="noborder"><b class="font-weight-bold">TBD</b>
+        </td>
+      </tr>
+      <tr>
+        <td class="noborder">Workshop
+        </td>
+        <td class="noborder"><b class="font-weight-bold">November 6, 2023</b>
+        </td>
+      </tr>
+    </table>
+  </div>
 
-        function randomize_organizers() {
-            // Source: https://stackoverflow.com/a/6274381
-            function shuffle(a) {
-                var j, x, i;
-                for (i = a.length - 1; i > 0; i--) {
-                    j = Math.floor(Math.random() * (i + 1));
-                    x = a[i];
-                    a[i] = a[j];
-                    a[j] = x;
-                }
-                return a;
-            }
+  <div class="section" id="talks">
 
-            // randomly shuffling order of organizers upon load!
-            shuffle(organizers);
+    <h2 style="text-align: center;">Invited Speakers</h2>
 
-            for (var x = 0; x < organizers.length; x++) {
-                let img_element = document.createElement("img");
-                img_element.src = organizers[x].img;
-                img_element.alt = organizers[x].name;
+    <div class="grid">
+      <center>
+        <!-- <div class="row"> 
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"   style="padding-bottom: 30px;" >
+                    <a href="https://feryal.github.io/" target="_blank"><img src="images/Feryal_Behbahani.jpg" class="rounded-circle" alt="Feryal Behbahani"  width="140" height="140"></a>
+                    <h5 style="margin-bottom:0em;"> <a href="https://feryal.github.io/" target="_blank">Feryal Behbahani</a></h5>
+                    Google DeepMind
+                    <br />
+                  </div>
+                <br /> <br />
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"   style="padding-bottom: 30px;" >
+                      <a href="https://www.diag.uniroma1.it/~degiacom/" target="_blank"><img src="images/giuseppe_de_giacomo.png" class="rounded-circle" alt="Giuseppe De Giacomo" width="140" height="140"></a>
+                      <h5 style="margin-bottom:0em;"><a href="https://www.diag.uniroma1.it/~degiacom/" target="_blank">Giuseppe De Giacomo</a></h5>
+                      University of Oxford
+                    <br />
+                  </div>       	
+                <br /> <br />
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"   style="padding-bottom: 30px;" >
+                    <a href="https://www-i6.informatik.rwth-aachen.de/~hector.geffner/" target="_blank"><img src="images/hector_geffner.jpg" class="rounded-circle" alt="Hector Geffner"  width="140" height="140"></a>
+                    <h5 style="margin-bottom:0em;"> <a href="https://www-i6.informatik.rwth-aachen.de/~hector.geffner/" target="_blank">Hector Geffner</a></h5>
+                    RWTH Aachen University and Linköping University
+                    <br />
+                  </div> 
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"   style="padding-bottom: 30px;" >
+                      <a href="https://rraileanu.github.io/" target="_blank"><img src="images/roberta_raileanu.jpg" class="rounded-circle" alt="Roberta Raileanu"  width="140" height="140"></a>
+                      <h5 style="margin-bottom:0em;"> <a href="https://rraileanu.github.io/" target="_blank">Roberta Raileanu</a></h5>
+                      Meta AI 
+                    <br />
+                  </div>    
+                <br /> <br />
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"   style="padding-bottom: 30px;" >
+                      <a href="https://www.cs.utexas.edu/~pstone/" target="_blank"><img src="images/peter_stone.jpg" class="rounded-circle" alt="Peter Stone" width="140" height="140"></a>
+                      <h5 style="margin-bottom:0em;"><a href="https://www.cs.utexas.edu/~pstone/" target="_blank">Peter Stone</a></h5>
+                      The University of Texas at Austin and Sony AI
+                    <br />
+                  </div>
+                  <br /> <br />
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"   style="padding-bottom: 30px;" >
+                      <a href="https://amyzhang.github.io/" target="_blank"><img src="images/amy_zhang.png" class="rounded-circle" alt="Amy Zhang"  width="140" height="140"></a>
+                      <h5 style="margin-bottom:0em;"><a href="https://amyzhang.github.io/" target="_blank">Amy Zhang</a></h5>
+                      The University of Texas at Austin and Meta AI
+                    <br />
+                  </div>     -->
+        <!-- </div> -->
+        TBA
+      </center>
 
-                let name_element = document.createElement("p");
-                let strong_element = document.createElement("strong");
-                let p = document.createElement("p");
-                let a = document.createElement("a");
-                a.href = organizers[x].website;
-                a.target = "_blank";
-                a.textContent = organizers[x].name;
-                p.appendChild(a);
-                strong_element.appendChild(p);
-                name_element.appendChild(strong_element);
-
-                let aff_element = document.createElement("p");
-                aff_element.textContent = organizers[x].affiliation;
-
-                let thumbnail = document.createElement("div");
-                thumbnail.classList.add("thumbnail")
-                thumbnail.appendChild(img_element);
-                thumbnail.appendChild(name_element);
-                thumbnail.appendChild(aff_element);
-
-                let column = document.createElement("div");
-                column.classList.add("col-sm-4")
-                column.appendChild(thumbnail);
-
-                if (x < organizers.length / 2) {
-                    document.getElementById("orgrow_1").appendChild(column);
-                } else {
-                    document.getElementById("orgrow_2").appendChild(column);
-                }
-            }
-        }
-    </script>
-
-
-    <!-- TODO: More padding between organizers and images? -->
-    <div class="container-fluid text-center">
-        <h2>
-            <center>Organizers (in <a href="https://researchonresearch.blog/2018/11/28/theres-lots-in-a-name/"
-                    target="_blank">random order</a>)</center>
-        </h2>
-        <br>
-        <div class="row text-center row-centered" id="orgrow_1"></div>
-        <br>
-        <div class="row text-center row-centered" id="orgrow_2"></div>
     </div>
+    <br /><br />
+  </div>
 
+
+
+  <div class="section" id="committee" style="text-align: center; padding: 10px;">
+    <h2>Committees</h2>
+    <h3 >Organizing Committee</h3>
+    <br />
+
+    <div class="grid">
+      <center>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding-bottom: 30px;">
+            <a href="https://gchal.github.io/" target="_blank"><img src="imgs/georgia.jpg" class="rounded-circle"
+                alt="Pulkit Verma" width="140" height="140"></a>
+            <h5 style="margin-bottom:0em;"><a href="https://gchal.github.io/" target="_blank">Georgia Chalvatzaki</a>
+            </h5>
+            TU Darmstadt, Germany
+          </div>
+          <br /> <br />
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding-bottom: 30px;">
+            <a href="https://beomjoonkim.github.io/" target="_blank"><img src="imgs/beomjoon.jpg" class="rounded-circle"
+                alt="Pulkit Verma" width="140" height="140"></a>
+            <h5 style="margin-bottom:0em;"><a href="https://beomjoonkim.github.io/" target="_blank">Beomjoon Kim</a>
+            </h5>
+            KAIST, South Korea
+          </div>
+          <br /> <br />
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding-bottom: 30px;">
+            <a href="https://www.davidpaulius.me/" target="_blank"><img src="imgs/david.jpg" class="rounded-circle"
+                alt="Aviv Tamar" width="140" height="140"></a>
+            <h5 style="margin-bottom:0em;"><a href="https://www.davidpaulius.me/" target="_blank">David Paulius</a>
+            </h5>
+            Brown University, RI, USA
+          </div>
+          <br /><br />
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding-bottom: 30px;">
+            <a href="https://eric-rosen.github.io/" target="_blank"><img src="imgs/eric.png" class="rounded-circle"
+                alt="Felipe Trevizan" width="140" height="140"></a>
+            <h5 style="margin-bottom:0em;"> <a href="https://eric-rosen.github.io/" target="_blank">Eric Rosen</a>
+            </h5>
+            Boston Dynamics AI Institute, MA, USA
+          </div>
+          <br /> <br />
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding-bottom: 30px;">
+            <a href="https://namanshah.net/" target="_blank"><img src="imgs/naman.jpg" class="rounded-circle"
+                alt="Felipe Trevizan" width="140" height="140"></a>
+            <h5 style="margin-bottom:0em;"> <a href="https://namanshah.net/" target="_blank">Naman Shah</a></h5>
+            Arizona State University, AZ, USA
+          </div>
+          <br /> <br />
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding-bottom: 30px;">
+            <a href="https://web.mit.edu/tslvr/www/" target="_blank"><img src="imgs/tom.jpg" class="rounded-circle"
+                alt="Felipe Trevizan" width="140" height="140"></a>
+            <h5 style="margin-bottom:0em;"> <a href="https://web.mit.edu/tslvr/www/" target="_blank">Tom Silver</a>
+            </h5>
+            Massachusetts Institute of Technology, MA, USA
+          </div>
+          <br /> <br />
+        </div>
+      </center>
+    </div>
+    <br /><br />
+
+    <h3 style="text-align: center;">Advisory Board</h3>
+    <p><a href="https://people.csail.mit.edu/lpk/">Leslie Pack Kaelbling</a> - Massachusetts Institute of Technology, USA</p>
+    <p><a href="https://cs.brown.edu/~gdk/">George Konidaris</a> - Brown University, USA</p>
+    <p><a href="http://siddharthsrivastava.net" target="_blank">Siddharth Srivastava</a> - Arizona State University, USA.</p>
+
+
+  </div>
+  </div>
 </body>
 
 </html>
