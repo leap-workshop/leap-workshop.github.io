@@ -135,7 +135,7 @@ ul {
     padding: 40px 20px;
     color: white;
     /* background-image: linear-gradient(135deg,#333, black, #333); */
-    background-image: linear-gradient(45deg, rgba(64, 2, 64, 0.742), black, rgba(64, 2, 64, 0.742));
+    background-image: linear-gradient(45deg, rgba(21, 10, 122, 0.742), black, rgba(21, 10, 122, 0.742));
     background-size: cover;
     background-position: center center;
     display: flex;
