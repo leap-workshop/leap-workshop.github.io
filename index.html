@@ -401,8 +401,12 @@
       <tr>
         <td class="noborder">8:45 - 9:00
         </td>
-        <td class="noborder">Invited Speaker
-        </td>
+        <td class="noborder"> <button type="button" class="collapsible"><u>Invited Speaker (Details)</u><div class="triangle-down"></div></button>
+          <div class="content">
+            Title: Explore to Generalize 
+            <br><br>
+            Abstract: The importance of learning abstractions for planning is well reflected in the zero shot generalization problem in RL: how to learn a policy on a set of training tasks that will generalize well to an unseen, but similar, test task. While most previous efforts focused on learning policies that are invariant to irrelevant properties of the task, we propose a different approach. We observe that policies trained to *explore* the state space generalize well, as the exploration behavior is much harder to memorize than the actual solution to the task. We exploit this discovery in our Explore-to-Generalize (ExpGen) algorithm, which at test time takes a reward maximization action when it is certain (using a policy ensemble), or an exploration action when it is uncertain (using the generalizing exploration policy). On the popular ProcGen benchmark, ExpGen makes significant progress on difficult problems such as Maze and Heist, where previous approaches failed. Furthermore, when combined with an invariance based method, ExpGen yields new SOTA results on the full suite of ProcGen games. (based on a NeurIPS 2023 paper by Zisselman, Lavie, Soudry, and T., <a href="https://openreview.net/forum?id=37cADkATD0">[link]</a>)            </div>
+      </td>
         <td class="noborder">Aviv Tamar (virtual)
         </td>
         <td class="noborder">
