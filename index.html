@@ -348,326 +348,88 @@ We aim to facilitate this bridge-building in two ways: (1) a diverse selection o
   <div class="section" id="schedule" style="align-content: center;">
     <h2>Schedule</h2>
 
-    <center>
-      <h3> TBA </h3>
-    </center>
+    <tr> <td> </td></tr>
 
-
-    <!-- <table class="calculator table-borderless" style="text-align:center; margin: 0 auto;">
-      <tr>
-        <td class="noborder"><b class="font-weight-bold">Time</b>
-        </td>
-        <td class="noborder"><b class="font-weight-bold">Session Type</b>
-        </td>
-        <td class="noborder"><b class="font-weight-bold">Speakers</b>
-        </td>
-        <td class="noborder"><b class="font-weight-bold">Portraits</b>
-        </td>
+    <table class = "calculator table-borderless" style="text-align:center; margin: 0 auto;">
+          <tr> 
+            <td colspan="2"><b>Session 1</b></td>
+          </tr>
+      <tr> 
+            <td class = "noborder"> 8:25 AM - 8:30 AM</td>
+            <td class = "noborder"> Welcome Remarks</td>
       </tr>
-      <tr>
-        <td class="noborder">8:30 - 8:45
-        </td>
-        <td class="noborder">Welcome
-        </td>
-        <td class="noborder">LEAP Organizers
-        </td>
-        <td class="noborder">
-        </td>
-      </tr>
-      <tr>
-        <td class="noborder">8:45 - 9:00
-        </td>
-        <td class="noborder"> <button type="button" class="collapsible"><u>Invited Speaker (Details)</u><div class="triangle-down"></div></button>
-          <div class="content">
-            Title: Explore to Generalize
-            <br><br>
-            Abstract: The importance of learning abstractions for planning is well reflected in the zero shot generalization problem in RL: how to learn a policy on a set of training tasks that will generalize well to an unseen, but similar, test task. While most previous efforts focused on learning policies that are invariant to irrelevant properties of the task, we propose a different approach. We observe that policies trained to *explore* the state space generalize well, as the exploration behavior is much harder to memorize than the actual solution to the task. We exploit this discovery in our Explore-to-Generalize (ExpGen) algorithm, which at test time takes a reward maximization action when it is certain (using a policy ensemble), or an exploration action when it is uncertain (using the generalizing exploration policy). On the popular ProcGen benchmark, ExpGen makes significant progress on difficult problems such as Maze and Heist, where previous approaches failed. Furthermore, when combined with an invariance based method, ExpGen yields new SOTA results on the full suite of ProcGen games. (based on a NeurIPS 2023 paper by Zisselman, Lavie, Soudry, and T., <a href="https://openreview.net/forum?id=37cADkATD0">[link]</a>)            </div>
-      </td>
-        <td class="noborder">Aviv Tamar (virtual)
-        </td>
-        <td class="noborder">
-          <img src="https://avivt.github.io/avivt/images/my_pic_small.png" class="rounded-circle"
-          alt="Aviv Tamar" height="140">
-        </td>
-      </tr>
-      <tr>
-        <td class="noborder">9:00 - 9:15
-        </td>
-        <td class="noborder"> <button type="button" class="collapsible"><u>Invited Speaker (Details)</u><div class="triangle-down"></div></button>
-          <div class="content">
-            Title: Symbolic State Space Optimization: Learning Abstractions for Mobile Manipulation
-            <br><br>
-            Abstract: In existing task and motion planning (TAMP) research, it is a common assumption that experts manually specify the state space for task-level planning. A well-developed state space enables the desirable distribution of limited computational resources between task planning and motion planning. However, developing such task-level state spaces can be non-trivial in practice. In this paper, we consider a long horizon mobile manipulation domain including repeated navigation and manipulation. We propose Symbolic State Space Optimization (S3O) for computing a set of abstracted locations and their 2D geometric groundings for generating task-motion plans in such domains. Our approach has been extensively evaluated in simulation and demonstrated on a real mobile manipulator working on clearing up dining tables. Results show the superiority of the proposed method over TAMP baselines in task completion rate and execution time. (Joint work with Xiaohan Zhang, Yifeng Zhu, Yan Ding, Yuqian Jiang, Yuke Zhu, and Peter Stone).
-          </div>
-        </td>
-        <td class="noborder">Shiqi Zhang (in person)
-        </td>
-        <td class="noborder">
-        <img src="https://www.cs.binghamton.edu/~szhang/images/recent.jpg" class="rounded-circle"
-        alt="Shiqi Zhang" height="140">
-        </td>
-      </tr>
-      <tr>
-        <td class="noborder">9:15 - 9:30
-        </td>
-        <td class="noborder"> <button type="button" class="collapsible"><u>Invited Speaker (Details)</u><div class="triangle-down"></div></button>
-          <div class="content">
-            <strong>Title</strong>: Transition model abstractions for efficient and reliable planning
-              <br><br>
-              Abstract: Though imperfect abstractions of the real world, transition models are still useful for planning. This talk explores how to use real-world data to inform in which contexts, which we call “model preconditions”, a model should be used to balance computational efficiency with robust execution. The results show that by selecting between incomplete analytical models and a simulator, a robot can achieve faster planning and more reliable execution of those plans. We also investigate how robots can efficiently collect data to most effectively plan with imperfect models, such as by adapting a learned model or learning a model precondition.
-          </div>
-        </td>
-        <td class="noborder">Alex LaGrassa (in person)
-        </td>
-        <td class="noborder">
-          <img src="./imgs/alex_lagrassa_ri_.jpg" class="rounded-circle"
-          alt="Alex LaGrassa" height="140">
-          </td>
-      </tr>
-      <tr>
-        <td class="noborder">9:30 - 9:45
-        </td>
-        <td class="noborder"> <button type="button" class="collapsible"><u>Invited Speaker (Details)</u><div class="triangle-down"></div></button>
-          <div class="content">
-          Title: Value-Based Abstractions for Planning
-          <br><br>
-          Abstract: As the field of robotics continues to advance, the integration of efficient planning algorithms with powerful representation learning becomes crucial for enabling robots to perform complex manipulation tasks. We address key challenges in planning, reward learning, and representation learning through the objective of learning value-based abstractions. We explore this idea via goal-conditioned reinforcement learning, action-free pre-training, and with language. By leveraging self-supervised reinforcement learning and efficient planning algorithms, these approaches collectively contribute to the advancement of robotic systems capable of learning and adapting to diverse tasks in real-world environments.          </div>
-        </td>
-        <td class="noborder">Amy Zhang (virtual)
-        </td>
-        <td class="noborder">
-          <img src="https://pbs.twimg.com/profile_images/949764133922238465/homPC1W5_400x400.jpg" class="rounded-circle"
-          alt="Amy Zhang" height="140">
-          </td>
-      </tr>
-      <tr>
-        <td class="noborder">9:45 - 10:30
-        </td>
-        <td class="noborder"> Panel
-        </td>
-        <td class="noborder">Aviv, Shiqi, Alex, Amy (hybrid)
-        </td>
-        <td class="noborder">
-        </td>
-      </tr>
-      <tr>
-        <td class="noborder">10:30 - 11:00
-        </td>
-        <td class="noborder"> Coffee Break
-        </td>
-        <td class="noborder">N/A
-        </td>
-        <td class="noborder">
-        </td>
-      </tr>
-      <tr>
-        <td class="noborder">11:00-11:15
-        </td>
-        <td class="noborder"> <button type="button" class="collapsible"><u>Invited Speaker (Details)</u><div class="triangle-down"></div></button>
-          <div class="content">
-            Title: Interactive Task Learning
-<br><br>
-Abstract: Robots in manufacturing and households will encounter novel objects and tasks all the time. This talk focuses on teaching robots novel concepts and tasks human-robot interactions, which can include demonstrations and linguistic interactions. We will discuss challenges in teaching tasks and plannable representations to robots with human demonstrations. We will present results on the types of teaching strategies people use when teaching tasks to robots. We will then present a method that can learn visual tasks and concepts from a few in-situ interactions with a human-teacher using interactive learning. Together these approaches will shed light on the difficulties in teaching generalizable task and motion planning abstractions to a robot in a continual setting.
-            </div>
-      </td>
-        <td class="noborder"> Nakul Gopalan (in person)
-        </td>
-        <td class="noborder">
-          <img src="https://fullcircle.asu.edu/wp-content/uploads/2022/08/Nakul-Gopalan-01a-600x600-1.jpg" class="rounded-circle"
-          alt="Nakul Gopalan" height="140">
-        </td>
-      </tr>
-      <tr>
-        <td class="noborder">11:15-11:30
-        </td>
-        <td class="noborder"> <button type="button" class="collapsible"><u>Invited Speaker (Details)</u><div class="triangle-down"></div></button>
-          <div class="content">
-            Title: How (temporal) reward abstractions help planning and task understanding
-            <br><br>
-            Abstract: Temporal reward abstractions frameworks such as linear temporal logic help with generating a compact description of acceptable trajectories of the world state. While these reward descriptions when translated to automata can help speed up planning and learning by providing a reward scaffold, this talk explores some other utilities of reward definitions using beliefs over LTL formulas. Specifically, I will talk about three use cases. First, where belief over LTL specifications can be used to generate active learning query trajectories are used to prune the belief space over task specifications efficiently, allowing the robot to learn high quality task specifications even if starting from a highly uncertain belief. Next, we demonstrate how the automata structure of the rewards can help with zero-shot policy transfer to a novel task, and finally, we demonstrate how models that translate natural language to formal specifications can leverage compositional structure to adapt to novel domains without any additional domain specific training.</div>
-      </td>
-        <td class="noborder"> Ankit Shah (in person)
-        </td>
-        <td class="noborder">
-          <img src="http://people.csail.mit.edu/ajshah/authors/ankit/avatar_hue4f007176f1b7507a4fad3a8f218276e_7283443_250x250_fill_q90_lanczos_center.jpg" class="rounded-circle"
-          alt="Ankit Shah" height="140">
-          </td>
-      </tr>
-      <tr>
-        <td class="noborder">11:30-11:45
-        </td>
-        <td class="noborder"> <button type="button" class="collapsible"><u>Invited Speaker (Details)</u><div class="triangle-down"></div></button>
-          <div class="content">
-            Title: DeepSym: Use of Symbolic Bottleneck for Extracting High-Level Abstractions from Robots Interactions
-            <br><br>
-            Abstract: Symbolic planning and reasoning are powerful tools for robots tackling complex tasks. However, the need to manually design the symbols restrict their applicability, especially for robots that are expected to act in open-ended environments. Therefore symbol formation and rule extraction should be considered part of robot learning, which, when done properly, will offer scalability, flexibility, and robustness.  Towards this goal, we propose a novel general method that finds action-grounded, discrete object and effect categories and builds probabilistic rules over them for non-trivial action planning.
-                        </div>
-      </td>
-        <td class="noborder"> Alper Ahmetoglu (virtual)
-        </td>
-        <td class="noborder">
-          <img src="https://alpera.xyz/static/alper.jpg" class="rounded-circle"
-          alt="Alper Ahmetoglu" height="140">
-          </td>
-      </tr>
-      <tr>
-        <td class="noborder">11:45-12:30
-        </td>
-        <td class="noborder"> Panel
-        </td>
-        <td class="noborder"> Nakul, Ankit, Alper (hybrid)
-        </td>
-        <td class="noborder">
-        </td>
-      </tr>
-      <tr>
-        <td class="noborder">12:30-1:45
-        </td>
-        <td class="noborder"> Lunch
-        </td>
-        <td class="noborder"> N/A
-        </td>
-        <td class="noborder">
-        </td>
-      </tr>
-        <td class="noborder">1:45-2:00
-        </td>
-        <td class="noborder"> <button type="button" class="collapsible"><u>Contributed Talk (Details)</u><div class="triangle-down"></div></button>
-          <div class="content">Generative Skill Chaining: Long-Horizon Skill Planning with Diffusion Models
-          <br><br>Utkarsh Mishra, Shangjie Xue, Yongxin Chen, Danfei Xu
-          </div>
-        </td>
-        <td class="noborder"> <a href="https://openreview.net/forum?id=dQtjGWt1D2">[paper link]</a>
-        </td>
-        <td class="noborder">
-        </td>
-      </tr>
-    </tr>
-    <td class="noborder">2:00-2:15
-    </td>
-    <td class="noborder"> <button type="button" class="collapsible"><u>Contributed Talk (Details)</u><div class="triangle-down"></div></button>
-      <div class="content">Universal Visual Decomposer: Long-Horizon Manipulation Made Easy
-      <br><br> Zichen Zhang, Yunshuang Li, Osbert Bastani, Abhishek Gupta, Dinesh Jayaraman, Yecheng Jason Ma, Luca Weihs
-      </div>
-    </td>
-    <td class="noborder"> <a href="https://openreview.net/forum?id=k2vlJyncri">[paper link]</a>
-    </td>
-    <td class="noborder">
-    </td>
+      <tr> 
+        <td class = "noborder"> 8:30 AM - 9:00 AM</td>
+        <td class = "noborder"> Invited Talk: Eric Rosen</td>
   </tr>
+  <tr> 
+    <td class = "noborder"> 9:00 AM - 9:30 AM</td>
+    <td class = "noborder"> Invited Talk: Georgia Chalvatzaki</td>
 </tr>
-<td class="noborder">2:15-2:30
-</td>
-<td class="noborder"> <button type="button" class="collapsible"><u>Contributed Talk (Details)</u><div class="triangle-down"></div></button>
-  <div class="content">NOD-TAMP: Multi-Step Manipulation Planning with Neural Object Descriptors
-  <br><br> Shuo Cheng, Caelan Garrett, Ajay Mandlekar, Danfei Xu
-  </div>
-</td>
-<td class="noborder"> <a href="https://openreview.net/forum?id=DK7TbAS0Wz">[paper link]</a>
-</td>
-<td class="noborder">
-</td>
+  
+<tr> 
+  <td class = "noborder"> 9:30 AM - 10:00 AM</td>
+  <td class = "noborder"> Invited Talk: Marc Toussaint</td>
 </tr>
+
+<tr> 
+  <td class = "noborder"> 10:00 AM - 10:30 AM</td>
+  <td class = "noborder"> Contributed Talks (3 talks)</td>
 </tr>
-<td class="noborder">2:30-2:45
-</td>
-<td class="noborder"> <button type="button" class="collapsible"><u>Contributed Talk (Details)</u><div class="triangle-down"></div></button>
-  <div class="content"> RoboHop: Segment-based Topological Map Representation for Open-World Visual Navigation
-  <br><br> Sourav Garg, Krishan Rana, Mehdi Hosseinzadeh, Lachlan Mares, Niko Suenderhauf, Feras Dayoub, Ian Reid
-  </div>
-</td>
-<td class="noborder"> <a href="https://openreview.net/forum?id=DFPjxfmdep">[paper link]</a>
-</td>
-<td class="noborder">
-</td>
+
+<tr> 
+  <td class = "noborder"> 10:30 AM - 11:00 AM</td>
+  <td class = "noborder"> Coffee Break</td>
 </tr>
-      <tr>
-        <td class="noborder">2:45-3:00
-        </td>
-          <td class="noborder"> <button type="button" class="collapsible"><u>Invited Speaker (Details)</u><div class="triangle-down"></div></button>
-            <div class="content">
-              Title: Causal Dynamics Learning for Task-Independent State Abstraction
-              <br><br>
-Abstract:  Learning dynamics models accurately is an important goal for
- Model-Based Reinforcement Learning (MBRL), but most MBRL methods learn
- a dense dynamics model which is vulnerable to spurious correlations
- and therefore generalizes poorly to unseen states. We introduce Causal
- Dynamics Learning for Task-Independent State Abstraction (CDL), which
- first learns a theoretically proved causal dynamics model that removes
- unnecessary dependencies between state variables and the action, thus
- generalizing well to unseen states. A state abstraction can then be
- derived from the learned dynamics, which not only improves sample
- efficiency but also applies to a wider range of tasks than existing
- state abstraction methods. Evaluated on two simulated environments and
- downstream tasks, both the dynamics model and policies learned by the
- proposed method generalize well to unseen states and the derived state
- abstraction improves sample efficiency compared to learning without
- it.
- (Based on joint work with Zizhao Wang, Xuesu Xiao, Zifan Xu, and Yuke Zhu)            </div>
-        </td>
-        <td class="noborder"> Peter Stone (virtual)
-        </td>
-        <td class="noborder">
-          <img src="https://www.cs.utexas.edu/~pstone/images/Peter_Headshot_2015.png" class="rounded-circle"
-          alt="Peter Stone" height="140">
-          </td>
-      </tr>
-      <tr>
-        <td class="noborder">3:00-3:15
-        </td>
-        <td class="noborder"> <button type="button" class="collapsible"><u>Invited Speaker (Details)</u><div class="triangle-down"></div></button>
-          <div class="content">
-            Title: A first-order language for effective task-specific abstractions
-            <br><br>
-            Abstract: Domain-specific knowledge can be leveraged to deduce task-specific abstractions for various sequential decision-making domains.  In this talk, I argue the necessity of a relational, first-order language to express the domain knowledge and present a dynamic first-order conditional influence language. I will show the connection of this language with the dynamic probabilistic logic models, present an approach to deduce the task-specific abstraction using that language, and demonstrate its utility in different sequential decision-making problems..
-          </div>
-      </td>
-        <td class="noborder"> Harsha Kokel (virtual)
-        </td>
-        <td class="noborder">
-          <img src="https://harshakokel.com/images/me.jpg" class="rounded-circle"
-          alt="Harsha Kokel" height="140">
-        </td>
-      </tr>
-      <tr>
-        <td class="noborder">3:15-3:30
-        </td>
-        <td class="noborder"> <button type="button" class="collapsible"><u>Invited Speaker (Details)</u><div class="triangle-down"></div></button>
-          <div class="content">
-            Learning Category-level Sensorimotor Primitives of Sequential Manipulation Tasks from Visual Demonstrations
-            <br><br>
-            Abstract: We present a new approach for learning complex robot manipulation tasks that are composed of several, consecutively executed low-level sub-tasks, given as input a few visual demonstrations. The sub-tasks consist of moving the robot’s end-effector until it reaches a sub-goal region in the task space, performing an action, and triggering the next sub-task when a pre-condition is met. The proposed system learns simultaneously low-level policies as well as high-level policies, such as deciding which object to pick next or where to place it relative to other objects in the scene. A key feature of the proposed approach is that the policies are learned without any manual annotation or postprocessing of the data. We also present a category-level learning approach that aims to acquire skills that can be generalized to new objects, with geometries and textures that are different from the ones of the objects used in the demonstrations.
-          </div>
-      </td>
-        <td class="noborder"> Abdeslam Boularias (virtual)
-        </td>
-        <td class="noborder">
-          <img src="https://www.cs.rutgers.edu/images/people/photo%20(5).jpeg" class="rounded-circle"
-          alt="Abdeslam Boularias" height="140">
-          </td>
-      </tr>
-      <tr>
-        <td class="noborder">3:30-3:35
-        </td>
-        <td class="noborder"> Conclusion & Best Paper
-        </td>
-        <td class="noborder"> LEAP Organizers
-        </td>
-        <td class="noborder">
-        </td>
-      </tr>
-      <tr>
-        <td class="noborder">3:35-5:30
-        </td>
-        <td class="noborder"> Posters / Coffee
-        </td>
-        <td class="noborder"> N/A
-        </td>
-        <td class="noborder">
-        </td>
-      </tr>
-    </table>
-  </div> -->
+<tr> 
+  <td colspan="2"><b>Session 2</b></td>
+</tr>
+  <tr> 
+    <td class = "noborder"> 11:00 AM - 11:30 AM</td>
+    <td class = "noborder"> Invited Talk: Gregory Stein</td>
+  </tr>
+  <tr> 
+    <td class = "noborder"> 11:30 AM - 12:00 PM</td>
+    <td class = "noborder"> Invited Talk: Leslie Kaelbling</td>
+  </tr>
+  
+  <tr> 
+    <td class = "noborder"> 12:00 PM - 1:45 PM</td>
+    <td class = "noborder"> Lunch Break (with conference industry panel)</td>
+  </tr>
+  
+  <tr> 
+    <td colspan="2"><b>Session 3</b></td>
+  </tr>
+  <tr> 
+    <td class = "noborder"> 1:45 PM - 2:15 PM</td>
+    <td class = "noborder"> Invited Talk: Caelan Garrett</td>
+  </tr>
+  <tr> 
+    <td class = "noborder"> 2:15 PM - 2:45 PM</td>
+    <td class = "noborder"> Invited Talk: Siddharth Srivastava</td>
+  </tr>
+
+  <tr> 
+    <td class = "noborder"> 2:15 PM - 2:45 PM</td>
+    <td class = "noborder"> Contributed Talks (4 talks)</td>
+  </tr>
+  <tr> 
+    <td colspan="2"><b>Session 4</b></td>
+  </tr>
+  <tr> 
+    <td class = "noborder"> 4:00 PM - 4:50 PM</td>
+    <td class = "noborder"> Panel Discussion </td>
+  </tr>
+  <tr> 
+    <td class = "noborder"> 4:50 PM - 6:00 PM</td>
+    <td class = "noborder"> Poster Session</td>
+  </tr>
+
+</table>
+
+
+
   </div>
 
 
