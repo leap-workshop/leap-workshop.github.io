@@ -17,7 +17,7 @@
   integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 
 
-  
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
@@ -37,11 +37,11 @@
       outline: none;
       font-size: 15px;
     }
-    
+
     .active, .collapsible:hover {
       background-color: #555;
     }
-    
+
     .content {
       padding: 5px 18px;
       display: none;
@@ -66,6 +66,24 @@
       border-top: 20px solid rgb(255, 255, 255);
       float: right;
     }
+
+    .title-container {
+      width: 100%;
+      margin: auto;
+      padding: 40px 20px;
+      color: black;
+      /* background-image: linear-gradient(135deg,#333, black, #333); */
+      background:white;
+      background-image: url("imgs/corl2023_background.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat, repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 55px;
+  }
+
   </style>
 
 
@@ -335,7 +353,7 @@
       <center><img src="imgs/certificate.png" width="500" /></center>
     </div>
   </div>
-  
+
   </div>
 
 
@@ -404,7 +422,7 @@
         </td>
         <td class="noborder"> <button type="button" class="collapsible"><u>Invited Speaker (Details)</u><div class="triangle-down"></div></button>
           <div class="content">
-            Title: Explore to Generalize 
+            Title: Explore to Generalize
             <br><br>
             Abstract: The importance of learning abstractions for planning is well reflected in the zero shot generalization problem in RL: how to learn a policy on a set of training tasks that will generalize well to an unseen, but similar, test task. While most previous efforts focused on learning policies that are invariant to irrelevant properties of the task, we propose a different approach. We observe that policies trained to *explore* the state space generalize well, as the exploration behavior is much harder to memorize than the actual solution to the task. We exploit this discovery in our Explore-to-Generalize (ExpGen) algorithm, which at test time takes a reward maximization action when it is certain (using a policy ensemble), or an exploration action when it is uncertain (using the generalizing exploration policy). On the popular ProcGen benchmark, ExpGen makes significant progress on difficult problems such as Maze and Heist, where previous approaches failed. Furthermore, when combined with an invariance based method, ExpGen yields new SOTA results on the full suite of ProcGen games. (based on a NeurIPS 2023 paper by Zisselman, Lavie, Soudry, and T., <a href="https://openreview.net/forum?id=37cADkATD0">[link]</a>)            </div>
       </td>
@@ -422,7 +440,7 @@
           <div class="content">
             Title: Symbolic State Space Optimization: Learning Abstractions for Mobile Manipulation
             <br><br>
-            Abstract: In existing task and motion planning (TAMP) research, it is a common assumption that experts manually specify the state space for task-level planning. A well-developed state space enables the desirable distribution of limited computational resources between task planning and motion planning. However, developing such task-level state spaces can be non-trivial in practice. In this paper, we consider a long horizon mobile manipulation domain including repeated navigation and manipulation. We propose Symbolic State Space Optimization (S3O) for computing a set of abstracted locations and their 2D geometric groundings for generating task-motion plans in such domains. Our approach has been extensively evaluated in simulation and demonstrated on a real mobile manipulator working on clearing up dining tables. Results show the superiority of the proposed method over TAMP baselines in task completion rate and execution time. (Joint work with Xiaohan Zhang, Yifeng Zhu, Yan Ding, Yuqian Jiang, Yuke Zhu, and Peter Stone). 
+            Abstract: In existing task and motion planning (TAMP) research, it is a common assumption that experts manually specify the state space for task-level planning. A well-developed state space enables the desirable distribution of limited computational resources between task planning and motion planning. However, developing such task-level state spaces can be non-trivial in practice. In this paper, we consider a long horizon mobile manipulation domain including repeated navigation and manipulation. We propose Symbolic State Space Optimization (S3O) for computing a set of abstracted locations and their 2D geometric groundings for generating task-motion plans in such domains. Our approach has been extensively evaluated in simulation and demonstrated on a real mobile manipulator working on clearing up dining tables. Results show the superiority of the proposed method over TAMP baselines in task completion rate and execution time. (Joint work with Xiaohan Zhang, Yifeng Zhu, Yan Ding, Yuqian Jiang, Yuke Zhu, and Peter Stone).
           </div>
         </td>
         <td class="noborder">Shiqi Zhang (in person)
@@ -525,7 +543,7 @@ Abstract: Robots in manufacturing and households will encounter novel objects an
           <div class="content">
             Title: DeepSym: Use of Symbolic Bottleneck for Extracting High-Level Abstractions from Robots Interactions
             <br><br>
-            Abstract: Symbolic planning and reasoning are powerful tools for robots tackling complex tasks. However, the need to manually design the symbols restrict their applicability, especially for robots that are expected to act in open-ended environments. Therefore symbol formation and rule extraction should be considered part of robot learning, which, when done properly, will offer scalability, flexibility, and robustness.  Towards this goal, we propose a novel general method that finds action-grounded, discrete object and effect categories and builds probabilistic rules over them for non-trivial action planning. 
+            Abstract: Symbolic planning and reasoning are powerful tools for robots tackling complex tasks. However, the need to manually design the symbols restrict their applicability, especially for robots that are expected to act in open-ended environments. Therefore symbol formation and rule extraction should be considered part of robot learning, which, when done properly, will offer scalability, flexibility, and robustness.  Towards this goal, we propose a novel general method that finds action-grounded, discrete object and effect categories and builds probabilistic rules over them for non-trivial action planning.
                         </div>
       </td>
         <td class="noborder"> Alper Ahmetoglu (virtual)
@@ -558,13 +576,13 @@ Abstract: Robots in manufacturing and households will encounter novel objects an
         <td class="noborder">1:45-2:00
         </td>
         <td class="noborder"> <button type="button" class="collapsible"><u>Contributed Talk (Details)</u><div class="triangle-down"></div></button>
-          <div class="content">Generative Skill Chaining: Long-Horizon Skill Planning with Diffusion Models 
+          <div class="content">Generative Skill Chaining: Long-Horizon Skill Planning with Diffusion Models
           <br><br>Utkarsh Mishra, Shangjie Xue, Yongxin Chen, Danfei Xu
           </div>
         </td>
         <td class="noborder"> <a href="https://openreview.net/forum?id=dQtjGWt1D2">[paper link]</a>
         </td>
-        <td class="noborder"> 
+        <td class="noborder">
         </td>
       </tr>
     </tr>
@@ -577,20 +595,20 @@ Abstract: Robots in manufacturing and households will encounter novel objects an
     </td>
     <td class="noborder"> <a href="https://openreview.net/forum?id=k2vlJyncri">[paper link]</a>
     </td>
-    <td class="noborder"> 
+    <td class="noborder">
     </td>
   </tr>
 </tr>
 <td class="noborder">2:15-2:30
 </td>
 <td class="noborder"> <button type="button" class="collapsible"><u>Contributed Talk (Details)</u><div class="triangle-down"></div></button>
-  <div class="content">NOD-TAMP: Multi-Step Manipulation Planning with Neural Object Descriptors 
+  <div class="content">NOD-TAMP: Multi-Step Manipulation Planning with Neural Object Descriptors
   <br><br> Shuo Cheng, Caelan Garrett, Ajay Mandlekar, Danfei Xu
   </div>
 </td>
 <td class="noborder"> <a href="https://openreview.net/forum?id=DK7TbAS0Wz">[paper link]</a>
 </td>
-<td class="noborder"> 
+<td class="noborder">
 </td>
 </tr>
 </tr>
@@ -598,12 +616,12 @@ Abstract: Robots in manufacturing and households will encounter novel objects an
 </td>
 <td class="noborder"> <button type="button" class="collapsible"><u>Contributed Talk (Details)</u><div class="triangle-down"></div></button>
   <div class="content"> RoboHop: Segment-based Topological Map Representation for Open-World Visual Navigation
-  <br><br> Sourav Garg, Krishan Rana, Mehdi Hosseinzadeh, Lachlan Mares, Niko Suenderhauf, Feras Dayoub, Ian Reid 
+  <br><br> Sourav Garg, Krishan Rana, Mehdi Hosseinzadeh, Lachlan Mares, Niko Suenderhauf, Feras Dayoub, Ian Reid
   </div>
 </td>
 <td class="noborder"> <a href="https://openreview.net/forum?id=DFPjxfmdep">[paper link]</a>
 </td>
-<td class="noborder"> 
+<td class="noborder">
 </td>
 </tr>
       <tr>
@@ -771,7 +789,7 @@ Abstract:  Learning dynamics models accurately is an important goal for
   <script>
     var coll = document.getElementsByClassName("collapsible");
     var i;
-    
+
     for (i = 0; i < coll.length; i++) {
       coll[i].addEventListener("click", function() {
         this.classList.toggle("active");
