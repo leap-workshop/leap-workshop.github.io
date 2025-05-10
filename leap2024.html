@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- css from https://github.com/ai-workshops/ai-workshops.github.io/blob/master/generalizable-policy-learning-in-the-physical-world/style.css -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+  integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+<link rel="icon"
+  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%22-.1em%22 y=%22.9em%22 font-size=%2280%22>🤖</text></svg>">
+
+<!-- jQuery library -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+  integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <title>LEAP: Learning Effective Abstractions for Planning | CoRL 2024</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .collapsible {
+      background-color: #fff;
+      color: #000;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: 0px solid white;
+      text-align: center;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .title-container {
+      width: 100%;
+      margin: auto;
+      padding: 40px 20px;
+      color: black;
+      /* background-image: linear-gradient(135deg,#333, black, #333); */
+      background: white;
+      background-image: url("imgs/corl2024_background.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat, repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 55px;
+    }
+
+    .active,
+    .collapsible:hover {
+      background-color: #bbb;
+    }
+
+    .content {
+      padding: 5px 18px;
+      display: none;
+      overflow: hidden;
+      background-color: #f1f1f1;
+    }
+
+    .triangle-up {
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 20px solid rgb(255, 255, 255);
+      float: right;
+    }
+
+    .triangle-down {
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 20px solid rgb(255, 255, 255);
+      float: right;
+    }
+  </style>
+
+
+  <script type="text/javascript">
+    var organizers = [
+      {
+        "name": "Georgia Chalvatzaki",
+        "affiliation": "TU Darmstadt",
+        "website": "https://irosalab.com/people/georgia-chalvatzaki/",
+        "img": "imgs/georgia.jpg"
+      },
+      {
+        "name": "Beomjoon Kim",
+        "affiliation": "KAIST",
+        "website": "https://beomjoonkim.github.io/",
+        "img": "imgs/beomjoon.jpg"
+      },
+      {
+        "name": "Eric Rosen",
+        "affiliation": "Boston Dynamics AI Institute",
+        "website": "https://cs.brown.edu/people/er35/home.html",
+        "img": "imgs/eric.jpg"
+      },
+      {
+        "name": "David Paulius",
+        "affiliation": "Brown University",
+        "website": "https://davidpaulius.github.io/",
+        "img": "imgs/david.jpg"
+      },
+      {
+        "name": "Naman Shah",
+        "affiliation": "Arizona State University",
+        "website": "https://www.namanshah.net/",
+        "img": "imgs/naman.jpg"
+      },
+      {
+        "name": "Tom Silver",
+        "affiliation": "MIT",
+        "website": "https://web.mit.edu/tslvr/www/",
+        "img": "imgs/tom.jpg"
+      }
+    ];
+
+    function randomize_organizers() {
+      // Source: https://stackoverflow.com/a/6274381
+      function shuffle(a) {
+        var j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+          j = Math.floor(Math.random() * (i + 1));
+          x = a[i];
+          a[i] = a[j];
+          a[j] = x;
+        }
+        return a;
+      }
+
+      // randomly shuffling order of organizers upon load!
+      shuffle(organizers);
+
+      for (var x = 0; x < organizers.length; x++) {
+        let img_element = document.createElement("img");
+        img_element.src = organizers[x].img;
+        img_element.alt = organizers[x].name;
+
+        let name_element = document.createElement("p");
+        let strong_element = document.createElement("strong");
+        let p = document.createElement("p");
+        let a = document.createElement("a");
+        a.href = organizers[x].website;
+        a.target = "_blank";
+        a.textContent = organizers[x].name;
+        p.appendChild(a);
+        strong_element.appendChild(p);
+        name_element.appendChild(strong_element);
+
+        let aff_element = document.createElement("p");
+        aff_element.textContent = organizers[x].affiliation;
+
+        let thumbnail = document.createElement("div");
+        thumbnail.classList.add("thumbnail")
+        thumbnail.appendChild(img_element);
+        thumbnail.appendChild(name_element);
+        thumbnail.appendChild(aff_element);
+
+        let column = document.createElement("div");
+        column.classList.add("col-sm-4")
+        column.appendChild(thumbnail);
+
+        if (x < organizers.length / 2) {
+          document.getElementById("orgrow_1").appendChild(column);
+        } else {
+          document.getElementById("orgrow_2").appendChild(column);
+        }
+      }
+    }
+  </script>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-custom navbar-fixed-top sticky-nav">
+    <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#main-navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="main-navigation">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#call">Call for Papers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#dates">Dates</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#schedule">Schedule</a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link" href="index.html#program">Program</a>
+          </li> -->
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="index.html#related">Related Workshops</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#committee">Committees</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="leap2023.html">LEAP 2023 </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="title-container">
+    <div style="text-align: center;">
+      <a href="https://www.corl.org/" target="_blank"><img src="imgs/corl2024.png" style="width:250px;"></a>
+      <br>
+      <div class="subtitle">2nd Workshop on </div>
+      <h1 style="width:80%;margin:auto;">Learning Effective Abstractions for Planning (LEAP)</h1>
+      <div class="subtitle" style="color: #130b69; margin: 20px; margin-bottom: -10px;">
+        CoRL 2024, Munich, Germany | November 9, 2024
+      </div>
+      <br>
+      <h3>Email: <a href="mailto:leap-workshop@googlegroups.com">leap-workshop@googlegroups.com</a></h3>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom: 0px;">
+    <div class="section" id="overview">
+      <h2>Overview</h2>
+      <p>
+        Complex long-horizon and sparse reward robotics tasks are challenging for scaling end-to-end learning methods.
+        By contrast, planning approaches have shown great potential to handle such complex tasks effectively. One of the
+        major criticisms of planning-based approaches has been the lack of availability of accurate world models (aka
+        abstractions) to utilize. </p>
+      <p>
+        There has been a renewed interest in using learning-based approaches to learn symbolic representations that
+        support planning. However, this research is often fragmented in disjoint sub-communities such as task and motion
+        planning, reinforcement learning (hierarchical, model-based), planning with formal logic, planning with natural
+        language (language models), and neuro-symbolic AI. This workshop aims to create a common forum to share
+        insights, discuss key questions, and chart a path forward via abstraction.
+      </p>
+      <p>
+        We aim to facilitate this bridge-building in two ways: (1) a diverse selection of papers and invited speakers;
+        and (2) a highly interactive workshop. Concretely, the workshop will highlight approaches that use different
+        learning methods, mainly to learn symbolic and composable representations of world models. Key questions for
+        discussion include:
+      </p>
+      <ol>
+        <li>
+          What is the right objective for abstraction learning for robotic planning? To what extent should we consider
+          factors such as soundness, completeness, target planner and planning efficiency, and task distribution?
+
+        </li>
+        <li>
+          What level of abstraction is needed for it to be effective? How general-purpose or specific do these
+          abstractions have to be for long-term autonomy? Do learned abstractions need to be hierarchical or at a single
+          level?
+
+        </li>
+        <li>
+          To what extent should the abstractions used for robotic planning be interpretable or explainable to a human?
+          How can this be achieved?
+
+        </li>
+        <li>
+          How can existing pre-trained foundational models (large language models (LLMs) and vision-language models
+          (VLMs)) be utilized for learning symbolic abstractions while ensuring guarantees about correctness?
+        </li>
+        <li>
+          When, where, and from what data should abstractions be learned? Should they be learned as priors in the robot
+          factory, using expert demonstrations, or in the “wild” from interaction with humans or the world?
+
+        </li>
+      </ol>
+      <p>
+        Following the success of the previous offering of the workshop at CoRL 2023, we propose a second iteration of
+        the workshop at CoRL 2024. Specifically, the previous iteration of the workshop received a total of 26
+        submissions highlighting important characteristics and challenges of learning abstractions. They highlighted how
+        pre-trained foundational models, specifically LLMs or VLMs, enable learning various forms of abstractions for a
+        diverse set of robotics tasks. This iteration of the workshop would have a stronger emphasis on learning
+        provably correct symbolic abstractions using different techniques.
+      </p>
+
+    </div>
+
+    <div class="section" id="objectives">
+
+
+      <h3 style="text-align: center;">Areas of Interest</h3>
+      <p>We solicit papers of the following topics:
+
+
+
+
+      <ul>
+
+
+        <li> Learning generalizable and composable representations for robot planning
+        <li> Learning for task and motion planning (TAMP)
+        <li> Learning state abstractions and action abstractions
+        <li> Natural language as an abstraction for learning-based planning
+        <li> Learning other knowledge representations for planning
+        <li> Learning for hierarchical planning
+        <li> Learning for LTL-based planning
+        <li> Neuro-symbolic approaches for task and motion planning
+        <li> Hierarchical reinforcement learning for robotics
+      </ul>
+      </p>
+    </div>
+
+    <div class="section" id="call">
+
+      <!-- <h2>Submission Guidelines</h2>
+
+      <h3>Submission Portal: <s><a href="https://openreview.net/group?id=robot-learning.org/CoRL/2024/Workshop/LEAP"
+          target="_blank">OpenReview</a></s> Closed!</h3>
+
+      <p>
+        We solicit workshop paper submissions relevant to the above call of the following types:
+      <ul>
+        <li> Long papers - up to 8 pages plus unlimited references / appendices</li>
+        <li> Short papers - up to 4 pages plus unlimited references / appendices</li>
+      </ul>
+      </p>
+
+      <p>Please format submissions in CoRL, ICLR or IEEE conference (ICRA or IROS) styles. Submissions do not need to be
+        anonymized. To authors submitting papers
+        rejected from other conferences: please ensure that comments given by the reviewers are addressed prior to
+        submission.
+      </p>
+
+      <p>
+        <i>Note: Please feel free to submit work under review or accepted for presentation at other workshops and/or
+          conferences as we will
+          not require copyright transfer.</i>
+      </p>
+      <br>
+      <!-- <h3 style="text-align: center;"><b>Accepted papers can be found on <a href="https://openreview.net/group?id=robot-learning.org/CoRL/2023/Workshop/LEAP">OpenReview</a>.</b></h3>
+      <h3 style="text-align: center;"><b>Best paper: <a href="https://openreview.net/forum?id=k2vlJyncri">Universal Visual Decomposer: Long-Horizon Manipulation Made Easy </a></b></h3>
+      <center><img src="imgs/certificate.png" width="500" /></center> -->
+
+      <h2>Best Paper: <a href="https://openreview.net/forum?id=ZGbWq3VqrO" target="_blank">ReKep: Spatio-Temporal Reasoning of Relational Keypoint Constraints for Robotic Manipulation</a></h2>
+
+      <center><img src="imgs/LEAP24_best_paper.png" width="500"></center>
+
+    </div>
+
+
+
+    <div class="section" id="dates" style="align-content: center;">
+      <h2>Important Dates</h2>
+      <table class="calculator table-borderless" style="text-align:center; margin: 0 auto;">
+        <!-- <tr>
+        <td class="noborder">Announcement and Call for Submissions
+        </td>
+        <td class="noborder"><b class="font-weight-bold">Aug 1, 2023</b>
+        </td>
+      </tr> -->
+        <tr>
+          <td class="noborder">Paper Submission Deadline
+          </td>
+          <td class="noborder"><b class="font-weight-bold">October 11, 2024 (AoE)</b>
+          </td>
+        </tr>
+        <tr>
+          <td class="noborder">Paper Acceptance
+          </td>
+          <td class="noborder"><b class="font-weight-bold">October 23, 2024 (AoE)</b>
+          </td>
+        </tr>
+        <tr>
+          <td class="noborder">Camera-ready Version Due
+          </td>
+          <td class="noborder"><b class="font-weight-bold">November 8, 2024 (AoE)</b>
+          </td>
+        </tr>
+        <tr>
+          <td class="noborder">Workshop
+          </td>
+          <td class="noborder"><b class="font-weight-bold">November 9, 2024</b>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section" id="schedule" style="align-content: center;">
+      <h2>Schedule</h2>
+
+      <tr>
+        <td> </td>
+      </tr>
+
+      <table class="calculator table-borderless" style="text-align:center; margin: 0 auto;">
+        <tr>
+          <td colspan="2"><h4>Session 1</h4></td>
+        </tr>
+        <tr>
+          <td class="noborder"> 8:25 AM - 8:30 AM</td>
+          <td class="noborder"> <b>Welcome Remarks</b></td>
+        </tr>
+        <tr>
+          <td class="noborder"> 8:30 AM - 9:00 AM</td>
+          <td class="noborder"> <b>Invited Talk:</b><br><a href="https://eric-rosen.github.io" target="_blank">Eric Rosen</a></td>
+        </tr>
+        <tr>
+          <td class="noborder"> 9:00 AM - 9:30 AM</td>
+          <td class="noborder"> <b>Invited Talk:</b><br><a href="https://www.gmu.edu/profiles/gjstein" target="_blank">Gregory Stein</a></td>
+        </tr>
+
+        <tr>
+          <td class="noborder"> 9:30 AM - 10:00 AM</td>
+          <td class="noborder"> <b>Invited Talk:</b><br><a href="https://www.user.tu-berlin.de/mtoussai/" target="_blank">Marc Toussaint</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="noborder"> 10:00 AM - 10:30 AM</td>
+          <td class="noborder"> <b>Contributed Talks (3 talks)</b>
+            <br>
+            <ul>
+              <li><a href="https://openreview.net/forum?id=zwqWhCaXFu" target="_blank">FLIP: Flow-Centric Generative Planning for General-Purpose Manipulation Tasks</a></li>
+              <li><a href="https://openreview.net/forum?id=O1uIKPpyFI" target="_blank">DELTA: Decomposed Efficient Long-Term Robot Task Planning using Large Language Models</a></li>
+              <li><a href="https://openreview.net/forum?id=mEStwtkF71" target="_blank">Local Policies Enable Zero-shot Long-horizon Manipulation</a> <a href="https://www.youtube.com/watch?v=vN7lw7GLc4A" target="_blank">[VIDEO]</a></li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="noborder"> 10:30 AM - 11:00 AM</td>
+          <td class="noborder"> <b>Coffee Break</b></td>
+        </tr>
+        <tr>
+          <td colspan="2"><h4>Session 2</h4></td>
+        </tr>
+        <tr>
+          <td class="noborder"> 11:00 AM - 11:30 AM</td>
+          <td class="noborder"> <b>Invited Talk:</b><br><a href="https://irosalab.com/people/georgia-chalvatzaki/" target="_blank">Georgia Chalvatzaki</a></td>
+        </tr>
+        <tr>
+          <td class="noborder"> 11:30 AM - 12:00 PM</td>
+          <td class="noborder"> <b>Invited Talk:</b><br><a href="https://www.csail.mit.edu/person/leslie-kaelbling" target="_blank">Leslie Kaelbling</a></td>
+        </tr>
+
+        <tr>
+          <td class="noborder"> 12:00 PM - 1:45 PM</td>
+          <td class="noborder"> <b>Lunch Break</b><br>(with Conference Industry Panel)</td>
+        </tr>
+
+        <tr>
+          <td colspan="2"><h4>Session 3</h4></td>
+        </tr>
+        <tr>
+          <td class="noborder"> 1:45 PM - 2:15 PM</td>
+          <td class="noborder"> <b>Invited Talk:</b><br><a href="https://web.mit.edu/caelan/www/" target="_blank">Caelan Garrett</a></td>
+        </tr>
+        <tr>
+          <td class="noborder"> 2:15 PM - 2:45 PM</td>
+          <td class="noborder"> <b>Invited Talk:</b><br><a href="https://siddharthsrivastava.net" target="_blank">Siddharth Srivastava</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="noborder"> 2:45 PM - 3:30 PM</td>
+          <td class="noborder"> <b>Contributed Talks (3 talks)</b>
+            <ul>
+              <li><a href="https://openreview.net/forum?id=FYCBQnTmhO" target="_blank">Points2Plans: From Point Clouds to Long-Horizon Plans with Composable Relational Dynamics</a></li>
+              <li><a href="https://openreview.net/forum?id=0POzffUb5Q" target="_blank">DynaMem: Online Dynamic Spatio-Semantic Memory for Open World Mobile Manipulation</a></li>
+              <li><a href="https://openreview.net/forum?id=ZGbWq3VqrO" target="_blank">ReKep: Spatio-Temporal Reasoning of Relational Keypoint Constraints for Robotic Manipulation</a></li>
+              <li><a href="https://openreview.net/forum?id=rOK5DuR9IM" target="_blank">Learning Compositional Behaviors from Demonstration and Language</a></li>
+            </ul>
+          </td>
+      </tr>
+        <tr>
+          <td class="noborder"> 3:30 PM - 4:00 PM</td>
+          <td class="noborder"> <b> Coffee Break</b></td>
+        </tr>
+
+        <tr>
+          <td colspan="2"><h4>Session 4</h4></td>
+        </tr>
+        <tr>
+          <td class="noborder"> 4:00 PM - 4:50 PM</td>
+          <td class="noborder">
+            <b>Panel Discussion</b>
+              <br>
+              Moderator: <a href="https://research.gatech.edu/people/animesh-garg" target="_blank">Leslie Kaelbling</a>
+              <br>
+              <a href="https://ai.stanford.edu/~cbfinn/" target="_blank">Chelsea Finn</a>
+              <br>
+              <a href="https://research.gatech.edu/people/animesh-garg" target="_blank">Animesh Garg</a>
+              <br>
+              <a href="https://siddharthsrivastava.net" target="_blank">Siddharth Srivastava</a>
+              <br>
+              <a href="https://www.user.tu-berlin.de/mtoussai/" target="_blank">Marc Toussaint</a>
+              <br>
+              <a href="https://vincent.vanhoucke.com/" target="_blank">Vincent Vanhoucke</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="noborder"> 4:50 PM - 6:00 PM</td>
+          <td class="noborder"> <b>Closing Remarks & Poster Session</b></td>
+        </tr>
+
+      </table>
+
+
+
+    </div>
+
+
+    <!-- <div class = "secion" id="speakers" style="text-align: center; padding: 10px;">
+    <h2> Inivted Speakers</h2>
+
+  </div> -->
+
+    <div class="section" id="speakers" style="text-align: center; padding: 10px;">
+      <h2>Invited Speakers</h2>
+      <div class="grid">
+        <center>
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://irosalab.com/people/georgia-chalvatzaki/" target="_blank"><img src="imgs/georgia.jpg"
+                  class="rounded-circle" alt="Georgia Chalvatzaki" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://irosalab.com/people/georgia-chalvatzaki/"
+                  target="_blank">Georgia Chalvatzaki</a>
+              </h5>
+              TU Darmstadt </br> Germany
+            </div>
+            <br /> <br />
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://web.mit.edu/caelan/www/" target="_blank"><img src="imgs/caelan.jpeg"
+                  class="rounded-circle" alt="Caelan Garrett" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://web.mit.edu/caelan/www/" target="_blank">Caelan
+                  Garrett</a>
+              </h5>
+              Nvidia
+            </div>
+            <br /> <br />
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://www.csail.mit.edu/person/leslie-kaelbling" target="_blank"><img src="imgs/leslie.jpeg"
+                  class="rounded-circle" alt="Lesli Pack Kaelbling" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://www.csail.mit.edu/person/leslie-kaelbling"
+                  target="_blank">Leslie Pack Kaelbling</a>
+              </h5>
+              Massachusetts Institute of Technology <br> USA
+            </div>
+            <br /> <br />
+
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://eric-rosen.github.io" target="_blank"><img src="imgs/eric.png" class="rounded-circle"
+                  alt="Eric Rosen" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://eric-rosen.github.io" target="_blank">Eric Rosen</a>
+              </h5>
+              The AI Institute <br> Boston Dynamics
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://siddharthsrivastava.net" target="_blank"><img src="imgs/srivastava.jpg"
+                  class="rounded-circle" alt="Siddharth Srivastava" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://siddharthsrivastava.net" target="_blank">Siddharth
+                  Srivastava</a>
+              </h5>
+              Arizona State University </br> USA
+              <br>
+            </div>
+            <br /> <br />
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://www.gmu.edu/profiles/gjstein" target="_blank"><img src="imgs/gregory.jpg"
+                  class="rounded-circle" alt="Gregory Stein" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://www.gmu.edu/profiles/gjstein" target="_blank">Gregory
+                  Stein</a>
+              </h5>
+              George Mason University </br> USA
+            </div>
+            <br /> <br />
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://www.user.tu-berlin.de/mtoussai/" target="_blank"><img src="imgs/marc.jpeg"
+                  class="rounded-circle" alt="Marc Toussaint" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://www.user.tu-berlin.de/mtoussai/" target="_blank">Marc
+                  Toussaint</a>
+              </h5>
+              TU Berlin <br> Germany
+            </div>
+            <br /> <br />
+            <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding-bottom: 30px;">
+            <a href="https://irosalab.com/people/georgia-chalvatzaki/" target="_blank"><img src="imgs/georgia.jpg" class="rounded-circle"
+                alt="Georgia Chalvatzaki" width="140" height="140"></a>
+            <h5 style="margin-bottom:0em;"><a href="https://irosalab.com/people/georgia-chalvatzaki/" target="_blank">Georgia Chalvatzaki</a>
+            </h5>
+            TU Darmstadt, Germany
+          </div>
+          <br /> <br /> -->
+          </div>
+        </center>
+      </div>
+
+    </div>
+
+
+    <div class="section" id="committee" style="text-align: center; padding: 10px;">
+      <h2>Organizing Committees</h2>
+      <!-- <h3>Organizing Committee</h3> -->
+      <br />
+
+      <div class="grid">
+        <center>
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://namanshah.net/" target="_blank"><img src="imgs/naman.jpg" class="rounded-circle"
+                  alt="Naman Shah" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"> <a href="https://namanshah.net/" target="_blank">Naman Shah</a></h5>
+              Brown University <br> USA
+            </div>
+            <br /> <br />
+
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://www.davidpaulius.me/" target="_blank"><img src="imgs/david.jpg" class="rounded-circle"
+                  alt="David Paulius" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://davidpaulius.github.io/" target="_blank">David Paulius</a>
+              </h5>
+              Brown University <br> USA
+            </div>
+            <br /><br />
+
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://nishanthjkumar.com" target="_blank"><img src="imgs/nishanth.png" class="rounded-circle"
+                  alt="Nishanth Kumar" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://nishanthjkumar.com" target="_blank">Nishanth Kumar</a>
+              </h5>
+              Massachusetts Institute of Technology <br> USA
+            </div>
+            <br /><br />
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://jiayuanm.com" target="_blank"><img src="imgs/jiayuan.jpeg" class="rounded-circle"
+                  alt="Jiayun Mao" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://jiayuanm.com" target="_blank">Jiayuan Mao</a>
+              </h5>
+              Massachusetts Institute of Technology <br> USA
+            </div>
+            <br /><br />
+
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://eeching.github.io" target="_blank"><img src="imgs/yiqing.webp" class="rounded-circle"
+                  alt="Yiqing Xu" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://eeching.github.io" target="_blank">Yiqing Xu</a>
+              </h5>
+              Natitonal University of Singapore <br> Singapore
+            </div>
+            <br /><br />
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://nakulgopalan.github.io" target="_blank"><img src="imgs/nakul.jpeg" class="rounded-circle"
+                  alt="Nakul Gopalan" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://nakulgopalan.github.io" target="_blank">Nakul Gopalan</a>
+              </h5>
+              Arizona State University <br> USA
+            </div>
+            <br /><br />
+
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://rudolf.intuitive-robots.net" target="_blank"><img src="imgs/rudolph.jpeg"
+                  class="rounded-circle" alt="Rudolph Lioutikov" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://rudolf.intuitive-robots.net" target="_blank">Rudolph
+                  Lioutikov</a>
+              </h5>
+              Karlsruhe Institute of Technology <br> Germany
+            </div>
+            <br /><br />
+
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://cs.brown.edu/people/gdk/" target="_blank"><img src="imgs/george.jpeg"
+                  class="rounded-circle" alt="George Konidaris" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://cs.brown.edu/people/gdk/" target="_blank">George
+                  Konidaris</a>
+              </h5>
+              Brown University <br> USA
+            </div>
+            <br /><br />
+
+          </div>
+
+
+      </div>
+    </div>
+      <div class ="section" id="accpted" style="text-align: left; padding: 5px;">
+        <h2>Accepted Papers (Read them <a target="_blank" href="https://openreview.net/group?id=robot-learning.org/CoRL/2024/Workshop/LEAP">here</a>)</h2>
+          <ul>
+
+             <li><b>Illustrated Landmark Graphs for Long-Horizon Policy Learning</b>
+             <br>Christopher Watson, Arjun Krishna, Rajeev Alur, Dinesh Jayaraman</li>
+
+             <li><b>BMP: Bridging the Gap between B-Spline and Movement Primitives</b>
+             <br>Weiran Liao, Ge Li, Hongyi Zhou, Rudolf Lioutikov,  Gerhard Neumann </li>
+
+             <li><b>A Real-to-Sim-to-Real Approach to Robotic Manipulation with VLM-Generated Iterative Keypoint Rewards</b>
+             <br>Shivansh Patel, Xinchen Yin, Wenlong Huang, Shubham Garg, Hooshang Nayyeri, Li Fei-Fei,  Svetlana Lazebnik,  Yunzhu Li </li>
+
+             <li><b>SkillGen: Automated Demonstration Generation for Efficient Skill Learning and Deployment</b>
+             <br>Caelan Reed Garrett, Ajay Mandlekar, Bowen Wen, Dieter Fox </li>
+
+             <li><b>FlowNav: Learning Efficient Navigation Policies via Conditional Flow Matching</b>
+             <br>Samiran Gode, Abhijeet Nayak,  Wolfram Burgard </li>
+
+             <li><b>Planning with Adaptive World Models for Autonomous Driving</b>
+             <br>Arun Balajee Vasudevan, Neehar Peri,  Jeff Schneider, Deva Ramanan </li>
+
+             <li><b>Safe Multi-Agent Navigation guided by Goal-Conditioned Safe Reinforcement Learning</b>
+             <br>Meng Feng, Viraj Parimi, Brian C. Williams </li>
+
+             <li><b>Language Guided Operator Learning for Goal Inference</b>
+             <br>Zachary S Siegel, Jiayuan Mao, Nishanth Kumar, Tianmin Shu, Jacob Andreas</li>
+
+             <li><b>Least Commitment Planning for the Object Scouting Problem - Preliminary Results</b>
+             <br>Max Merlin, David Paulius, George Konidaris </li>
+
+             <li><b>Learning Compositional Behaviors from Demonstration and Language</b>
+             <br>Weiyu Liu, Neil Nie,  Jiayuan Mao, Ruohan Zhang, Jiajun Wu</li>
+
+             <li><b>Enhancing Object Search by Augmenting Planning with Predictions from Large Language Models</b>
+             <br>Shahriar Hossain, Gregory J. Stein,  Abhishek Paudel </li>
+
+             <li><b>Environment as Policy: Learning to Race in Unseen Tracks</b>
+             <br>Hongze Wang,  Jiaxu Xing,  Nico Messikommer, Davide Scaramuzza</li>
+
+             <li><b>Local Policies Enable Zero-shot Long-horizon Manipulation</b>
+             <br>Murtaza Dalal, Min Liu, Walter Talbott, Chen Chen, Deepak Pathak, Jian Zhang, Russ Salakhutdinov</li>
+
+             <li><b>Latent Space Exploration and Trajectory Space Update in Temporally-Correlated Episodic Reinforcement Learning</b>
+             <br> Ge Li, Hongyi Zhou,  Dominik Roth, Serge Thilges, Fabian Otto, Rudolf Lioutikov, Gerhard Neumann </li>
+
+             <li><b>Robot Utility Models: General Policies for Zero-Shot Deployment in New Environments</b>
+             <br>Haritheja Etukuru, Norihito Naka, Zijin Hu, Seungjae Lee, Chris Paxton, Lerrel Pinto, Soumith Chintala, Nur Muhammad Mahi Shafiullah </li>
+
+             <li><b>TOP-ERL: Transformer-based Off-Policy Episodic Reinforcement Learning</b>
+             <br>Ge Li, Dong Tian, Hongyi Zhou, Xinkai Jiang, Rudolf Lioutikov, Gerhard Neumann </li>
+
+             <li><b>Structured Exploration in Reinforcement Learning by Hypothesizing Linear Temporal Logic Formulas</b>
+             <br>Yichen Wei, Xiaochen Li,  Jason Xinyu Liu, Naman Shah, Benedict Quartey, George Konidaris, Stefanie Tellex, Akhil Bagaria</li>
+
+             <li><b>AHA: A Vision-Language-Model for Detecting and Reasoning Over Failures in Robotic Manipulation</b>
+             <br>Jiafei Duan, Wilbert Pumacay, Nishanth Kumar, Yi Ru Wang, Shulin Tian,  Wentao Yuan, Ranjay Krishna, Ajay Mandlekar, Dieter Fox, Yijie Guo </li>
+
+             <li><b>RoboEXP: Action-Conditioned Scene Graph via Interactive Exploration for Robotic Manipulation</b>
+             <br>Hanxiao Jiang, Binghao Huang, Ruihai Wu, Zhuoran Li, Shubham Garg, Hooshang Nayyeri, Shenlong Wang, Yunzhu Li</li>
+
+             <li><b>MotIF: Motion Instruction Fine-tuning</b>
+             <br>Minyoung Hwang, Joey Hejna, Dorsa Sadigh, Yonatan Bisk</li>
+
+             <li><b>Efficient long-horizon planning and learning for locomotion and object manipulation</b>
+             <br>Victor Dhédin, Huaijiang Zhu, Ludovic Righetti, Majid Khadiv</li>
+
+              <li><b>ReKep: Spatio-Temporal Reasoning of Relational Keypoint Constraints for Robotic Manipulation</b>
+              <br>Wenlong Huang, Chen Wang, Yunzhu Li, Ruohan Zhang, Li Fei-Fei</li>
+
+              <li><b>Learning Contact-rich Abstractions using Tensor Factorization</b>
+              <br>Teng Xue, Amirreza Razmjoo, Suhan Shetty, Sylvain Calinon</li>
+
+              <li><b>CuriousBot: Interactive Mobile Exploration via Actionable 3D Relational Object Graph</b>
+              <br>Yixuan Wang, Leonor Fermoselle, Tarik Kelestemur, Jiuguang Wang, Yunzhu Li</li>
+
+              <li><b>Constrained Latent Action Policies for Model-Based Offline Reinforcement Learning</b>
+              <br>Marvin Alles, Philip Becker-Ehmck, Patrick van der Smagt, Maximilian Karl</li>
+
+              <li><b>On the Role of the Action Space in Robot Manipulation Learning and Sim-to-Real Transfer</b>
+              <br>Elie Aljalbout, Felix Frank, Maximilian Karl, Patrick van der Smagt</li>
+
+              <li><b>From Language to Action with Object-level Planning</b>
+              <br>David Paulius, Alejandro Agostini, George Konidaris </li>
+
+              <li><b>Learning to Act for Perceiving in Partially Unknown Environments</b>
+              <br>Leonardo Lamanna, Mohamadreza Faridghasemnia, Alfonso Gerevini, Alessandro Saetti, Alessandro Saffiotti, Luciano Serafini, Paolo Traverso</li>
+
+              <li><b>Zero-Shot Offline Imitation Learning via Optimal Transport</b>
+              <br>Thomas Rupf, Marco Bagatella, Nico Gürtler, Jonas Frey, Georg Martius</li>
+
+              <li><b>SPIRE: Synergistic Planning, Imitation, and Reinforcement for Long-Horizon Manipulation</b>
+              <br>Zihan Zhou, Animesh Garg, Dieter Fox, Caelan Reed Garrett, Ajay Mandlekar</li>
+
+              <li><b>VQ-CNMP: Neuro-Symbolic Skill Learning for Bi-Level Planning</b>
+              <br>Hakan Aktas, Emre Ugur</li>
+
+              <li><b>DELTA: Decomposed Efficient Long-Term Robot Task Planning using Large Language Models</b>
+              <br>Yuchen Liu, Luigi Palmieri, Ilche Georgievski, Marco Aiello</li>
+
+              <li><b>BaB-ND: Long-Horizon Motion Planning with Branch-and-Bound and Neural Dynamics</b>
+              <br>Keyi Shen, Jiangwei Yu, Huan Zhang, Yunzhu Li</li>
+
+              <li><b>Successor Representations Enable Emergent Compositional Instruction Following</b>
+              <br>Vivek Myers, Chunyuan Zheng, Anca Dragan, Kuan Fang, Sergey Levine</li>
+
+              <li><b>Guiding Long-Horizon Task and Motion Planning with Vision Language Models</b>
+              <br>Zhutian Yang, Caelan Reed Garrett, Dieter Fox, Tomás Lozano-Pérez, Leslie Pack Kaelbling</li>
+
+              <li><b>Points2Plans: From Point Clouds to Long-Horizon Plans with Composable Relational Dynamics</b>
+              <br>Yixuan Huang, Christopher Agia, Jimmy Wu, Tucker Hermans, Jeannette Bohg</li>
+
+              <li><b>Lang2LTL-2: Grounding Spatiotemporal Navigation Commands Using Large Language and Vision-Language Models</b>
+              <br>Jason Xinyu Liu, Ankit Shah, George Konidaris, Stefanie Tellex, David Paulius</li>
+
+              <li><b>Representing Positional Information in Generative World Models for Object Manipulation</b>
+              <br>Bart Dhoedt, Pietro Mazzaglia, Stefano Ferraro, Tim Verbelen, Sai Rajeswar </li>
+
+              <li><b>TAMPering with RLBench: Enabling joint developments in Task and Motion Planning and Reinforcement Learning research</b>
+              <br>Alexander Dürr, Elin A. Topp, Jacek Malec</li>
+
+              <li><b>Let's Make a Splan: Risk-Aware Trajectory Optimization in a Normalized Gaussian Splat</b>
+              <br>Jonathan Michaux, Seth Isaacson, Challen Enninful Adu, Adam Li, Parker Ewen, Katherine A. Skinner, Ram Vasudevan</li>
+
+              <li><b>Contrastive Learning for Enhancing Robust Scene Transfer in Vision-based Agile Flight</b>
+              <br>Jiaxu Xing, Leonard Bauersfeld, Yunlong Song, Chunwei Xing, Davide Scaramuzza</li>
+
+              <li><b>LTL-Transfer: Skill Transfer for Temporal Task Specification</b>
+              <br>AJason Xinyu Liu, Ankit Shah, Eric Rosen, Mingxi Jia, George Konidaris, Stefanie Tellex</li>
+
+              <li><b>Online Neuro-Symbolic Predicate Invention for High-Level Planning</b>
+              <br>Yichao Liang, Nishanth Kumar, Hao Tang, Adrian Weller, Joshua B. Tenenbaum, Tom Silver, Joao F. Henriques, Kevin Ellis</li>
+
+              <li><b>Generative Factor Chaining: Coordinated Manipulation with Diffusion-based Factor Graph</b>
+              <br>Utkarsh Aashu Mishra, Yongxin Chen, Danfei Xu</li>
+
+              <li><b>Say-REAPEx: An LLM-Modulo UAV Online Planning Framework for Search and Rescue</b>
+              <br>Björn Döschl, Jane Jean Kiam </li>
+
+              <li><b>Neural MP: A Generalist Neural Motion Planner</b>
+              <br>Deepak Pathak, Jiahui Yang, Murtaza Dalal, Russ Salakhutdinov, Russell Mendonca, Youssef Khaky </li>
+
+              <li><b>ThinkGrasp: A Vision-Language System for Strategic Part Grasping in Clutter</b>
+              <br>Yaoyao Qian, Xupeng Zhu, Ondrej Biza, Shuo Jiang, Linfeng Zhao, Haojie Huang, Yu Qi, Robert Platt</li>
+
+              <li><b>Language Models can Infer Action Semantics for Classical Planners from Environment Feedback</b>
+              <br>Wang Zhu, Ishika Singh, Robin Jia, Jesse Thomason</li>
+
+              <li><b>SkillWrapper: Skill Abstraction in the Era of Foundation Models</b>
+              <br>Shreyas Sundara Raman, Ziyi Yang, Benned Hedegaard, Stefanie Tellex, David Paulius, Naman Shah</li>
+
+              <li><b>Sequential Object-Centric Relative Placement Prediction for Long-horizon Imitation Learning</b>
+              <br>Ben Eisner, Eric Cai, Octavian Donca, Teeratham Vitchutripop, David Held</li>
+
+              <li><b>One-Shot Manipulation Strategy Learning by Making Contact Analogies</b>
+              <br>Yuyao Liu, Jiayuan Mao, Joshua B. Tenenbaum, Tomás Lozano-Pérez, Leslie Pack Kaelbling</li>
+
+              <li><b>DynaMem: Online Dynamic Spatio-Semantic Memory for Open World Mobile Manipulation</b>
+              <br>Peiqi Liu, Zhanqiu Guo, Mohit Warke, Soumith Chintala, Chris Paxton, Nur Muhammad Mahi Shafiullah, Lerrel Pinto</li>
+
+              </ul>
+
+            </div>
+
+        <div class ="section" id="pc" style="text-align: left; padding: 5px;">
+          <h2>Program Committee</h2>
+          <center><b>* Outstanding Reviewers</b></center>
+
+
+          <table class="calculator table-borderless" style="text-align:center; margin: 0 auto;">
+
+            <tr>
+              <td>Abhishek Paudel</td>
+              <td>Ahmed Hendawy</td>
+              <td>Ahmed Jaafar*</td>
+              <td>Akhil Bagaria</td>
+            </tr>
+
+
+          <tr>
+            <td>Alper Ahmetoglu</td>
+            <td>Anant Sah*</td>
+            <td>Bartłomiej Cieślar</td>
+            <td>Ben Eisner*</td>
+          </tr>
+          <tr>
+            <td>Benned Hedegaard</td>
+            <td>Bingjie Tang</td>
+            <td>Chengguang Xu</td>
+            <td>Chongkai Gao</td>
+          </tr>
+          <tr>
+            <td>Cunjun Yu*</td>
+            <td>Elie Aljalbout</td>
+            <td>Eric Rosen*</td>
+            <td>Hongyi Zhou</td>
+          </tr>
+          <tr>
+            <td>Hongze Wang</td>
+            <td>Jason Xinyu Liu</td>
+            <td>Jayesh Nagpal</td>
+            <td>Jiafei Duan</td>
+          </tr>
+          <tr>
+            <td>Jiaxu Xing</td>
+            <td>Jiyong Ahn</td>
+            <td>Kevin Jatin Vora</td>
+            <td>Linfeng Zhao</td>
+          </tr>
+          <tr>
+            <td>Max Merlin</td>
+            <td>Mingxi Jia</td>
+            <td>Minyoung Hwang</td>
+            <td>Nils Blank*</td>
+          </tr>
+            <tr>
+            <td>Omkar Patil</td>
+            <td>Pulkit Verma*</td>
+            <td>Rashmeet Kaur Nayyar</td>
+            <td>Roshan Dhakal*</td>
+          </tr>
+          <tr>
+            <td>Shivam Vats</td>
+            <td>Shivansh Patel</td>
+            <td>Shreyas Sundara Raman*</td>
+            <td>Shu Wang</td>
+          </tr>
+          <tr>
+            <td>Snehal Jauhri</td>
+            <td>Tabitha Edith Lee*</td>
+            <td>Tianyang Pan*</td>
+            <td>Tom Silver*</td>
+          </tr>
+          <tr>
+            <td>Utkarsh Aashu Mishra*</td>
+            <td>Vignesh Prasad</td>
+            <td>Viraj Parimi</td>
+            <td>Weiwei Gu*</td>
+          </tr>
+
+          <tr>
+
+            <td>Weiyu Liu</td>
+            <td>Xiaogang Jia</td>
+            <td>Xiaolin Fang</td>
+            <td>Xusheng Luo</td>
+          </tr>
+          <tr>
+            <td>Yaoyao Qian</td>
+            <td>Yixuan Huang</td>
+                        <td>Yongchao Chen</td>
+            <td>Yuchen Liu</td>
+          </tr>
+          <tr>
+            <td>Zirui Zhao*</td>
+            <td>Ziyi Yang*</td>
+          </tr>
+        </table>
+      </div>
+
+      <script src="javascripts/scale.fix.js"></script>
+      <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+      </script>
+</body>
+
+</html>
