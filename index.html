@@ -22,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  <title>LEAP: Learning Effective Abstractions for Planning | CoRL 2025</title>
+  <title>LEAP: Learning Effective Abstractions for Planning | CoRL 2026</title>
   <link rel="stylesheet" href="css/style.css">
 
   <!-- Social Sharing Meta Tags -->
@@ -95,40 +95,64 @@
   <script type="text/javascript">
     var organizers = [
       {
-        "name": "Georgia Chalvatzaki",
-        "affiliation": "TU Darmstadt",
-        "website": "https://irosalab.com/people/georgia-chalvatzaki/",
-        "img": "imgs/georgia.jpg"
-      },
-      {
-        "name": "Beomjoon Kim",
-        "affiliation": "KAIST",
-        "website": "https://beomjoonkim.github.io/",
-        "img": "imgs/beomjoon.jpg"
-      },
-      {
-        "name": "Eric Rosen",
-        "affiliation": "Boston Dynamics AI Institute",
-        "website": "https://cs.brown.edu/people/er35/home.html",
-        "img": "imgs/eric.jpg"
-      },
-      {
-        "name": "David Paulius",
-        "affiliation": "Brown University",
-        "website": "https://davidpaulius.github.io/",
-        "img": "imgs/david.jpg"
-      },
-      {
         "name": "Naman Shah",
-        "affiliation": "Arizona State University",
+        "affiliation": "AI2",
         "website": "https://www.namanshah.net/",
         "img": "imgs/naman.jpg"
       },
       {
         "name": "Tom Silver",
-        "affiliation": "MIT",
-        "website": "https://web.mit.edu/tslvr/www/",
+        "affiliation": "Princeton University",
+        "website": "https://tomsilver.github.io/",
         "img": "imgs/tom.jpg"
+      },
+      {
+        "name": "Gregory J. Stein",
+        "affiliation": "George Mason University",
+        "website": "https://gjstein.com/",
+        "img": "imgs/gregory.jpg"
+      },
+      {
+        "name": "Georgia Chalvatzaki",
+        "affiliation": "TU Darmstadt",
+        "website": "https://pearl-lab.com/people/georgia-chalvatzaki/",
+        "img": "imgs/georgia.jpg"
+      },
+      {
+        "name": "David Paulius",
+        "affiliation": "University of Notre Dame",
+        "website": "https://davidpaulius.github.io/",
+        "img": "imgs/david.jpg"
+      },
+      {
+        "name": "Yixuan Huang",
+        "affiliation": "Princeton University",
+        "website": "https://yxuan.huang.github.io/",
+        "img": "imgs/yixuan.jpg"
+      },
+      {
+        "name": "Utkarsh Mishra",
+        "affiliation": "Georgia Tech",
+        "website": "https://umishra.me/",
+        "img": "imgs/utkarsh.jpeg"
+      },
+      {
+        "name": "Yiqing Xu",
+        "affiliation": "National University of Singapore",
+        "website": "https://eeching.github.io/",
+        "img": "imgs/yiqing.webp"
+      },
+      {
+        "name": "Amber Li",
+        "affiliation": "Carnegie Mellon University",
+        "website": "#",
+        "img": "imgs/amber.jpg"
+      },
+      {
+        "name": "Franziska Herbert",
+        "affiliation": "TU Darmstadt",
+        "website": "#",
+        "img": "imgs/franziska.jpg"
       }
     ];
 
@@ -207,14 +231,8 @@
         <li class="nav-item">
           <a class="nav-link" href="index.html#schedule">Schedule</a>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link" href="index.html#program">Program</a>
-          </li> -->
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="index.html#related">Related Workshops</a>
-        </li> -->
         <li class="nav-item">
-          <a class="nav-link" href="index.html#accepted">Accepted Papers</a>
+          <a class="nav-link" href="index.html#speakers">Speakers</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="index.html#committee">Committees</a>
@@ -228,12 +246,12 @@
 
   <div class="title-container">
     <div style="text-align: center;">
-      <a href="https://www.corl.org/" target="_blank"><img src="imgs/corl25.png" style="width:250px;"></a>
+      <a href="https://www.corl.org/" target="_blank"><img src="imgs/corl_logo_name.png" style="width:250px;"></a>
       <br>
-      <div class="subtitle">3rd Workshop on </div>
+      <div class="subtitle">4th Workshop on </div>
       <h1 style="width:80%;margin:auto;">Learning Effective Abstractions for Planning (LEAP)</h1>
       <div class="subtitle" style="color: #130b69; margin: 20px; margin-bottom: -10px;">
-        CoRL 2025, Seoul, South Korea | September 27, 2025 </br> Room E7 </br>  <a href="https://gmu.zoom.us/j/98834877351?pwd=Ax9qg8sB3iubTfnVvvS3CIVKLwLyp0.1">Join on Zoom </a>
+        CoRL 2026 | Date &amp; Location: To Be Announced
       </div>
       <br>
       <h3>Email: <a href="mailto:leap-workshop@googlegroups.com">leap-workshop@googlegroups.com</a></h3>
@@ -244,34 +262,53 @@
     <div class="section" id="overview">
       <h2>Overview</h2>
       <p>
-      Complex long-horizon and sparse reward robotics tasks are challenging for scaling end-to-end learning methods. By contrast, planning approaches have shown great potential to handle such complex tasks effectively. One of the major criticisms of planning-based approaches has been the lack of availability of accurate world models (aka abstractions) to utilize. 
+      Complex long-horizon and sparse reward robotics tasks are challenging for scaling end-to-end learning methods. By contrast, planning approaches have shown great potential to handle such complex tasks effectively. One of the major criticisms of planning-based approaches has been the lack of availability of accurate world models (aka abstractions) to utilize.
       </p>
       <p>
-      There has been a renewed interest in using learning-based approaches to learn symbolic representations that support planning. However, this research is often fragmented into disjoint sub-communities such as task and motion planning, reinforcement learning (hierarchical, model-based), planning with formal logic, planning with natural language (language models), and neuro-symbolic AI. This workshop aims to create a common forum to share insights, discuss key questions, and chart a path forward via abstraction.
+      There has been a renewed interest in using learning-based approaches to learn symbolic representations that support planning. However, this research is often fragmented into disjoint sub-communities such as task and motion planning, reinforcement learning (hierarchical, model-based), planning with formal logic, planning with natural language (language models), and neuro-symbolic AI. As in previous years, LEAP will bring together researchers from disparate subfields to discuss how we can combine learning, planning, and abstractions to solve increasingly complex long-horizon and sparse-reward robotics tasks.
       </p>
+      <!-- <p>
+      Following the remarkable success of our workshop series at CoRL 2023, CoRL 2024, and CoRL 2025, we are excited to organize the 4th CoRL Workshop on Learning Effective Abstractions for Planning (LEAP). Several papers submitted to and presented at LEAP have gone on to be accepted as conference and journal papers in successive years, including best paper award winners (e.g., SymSkill: LEAP 2025 → ICRA 2026) and finalists (e.g., Universal Visual Decomposer: LEAP 2023 → ICRA 2024; DiMSam: LEAP 2023 → IROS 2024; TOP-ERL: LEAP 2024 → ICLR 2025 Spotlight). Previous iterations also attracted large attendance, with 26 papers at LEAP 2023, 53 papers at LEAP 2024, and a record number of submissions at LEAP 2025.
+      </p> -->
       <p>
-      We aim to facilitate this bridge-building in two ways: (1) a diverse selection of papers and invited speakers; and (2) a highly interactive workshop. Concretely, the workshop will highlight approaches that use different learning methods, mainly to learn symbolic and composable representations of world models. Key questions for discussion include:
+      As in prior editions, the workshop continues to engage with the foundational questions that have defined LEAP since its inception:
       </p>
       <ol>
       <li>
-      What is the right objective for abstraction learning for robotic planning? To what extent should we consider factors such as soundness, completeness, target planner and planning efficiency, and task distribution?</li>
-      <li>
-      How can abstraction-based systems in the role of data collectors facilitate contemporary learning methods such as imitation learning? Can we develop insights into what can be explicit and implicit priors that would allow efficient long-horizon task learning, and can we derive them from abstraction-based planning systems? 
+      What is the right objective for abstraction learning for robotic planning? To what extent should we account for soundness, completeness, the target planner and its planning efficiency, and the task distribution?
       </li>
       <li>
-      What level of abstraction is needed for it to be effective? How general-purpose or specific do these abstractions have to be for long-term autonomy? Do learned abstractions need to be hierarchical or at a single level?
+      What level of abstraction is necessary for effective robot decision-making? How general-purpose or specific must these abstractions be for long-term autonomy, and do learned abstractions need to be hierarchical?
       </li>
       <li>
-      How can existing pre-trained foundational models (large language models (LLMs) and vision-language models (VLMs)) be utilized for learning symbolic abstractions while ensuring guarantees about soundness and correctness? How can we also incorporate cost and plan quality? How can we incorporate cost-sensitive reasoning into vision-language and large model-based abstractions to produce efficient and executable plans for embodied agents?
-      </li> 
-      <li>
-      How can learned abstractions enable safer and decidable outcomes for robot skills learned in the form of robot action foundation models such as OpenVLA, Pi, and LBMs? Can we learn symbolic models for such action foundation models that enable off-the-shelf planners to be used in open-world settings?
-      </li>
-    <li>When, where, and from what data should abstractions be learned? Should they be learned as priors in the robot factory, using expert demonstrations, or in the “wild” from interaction with humans or the world?  What are the trade-offs between top-down operator construction (e.g., via symbolic abstraction or language) and bottom-up operator discovery (e.g., through exploration or policy learning), and how do they affect generalization and planning efficiency?
+      When, where, and from what data should abstractions be learned? Should they be priors built in the robot factory, derived from expert demonstrations, or discovered "in the wild" through interaction between the robot and its environment? What are the trade-offs between top-down operator construction and bottom-up operator discovery, and how do they impact planning efficiency and generalization?
       </li>
       </ol>
+
+      <h3 style="text-align: center; margin-top: 30px;">Focal Themes of LEAP 2026</h3>
       <p>
-    Following the success of the previous offerings of the workshop at CoRL 2023 and CoRL 2024, we propose a third iteration of the workshop at CoRL 2025. Specifically, the previous iterations of the workshop received a total of 26 and 55 submissions, respectively. These submissions highlighted important characteristics and challenges of learning abstractions while showcasing the abstraction capabilities of pre-trained LLMs and VLMs. This iteration of the workshop would have a stronger emphasis on works that highlight the capabilities of using high-dimensional data and pre-trained models for learning sound and complete abstractions that enable cost-effective and reliable planning.</p> 
+      While the questions above ground the workshop, our key attention this year is deliberately focused on two specific, concrete, and timely challenges in learning abstractions for planning. We frame these as the focal discussion themes around which the program, panels, and breakout sessions will be organized.
+      </p>
+
+      <h4>Theme #1: Code as Abstractions</h4>
+      <p>
+      Programs and code offer a uniquely powerful substrate for abstraction in robot planning. They are compositional, verifiable, reusable, and directly executable, and they interface naturally with modern foundation models that can read, write, and edit code. We are eager to explore and discuss when and how code is the right abstraction for robot decision-making, as well as to identify its limitations:
+      </p>
+      <ul>
+        <li>When is code (viz., programs, policies-as-code, reward and constraint specifications, and skill libraries) the right abstraction for robot planning? When does it break down? What soundness, completeness, and verifiability guarantees can code-based abstractions provide that other representations cannot?</li>
+        <li>How can pre-trained foundation models (LLMs, VLMs, VLAs) be used to write, refine, and repair code-based abstractions? How can we incorporate cost-sensitive reasoning, plan quality, and executability such that generated programs produce efficient, safe plans for embodied agents?</li>
+        <li>How should code-based abstractions be grounded in perception and action, learned and reused across tasks, and combined with bottom-up skill discovery, so that they facilitate imitation and reinforcement learning and remain reliable in open-world settings?</li>
+      </ul>
+
+      <h4>Theme #2: World Models as Abstractions</h4>
+      <p>
+      Learned world models promise abstractions of environment dynamics that can be searched, simulated, and planned over. We want to examine what makes a world model a good abstraction for planning (rather than merely for prediction), and how planning can be performed in, on top of, or adjacent to such models:
+      </p>
+      <ul>
+        <li>What makes a world model a good abstraction for planning rather than merely for prediction? At what level of abstraction (state, latent, object-centric, symbolic) should world models operate, and do they need to be hierarchical?</li>
+        <li>How can we plan within, on top of, or adjacent to learned world models? What are the trade-offs between planning directly within a learned model, distilling it into a planner-friendly abstraction, and using it to guide reinforcement or imitation learning?</li>
+        <li>When, where, and from what data should world-model abstractions be learned (priors built in the factory, expert demonstrations, or "in the wild" interaction), and how do we ensure the resulting plans are safe, cost-effective, and robust to model error?</li>
+      </ul>
 
     </div>
 
@@ -301,7 +338,7 @@
     </div>
 
   
-    <div class="section" id="cfp" style="align-content: center;">
+    <div class="section" id="call" style="align-content: center;">
       <h2>Submission Guidelines</h2>
     <p> We solicit workshop paper submissions relevant to the above call of the following types: </p>
       <ul>
@@ -312,7 +349,7 @@
     <!-- </br> -->
     <p> Note: Please feel free to submit work under review or accepted for presentation at other workshops and/or conferences as we will not require copyright transfer. </p>
     <br>
-    <p><b>We are now accepting submissions through our <a href= https://openreview.net/group?id=robot-learning.org/CoRL/2025/Workshop/LEAP_Rolling&referrer=%5BHomepage%5D(%2F)#tab-your-consoles" target="_blank">OpenReview portal</a> </b></p>
+    <p><b>The OpenReview submission portal for LEAP 2026 will be announced soon. Stay tuned!</b></p>
 
    <p style="color: red; font-weight: bold;">
   <strong>Note:</strong> The CoRL workshop organizers have requested that we do <em>not</em> accept submissions that are already accepted at the main CoRL conference. We kindly ask authors to respect this policy when submitting to our workshop.
@@ -322,101 +359,48 @@
     <div class="section" id="dates" style="align-content: center;">
       <h2>Important Dates</h2>
       <table class="calculator table-borderless" style="text-align:center; margin: 0 auto;">
-        <!-- <tr>
-        <td class="noborder">Announcement and Call for Submissions
-        </td>
-        <td class="noborder"><b class="font-weight-bold">Aug 1, 2023</b>
-        </td>
-      </tr> -->
-        <!-- <tr>
+        <tr>
           <td class="noborder">Paper Submission Deadline
           </td>
-          <td class="noborder"><b class="font-weight-bold"> Aug 12, 2025 (Early) </b> Sep 5, 2025 (Late) </b>
+          <td class="noborder"><b class="font-weight-bold">To Be Announced</b>
           </td>
-        </tr> -->
-        <tr>
-  <td class="noborder" rowspan="2">Paper Submission Deadline</td>
-  <td class="noborder"><b class="font-weight-bold">Aug 20, 2025 (Early)</b></td>
-</tr>
-<tr>
-  <td class="noborder"><b class="font-weight-bold">Sep 5, 2025 (Late)</b></td>
-</tr>
+        </tr>
         <tr>
           <td class="noborder">Author Notification
           </td>
-          <td class="noborder"><b class="font-weight-bold"> Sep 5, 2025 </b>
+          <td class="noborder"><b class="font-weight-bold">To Be Announced</b>
           </td>
         </tr>
         <tr>
           <td class="noborder">Camera-ready Version Due
           </td>
-          <td class="noborder"><b class="font-weight-bold"> Sept 22, 2025 </b>
+          <td class="noborder"><b class="font-weight-bold">To Be Announced</b>
           </td>
         </tr>
         <tr>
           <td class="noborder">Workshop
           </td>
-          <td class="noborder"><b class="font-weight-bold">Sept 27, 2025</b>
+          <td class="noborder"><b class="font-weight-bold">CoRL 2026 (Date To Be Announced)</b>
           </td>
         </tr>
       </table>
 
-      <p> We offer two submission deadlines to accommodate different planning needs: an early deadline and a late deadline. The early deadline is intended for authors who may require quicker notification for travel, visa, or funding arrangements. Submissions received by the early deadline will be reviewed promptly, and notifications will be sent within approximately two weeks of submission. Authors who do not require early feedback are welcome to submit by the late deadline.</p>
+      <p> Important dates for LEAP 2026 will be posted here soon. Please check back for the call for papers and submission deadlines.</p>
 
     </div>
 
     <div class="section" id="schedule" style="align-content: center;">
-      <h2>Schedule</h2>
-
-      <!-- <tr>
-        <td> </td>
-      </tr> -->
-
-      <table class="calculator table-borderless" style="text-align:center; margin: 0 auto;">
-        <tr>
-          <td colspan="2"><h4>Session 1</h4></td>
-        </tr>
-        <tr>
-          <td class="noborder"> 1:30 PM - 1:35 PM</td>
-          <td class="noborder"> <b>Welcome Remarks</b></td>
-        </tr>
-        <tr>
-          <td class="noborder"> 1:35 PM - 2:05 PM</td>
-          <td class="noborder"> <b>Invited Talk:</b><br><a href="https://faculty.cc.gatech.edu/~danfei/" target="_blank">Danfei Xu</a></td>
-        </tr>
-        <tr>
-          <td class="noborder"> 2:05 PM - 2:35 PM</td>
-          <td class="noborder"> <b>Invited Talk:</b><br><a href="https://emreugur.org/" target="_blank">Emre Ugur</a></td>
-        </tr>
-
-        <tr>
-          <td class="noborder"> 2:35 PM - 3:00 PM</td>
-          <td class="noborder"> <b>Poster Lightning Talks</b>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="noborder"> 3:00 PM - 3:30 PM</td>
-          <td class="noborder"> <b>Coffee Break + Poster Session</b></td>
-        </tr>
-
-        <tr>
-          <td class="noborder"> 3:30 PM - 3:55 PM</td>
-          <td class="noborder"> <b>Poster Session</b>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="noborder"> 3:55 PM - 4:00 PM</td>
-          <td class="noborder"> <b>Best Paper Award</b>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="noborder"> 4:05 PM - 4:35 PM</td>
-          <td class="noborder"> <b>Invited Talk:</b><br><a href="https://www.cse.iitd.ac.in/~rohanpaul/" target="_blank">Rohan Paul</a></td>
-        </tr>
-      </table>
+      <h2>Format &amp; Schedule</h2>
+      <p>
+      <!-- LEAP has always been organized as a working session rather than a sequence of talks. As a half-day event, our program is deliberately structured so that presentations seed discussion, and the majority of the time is spent with participants reasoning together about open problems. Concretely, we build interactivity into the workshop along four axes: -->
+      </p>
+      <ol>
+        <li><b>A small, focused set of invited talks.</b> We cap the number of invited speakers at three, giving each ample time for a substantive, thought-provoking talk. This year, we have asked our invited speakers to foreground the open questions in abstraction learning for robot planning, rather than recapping results, so that their talks directly set up the breakout and panel discussions that follow.</li>
+        <li><b>Spotlight and lightning talks for contributed work.</b> Every accepted paper receives a 2-minute lightning talk, and a selection of standout contributions receive a 5-minute spotlight, keeping the contributed program visible and energetic while protecting time for discussion.</li>
+        <li><b>Breakout sessions and a live idea board.</b> Attendees propose and upvote open problems and promising directions on a collaborative idea board. The highest-voted ideas seed a 40-minute breakout session, followed by a plenary group discussion in which the breakout groups report back and the room debates the most compelling threads.</li>
+        <li><b>Interactive demo track.</b> Alongside the traditional poster session, we host a demo track where participants showcase live, interactive systems, creating natural, informal venues for technical exchange.</li>
+      </ol>
+      <p style="text-align: center;"><b>The detailed schedule for LEAP 2026 will be announced closer to the workshop date.</b></p>
     </div>
 
 
@@ -427,167 +411,39 @@
 
     <div class="section" id="speakers" style="text-align: center; padding: 10px;">
       <h2>Invited Speakers</h2>
-      <!-- <center> -->
-      <!-- <h3>(Tentative) </h3> -->
-    <!-- </center> -->
+      <center><p style="color: #555;">(Tentative)</p></center>
       <div class="grid">
         <center>
-          <!-- <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://ai.stanford.edu/~cbfinn/" target="_blank"><img src="imgs/chelsea.jpg"
-                  class="rounded-circle" alt="Jeannette Bohg" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://ai.stanford.edu/~cbfinn/"
-                  target="_blank">Chelsea Finn</a>
-              </h5>
-              Stanford University </br> Physical Intelligence </br> USA
-            </div> 
-            <br /> <br />
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://www.comp.nus.edu.sg/~dyhsu/ target="_blank"><img src="imgs/davidhsu.jpg"
-                  class="rounded-circle" alt="David Hsu" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://www.comp.nus.edu.sg/~dyhsu/" target="_blank">David Hsu</a>
-              </h5>
-              National University of Singapore <br> Singapore
-            </div>
-            <br /> <br />
-           <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://cs.brown.edu/people/gdk/" target="_blank"><img src="imgs/george.jpeg"
-                  class="rounded-circle" alt="George Konidaris" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://cs.brown.edu/people/gdk/"
-                  target="_blank">George Konidaris</a>
-              </h5>
-              Brown University <br> USA
-            </div>
-            <br /> <br />
-            </div> -->
             <div class="row">
 
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://faculty.cc.gatech.edu/~danfei/" target="_blank"><img src="imgs/danfei.jpg" class="rounded-circle"
-                  alt="Danfai Xu" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://faculty.cc.gatech.edu/~danfei/" target="_blank">Danfei Xu</a>
+              <a href="https://people.csail.mit.edu/tlp/" target="_blank"><img src="imgs/tomaz.png" class="rounded-circle"
+                  alt="Tomás Lozano-Pérez" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://people.csail.mit.edu/tlp/" target="_blank">Tomás Lozano-Pérez</a>
               </h5>
-              Georgia Institute of Technology <br> USA
+              MIT <br> USA
             </div>
 
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://emreugur.org/" target="_blank"><img src="imgs/emre.jpeg"
-                  class="rounded-circle" alt="Siddharth Srivastava" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://emreugur.org/" target="_blank">Emre Ugur</a>
+              <a href="https://www.oiermees.com/" target="_blank"><img src="imgs/oier.jpg"
+                  class="rounded-circle" alt="Oier Mees" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://www.oiermees.com/" target="_blank">Oier Mees</a>
               </h5>
-              Bogazici University </br> Turkey
-              <br>
+              Microsoft <br> USA
             </div>
 
-
-             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://www.cse.iitd.ac.in/~rohanpaul/" target="_blank"><img src="imgs/rohan.jpg"
-                  class="rounded-circle" alt="Rohan Paul" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://www.cse.iitd.ac.in/~rohanpaul/" target="_blank">Rohan Paul</a>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://cindycia.github.io/" target="_blank"><img src="imgs/panpan.jpg"
+                  class="rounded-circle" alt="Panpan Cai" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://cindycia.github.io/" target="_blank">Panpan Cai</a>
               </h5>
-              IIT Delhi </br> India
-              <br>
+              Shanghai Jiao Tong University <br> China
             </div>
-            <br /> <br />
+
           </div>
         </center>
       </div>
 
-    </div>
-
-
-    <div class="section" id="invited-talks" style="text-align: center; padding: 10px;">
-      <!-- <h2>Invited Talks</h2>
-      <p> We are excited to announce the following invited talks: </p> -->
-      <h3>Danfei Xu: Generative Task and Motion Planning</h3>
-      <p style = "text-align: left;"> Long-horizon planning is fundamental to our ability to solve complex physical problems, from using tools to cooking dinners. Despite recent progress in commonsense-rich foundation models, the ability to do the same is still lacking in robots. In this talk, I will present a body of work that aims to transform Task and Motion Planning—one of the most powerful computational frameworks in Manipulation Planning—into a fully generative model framework, enabling compositional generalization in a predominantly data-driven approach. I will explore how to chain together modular diffusion-based skills through iterative forward-backward denoising, how to formulate TAMP as a factor graph problem with generative models serving as learned constraints for planning, and how to integrate task and motion planning within a single generative process. </p>
-
-    </br>
-
-    <h3>Emre Ugur: DeepSym: A Neuro-symbolic Approach for Symbol Emergence and Planning</h3>
-    <p style="text-align: left;"> Abstract reasoning are among the most essential characteristics of high-level intelligence that distinguish humans from other animals. If the robots can achieve abstract reasoning on their own, they can perform new tasks in completely novel environments by updating their cognitive skills or by discovering new symbols and rules. Towards this goal, we propose a novel general framework, DeepSym, which discovers interaction grounded, discrete object, action and effect categories and builds probabilistic rules for non-trivial action planning. In DeepSym, our robot interacts with objects using an initial action repertoire and observes the effects it can create in the environment. To form interaction-grounded object, action, effect, and relational categories, we employ a binary bottleneck layer in a predictive, deep encoder-decoder network that takes the image of the scene and the action parameters as input and generates the resulting effects in the scene in pixel coordinates. The knowledge represented by the neural network is distilled into rules and represented in the Probabilistic Planning Domain Definition Language (PPDDL), allowing off-the-shelf planners to operate on the knowledge extracted from the sensorimotor experience of the robot. </p>
-    </br>
-    <h3>Rohan Paul: Towards Generalisation in Robot Instruction Following via Abstractions </h3>
-    <p style="text-align: left;">Robot instruction following entails translating the human’s intent expressed as high-level language descriptions to contextually ground plans for the robot to execute. The problem is challenging due to the abstract nature of human instructions, large variability of possible tasks and long-horizon spatio-temporal reasoning required for plan synthesis. This talk will discuss recent work in acquiring grounded abstractions for from human annotated demonstrations, leveraging sub-goals in long-horizon skill learning and using VLMs as a source for instruction-specific symbolic knowledge. Overall, we will hope to uncover the role of abstractions in aiding long-range reasoning as well as bridging the human’s intent and robot’s world model.</p>
-    </div>
-
-    <div class="section" id="accepted" style="text-align: left; padding: 5px;">
-        <h2>Accepted Papers (Read them <a target="_blank" href="https://openreview.net/group?id=robot-learning.org/CoRL/2025/Workshop/LEAP_Rolling">here</a>)</h2>
-          <ul>
-
-             <li><b>From Skills to TAMP: Learning Portable Symbolic Representations for Task and Motion Planning</b>
-             <br>Naman Shah, Benned Hedegaard, Yichen Wei, Ziyi Yang, Alper Ahmetoglu, Stefanie Tellex, George Konidaris</li>
-
-             <li><b>Learning to Plan &amp; Schedule with Reinforcement-Learned Bimanual Robot Skills</b>
-             <br>Weikang Wan, Fabio Ramos, Xuning Yang, Caelan Reed Garrett</li>
-
-             <li><b>SymSkill: Symbol and Skill Co-Invention for Data-Efficient and Real-Time Long-Horizon Manipulation</b>
-             <br>Yifei Simon Shao, Yuchen Zheng, Sunan Sun, Nadia Figueroa</li>
-
-             <li><b>Preference-Based Long-Horizon Robotic Stacking with Multimodal Large Language Models</b>
-             <br>Wanming Yu, Adrian Röfer, Abhinav Valada, Sethu Vijayakumar</li>
-
-             <li><b>Zero-order optimization with contact priors for locomotion</b>
-             <br>Victor Dhédin, Majid Khadiv</li>
-
-             <li><b>Uncertainty-Aware Planning with Generative World- and Language-Models via Monte Carlo Tree Search</b>
-             <br>Magí Dalmau-Moreno, Nestor Garcia, Vicenç Gomez</li>
-
-             <li><b>Learning Sound Symbolic Abstractions from VLMs for Efficient Task and Motion Planning on CALVIN</b>
-             <br>Bayron Jossue Serrano Mena</li>
-
-             <li><b>Gondola: Grounded Vision Language Planning for Generalizable Robotic Manipulation</b>
-             <br>Shizhe Chen, Ricardo Garcia Pinel, Paul Pacaud, Cordelia Schmid</li>
-
-             <li><b>SEAL: Safe and Efficient Abstraction Learning for Robotic Planning</b>
-             <br>Akhil R Kurup, Ravi Prakash</li>
-
-             <li><b>Diffusion-Guided Q-Learning for Offline RL: Adaptive Revaluation for Long-Horizon Decision Making</b>
-             <br>Jaehyun Park, Yunho Kim, Sejin Kim, Byung-Jun Lee, Sundong Kim</li>
-
-             <li><b>SPUR: Scaling Reward Learning from Human Demonstrations</b>
-             <br>Anthony Liang, Yigit Korkmaz, Jiahui Zhang, Jesse Zhang, Abrar Anwar, Sidhant Kaushik, Yufei Wang, Yu Xiang, David Held, Dieter Fox, Abhishek Gupta, Stephen Tu, Erdem Biyik</li>
-
-             <li><b>Hierarchical Vision-Language-Action Policies for Global Reasoning in Assembly Tasks</b>
-             <br>Moritz Hesche, Moritz Reuss, Marc Forstenhäusler, Rudolf Lioutikov</li>
-
-             <li><b>BEAST: Efficient Tokenization of B-Splines Encoded Action Sequences for Imitation Learning</b>
-             <br>Hongyi Zhou, Weiran Liao, Xi Huang, Yucheng Tang, Fabian Otto, Xiaogang Jia, Xinkai Jiang, Simon Hilber, Ge Li, Qian Wang, Ömer Erdinç Yağmurlu, Nils Blank, Moritz Reuss, Rudolf Lioutikov</li>
-
-             <li><b>Unleashing Humanoid Reaching Potential via Real-world-Ready Skill Space</b>
-             <br>Zhikai Zhang, Chao Chen, Han Xue, Jilong Wang, Sikai Liang, Yun Liu, Zongzhang Zhang, He Wang, Li Yi</li>
-
-             <li><b>Learning 3D Scene Analogies with Neural Contextual Scene Maps</b>
-             <br>Junho Kim, Gwangtak Bae, Eun Sun Lee, Young Min Kim</li>
-
-             <li><b>Improving Pre-Trained Vision-Language-Action Policies with Model-Based Search</b>
-             <br>Cyrus Neary, Omar G. Younis, Artur Kuramshin, Ozgur Aslan, Glen Berseth</li>
-
-             <li><b>If You Can Make an Omelette, Can You Crack an Egg? Probing Zero-Shot Subtask Generalization in Vision-Language-Action Models</b>
-             <br>Grigorii Guz, Giuseppe Carenini, Mathias Lécuyer, Michiel van de Panne, Vered Shwartz</li>
-
-             <li><b>From Code to Action: Hierarchical Learning of Diffusion-VLM Policies</b>
-             <br>Markus Peschl, Pietro Mazzaglia, Daniel Dijkman</li>
-
-             <li><b>HELIOS: Hierarchical Exploration for Language-grounded Interaction in Open Scenes</b>
-             <br>Katrina Ashton, Chahyon Ku, Shrey Shah, Wen Jiang, Kostas Daniilidis, Bernadette Bucher</li>
-
-             <li><b>Robotic Manipulation by Imitating Generated Videos Without Physical Demonstrations</b>
-             <br>Shivansh Patel, Shraddhaa Mohan, Hanlin Mai, Unnat Jain, Svetlana Lazebnik, Yunzhu Li</li>
-
-             <li><b>Fac-TDMPC: Learning an Efficient and Robust Factored World Model for Robot Planning</b>
-             <br>Yuan Zhang, Jianhong Wang, Joschka Boedecker</li>
-
-             <li><b>Model Predictive Adversarial Imitation Learning for Planning from Observation</b>
-             <br>Tyler Han, Yanda Bao, Bhaumik Mehta, Gabriel Guo, Anubhav Vishwakarma, Emily Kang, Sanghun Jung, Rosario Scalise, Jason Liren Zhou, Bryan Xu, Byron Boots</li>
-
-             <li><b>Hybrid Thinking in Vision-Language-Action Models</b>
-             <br>Pietro Mazzaglia, Cansu Sancaktar, Markus Peschl, Daniel Dijkman</li>
-
-             <li><b>Touch begins where vision ends: Generalizable policies for contact-rich manipulation</b>
-             <br>Zifan Zhao, Siddhant Haldar, Jinda Cui, Lerrel Pinto, Raunaq Bhirangi</li>
-
-          </ul>
     </div>
 
     <div class="section" id="committee" style="text-align: center; padding: 10px;">
@@ -605,15 +461,6 @@
               AI2 <br> USA
             </div>
             <br /> <br />
-            <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://www.davidpaulius.me/" target="_blank"><img src="imgs/david.jpg" class="rounded-circle"
-                  alt="David Paulius" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://davidpaulius.github.io/" target="_blank">David Paulius</a>
-              </h5>
-              Brown University <br> USA
-            </div>
-            <br /><br /> -->
-
 
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
               <a href="https://tomsilver.github.io/" target="_blank"><img src="imgs/tom.jpg" class="rounded-circle"
@@ -634,42 +481,62 @@
             <br /><br />
 
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://umishra.me/" target="_blank"><img src="imgs/utkarsh.jpeg" class="rounded-circle"
-                  alt="Utkarsh Mishra" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://umishra.me/" target="_blank">Utkarsh Mishra</a>
-              </h5>
-              Gerogia Institute of Technology <br> USA
-            </div>
-            <br /><br />
-
-            
-          </div>
-          <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://lucys0.github.io/" target="_blank"><img src="imgs/lucy.jpg" class="rounded-circle"
-                  alt="Lucy Shi" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://lucys0.github.io/" target="_blank">Lucy Shi</a>
-              </h5>
-              Stanford University <br> USA
-            </div>
-            <br /><br />
-
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://beomjoonkim.github.io/" target="_blank"><img src="imgs/beomjoon.jpg"
-                  class="rounded-circle" alt="Beomjoon Kim" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://beomjoonkim.github.io/" target="_blank">Beomjoon Kim</a>
-              </h5>
-              Korea Advanced Institute of Science & Technology<br> South Korea
-            </div>
-            <br /><br />
-
-
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
               <a href="https://pearl-lab.com/people/georgia-chalvatzaki/" target="_blank"><img src="imgs/georgia.jpg"
                   class="rounded-circle" alt="Georgia Chalvatzaki" width="140" height="140"></a>
               <h5 style="margin-bottom:0em;"><a href="https://pearl-lab.com/people/georgia-chalvatzaki/" target="_blank">Georgia Chalvatzaki</a>
               </h5>
+              TU Darmstadt <br> Germany
+            </div>
+            <br /><br />
+
+          </div>
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://davidpaulius.github.io/" target="_blank"><img src="imgs/david.jpg" class="rounded-circle"
+                  alt="David Paulius" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://davidpaulius.github.io/" target="_blank">David Paulius</a>
+              </h5>
+              University of Notre Dame <br> USA
+            </div>
+            <br /><br />
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <img src="imgs/yixuan.jpg" class="rounded-circle" alt="Yixuan Huang" width="140" height="140">
+              <h5 style="margin-bottom:0em;">Yixuan Huang</h5>
+              Princeton University <br> USA
+            </div>
+            <br /><br />
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://umishra.me/" target="_blank"><img src="imgs/utkarsh.jpeg" class="rounded-circle"
+                  alt="Utkarsh Mishra" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://umishra.me/" target="_blank">Utkarsh Mishra</a>
+              </h5>
+              Georgia Tech <br> USA
+            </div>
+            <br /><br />
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <a href="https://eeching.github.io/" target="_blank"><img src="imgs/yiqing.webp" class="rounded-circle"
+                  alt="Yiqing Xu" width="140" height="140"></a>
+              <h5 style="margin-bottom:0em;"><a href="https://eeching.github.io/" target="_blank">Yiqing Xu</a>
+              </h5>
+              National University of Singapore <br> Singapore
+            </div>
+            <br /><br />
+
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <img src="imgs/amber.jpg" class="rounded-circle" alt="Amber Li" width="140" height="140">
+              <h5 style="margin-bottom:0em;">Amber Li</h5>
+              Carnegie Mellon University <br> USA
+            </div>
+            <br /><br />
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
+              <img src="imgs/franziska.webp" class="rounded-circle" alt="Franziska Herbert" width="140" height="140">
+              <h5 style="margin-bottom:0em;">Franziska Herbert</h5>
               TU Darmstadt <br> Germany
             </div>
             <br /><br />
