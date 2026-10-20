@@ -1,583 +1,471 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- css from https://github.com/ai-workshops/ai-workshops.github.io/blob/master/generalizable-policy-learning-in-the-physical-world/style.css -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-  integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-<link rel="icon"
-  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%22-.1em%22 y=%22.9em%22 font-size=%2280%22>🤖</text></svg>">
-
-<!-- jQuery library -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
-  integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-
-
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
   <title>LEAP: Learning Effective Abstractions for Planning | CoRL 2026</title>
+
+  <!-- SEO Meta -->
+  <meta name="description"
+    content="4th Workshop on Learning Effective Abstractions for Planning (LEAP) at CoRL 2026, Nov 12, 2026, Austin TX. Call for papers, invited speakers, and workshop schedule.">
+  <meta property="og:title" content="LEAP Workshop — CoRL 2026">
+  <meta property="og:description"
+    content="4th Workshop on Learning Effective Abstractions for Planning at CoRL 2026, Nov 12, Austin TX.">
+  <meta property="og:image" content="imgs/header.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="imgs/header.png">
+
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%22-.1em%22 y=%22.9em%22 font-size=%2280%22>🤖</text></svg>">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+  <!-- Custom stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- Social Sharing Meta Tags -->
-  <meta property="og:image" content="imgs/header.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="imgs/header.png" />
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
-  <style>
-    .collapsible {
-      background-color: #fff;
-      color: #000;
-      cursor: pointer;
-      padding: 18px;
-      width: 100%;
-      border: 0px solid white;
-      text-align: center;
-      outline: none;
-      font-size: 15px;
-    }
-
-    .title-container {
-      width: 100%;
-      margin: auto;
-      padding: 40px 20px;
-      color: black;
-      /* background-image: linear-gradient(135deg,#333, black, #333); */
-      background: white;
-      background-image: url("imgs/corl2023_background.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat, repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      margin-top: 55px;
-    }
-
-    .active,
-    .collapsible:hover {
-      background-color: #bbb;
-    }
-
-    .content {
-      padding: 5px 18px;
-      display: none;
-      overflow: hidden;
-      background-color: #f1f1f1;
-    }
-
-    .triangle-up {
-      width: 0;
-      height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-bottom: 20px solid rgb(255, 255, 255);
-      float: right;
-    }
-
-    .triangle-down {
-      width: 0;
-      height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 20px solid rgb(255, 255, 255);
-      float: right;
-    }
-  </style>
-
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+    integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+    crossorigin="anonymous"></script>
 
   <script type="text/javascript">
     var organizers = [
-      {
-        "name": "Naman Shah",
-        "affiliation": "AI2",
-        "website": "https://www.namanshah.net/",
-        "img": "imgs/naman.jpg"
-      },
-      {
-        "name": "Tom Silver",
-        "affiliation": "Princeton University",
-        "website": "https://tomsilver.github.io/",
-        "img": "imgs/tom.jpg"
-      },
-      {
-        "name": "Gregory J. Stein",
-        "affiliation": "George Mason University",
-        "website": "https://gjstein.com/",
-        "img": "imgs/gregory.jpg"
-      },
-      {
-        "name": "Georgia Chalvatzaki",
-        "affiliation": "TU Darmstadt",
-        "website": "https://pearl-lab.com/people/georgia-chalvatzaki/",
-        "img": "imgs/georgia.jpg"
-      },
-      {
-        "name": "David Paulius",
-        "affiliation": "University of Notre Dame",
-        "website": "https://davidpaulius.github.io/",
-        "img": "imgs/david.jpg"
-      },
-      {
-        "name": "Yixuan Huang",
-        "affiliation": "Princeton University",
-        "website": "https://yxuan.huang.github.io/",
-        "img": "imgs/yixuan.jpg"
-      },
-      {
-        "name": "Utkarsh Mishra",
-        "affiliation": "Georgia Tech",
-        "website": "https://umishra.me/",
-        "img": "imgs/utkarsh.jpeg"
-      },
-      {
-        "name": "Yiqing Xu",
-        "affiliation": "National University of Singapore",
-        "website": "https://eeching.github.io/",
-        "img": "imgs/yiqing.webp"
-      },
-      {
-        "name": "Amber Li",
-        "affiliation": "Carnegie Mellon University",
-        "website": "#",
-        "img": "imgs/amber.jpg"
-      },
-      {
-        "name": "Franziska Herbert",
-        "affiliation": "TU Darmstadt",
-        "website": "#",
-        "img": "imgs/franziska.jpg"
-      }
+      { "name": "Naman Shah", "affiliation": "AI2", "website": "https://www.namanshah.net/", "img": "imgs/naman.jpg" },
+      { "name": "Tom Silver", "affiliation": "Princeton University", "website": "https://tomsilver.github.io/", "img": "imgs/tom.jpg" },
+      { "name": "Gregory J. Stein", "affiliation": "George Mason University", "website": "https://gjstein.com/", "img": "imgs/gregory.jpg" },
+      { "name": "Georgia Chalvatzaki", "affiliation": "TU Darmstadt", "website": "https://pearl-lab.com/people/georgia-chalvatzaki/", "img": "imgs/georgia.jpg" },
+      { "name": "David Paulius", "affiliation": "University of Notre Dame", "website": "https://davidpaulius.github.io/", "img": "imgs/david.jpg" },
+      { "name": "Yixuan Huang", "affiliation": "Princeton University", "website": "https://yxuan.huang.github.io/", "img": "imgs/yixuan.jpg" },
+      { "name": "Utkarsh Mishra", "affiliation": "Georgia Tech", "website": "https://umishra.me/", "img": "imgs/utkarsh.jpeg" },
+      { "name": "Yiqing Xu", "affiliation": "Stanford University", "website": "https://eeching.github.io/", "img": "imgs/yiqing.webp" },
+      { "name": "Amber Li", "affiliation": "Carnegie Mellon University", "website": "https://amburger66.github.io/", "img": "imgs/amber.jpg" },
+      { "name": "Franziska Herbert", "affiliation": "TU Darmstadt", "website": "https://pearl-lab.com/people/franziska-herbert/", "img": "imgs/franziska.webp" }
     ];
 
-    function randomize_organizers() {
-      // Source: https://stackoverflow.com/a/6274381
-      function shuffle(a) {
-        var j, x, i;
-        for (i = a.length - 1; i > 0; i--) {
-          j = Math.floor(Math.random() * (i + 1));
-          x = a[i];
-          a[i] = a[j];
-          a[j] = x;
-        }
-        return a;
-      }
+    function shuffle(array) {
+      let currentIndex = array.length;
 
-      // randomly shuffling order of organizers upon load!
+      // While there remain elements to shuffle...
+      while (currentIndex != 0) {
+
+        // Pick a remaining element...
+        let randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+      }
+    }
+
+
+    function randomize_organizers() {
+      // Organizers listed in fixed order (no shuffle)
+
+      // organizers.sort((a, b) => a.name.localeCompare(b.name));
       shuffle(organizers);
 
+      var grid = document.getElementById("org-grid");
+      if (!grid) return;
+
       for (var x = 0; x < organizers.length; x++) {
-        let img_element = document.createElement("img");
-        img_element.src = organizers[x].img;
-        img_element.alt = organizers[x].name;
+        var o = organizers[x];
 
-        let name_element = document.createElement("p");
-        let strong_element = document.createElement("strong");
-        let p = document.createElement("p");
-        let a = document.createElement("a");
-        a.href = organizers[x].website;
-        a.target = "_blank";
-        a.textContent = organizers[x].name;
-        p.appendChild(a);
-        strong_element.appendChild(p);
-        name_element.appendChild(strong_element);
+        var img = document.createElement("img");
+        img.src = o.img;
+        img.alt = o.name;
+        img.classList.add("rounded-circle");
 
-        let aff_element = document.createElement("p");
-        aff_element.textContent = organizers[x].affiliation;
+        var avatarWrap = document.createElement("div");
+        avatarWrap.classList.add("avatar-wrap");
+        avatarWrap.appendChild(img);
 
-        let thumbnail = document.createElement("div");
-        thumbnail.classList.add("thumbnail")
-        thumbnail.appendChild(img_element);
-        thumbnail.appendChild(name_element);
-        thumbnail.appendChild(aff_element);
-
-        let column = document.createElement("div");
-        column.classList.add("col-sm-4")
-        column.appendChild(thumbnail);
-
-        if (x < organizers.length / 2) {
-          document.getElementById("orgrow_1").appendChild(column);
+        var nameEl = document.createElement("h5");
+        if (o.website && o.website !== "#") {
+          var aEl = document.createElement("a");
+          aEl.href = o.website;
+          aEl.target = "_blank";
+          aEl.textContent = o.name;
+          nameEl.appendChild(aEl);
         } else {
-          document.getElementById("orgrow_2").appendChild(column);
+          nameEl.textContent = o.name;
         }
+
+        var affil = document.createElement("div");
+        affil.classList.add("affil-badge");
+        affil.textContent = o.affiliation;
+
+        var card = document.createElement("div");
+        card.classList.add("person-card");
+        card.appendChild(avatarWrap);
+        card.appendChild(nameEl);
+        card.appendChild(affil);
+
+        grid.appendChild(card);
       }
     }
   </script>
-
 </head>
 
-<body>
+<body onload="randomize_organizers()">
+
+  <!-- ── Navbar ──────────────────────────────────────────────── -->
   <nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-custom navbar-fixed-top sticky-nav">
-    <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#main-navigation">
+    <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#main-navigation"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="main-navigation">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.html#call">Call for Papers</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.html#dates">Dates</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.html#schedule">Schedule</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.html#speakers">Speakers</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.html#committee">Committees</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="previous.html">Previous LEAPs </a>
+        <li class="nav-item"><a class="nav-link" href="index.html#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#call">Call for Papers</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#dates">Dates</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#schedule">Schedule</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#speakers">Speakers</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#committee">Committees</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="prevDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Previous LEAPs</a>
+          <div class="dropdown-menu" aria-labelledby="prevDropdown">
+            <a class="dropdown-item" href="leap2025.html" target="_blank">LEAP 2025 (CoRL, Seoul)</a>
+            <a class="dropdown-item" href="leap2024.html" target="_blank">LEAP 2024 (CoRL, Munich)</a>
+            <a class="dropdown-item" href="leap2023.html" target="_blank">LEAP 2023 (CoRL, Atlanta)</a>
+          </div>
         </li>
       </ul>
     </div>
   </nav>
 
+  <!-- ── Hero / Title ────────────────────────────────────────── -->
   <div class="title-container">
-    <div style="text-align: center;">
-      <a href="https://www.corl.org/" target="_blank"><img src="imgs/corl_logo_name.png" style="width:250px;"></a>
-      <br>
-      <div class="subtitle">4th Workshop on </div>
-      <h1 style="width:80%;margin:auto;">Learning Effective Abstractions for Planning (LEAP)</h1>
-      <div class="subtitle" style="color: #130b69; margin: 20px; margin-bottom: -10px;">
-        CoRL 2026 | Nov 12, 2026 | Austin, TX, USA
+    <div class="title-inner">
+      <a href="https://www.corl.org/" target="_blank">
+        <img src="imgs/corl2026.png" class="corl-logo" alt="CoRL 2026 Logo">
+      </a>
+      <div class="subtitle">4th Workshop on</div>
+      <h1>Learning Effective Abstractions for Planning (LEAP)</h1>
+      <div class="event-badge">
+        <span class="dot"></span>
+        CoRL 2026 &nbsp;·&nbsp; Nov 12, 2026 &nbsp;·&nbsp; Austin, TX, USA
       </div>
-      <br>
-      <h3>Email: <a href="mailto:leap-workshop@googlegroups.com">leap-workshop@googlegroups.com</a></h3>
+      <p class="contact-link">Email: <a href="mailto:leap-workshop@googlegroups.com">leap-workshop@googlegroups.com</a>
+      </p>
     </div>
   </div>
 
-  <div class="container" style="padding-bottom: 0px;">
-    <div class="section" id="overview">
+  <!-- ── Main Content ─────────────────────────────────────────── -->
+  <div class="container" style="padding-bottom: 0;">
+
+    <!-- Overview -->
+    <div class="section fade-in" id="overview">
       <h2>Overview</h2>
+
       <p>
-      Complex long-horizon and sparse reward robotics tasks are challenging for scaling end-to-end learning methods. By contrast, planning approaches have shown great potential to handle such complex tasks effectively. One of the major criticisms of planning-based approaches has been the lack of availability of accurate world models (aka abstractions) to utilize.
+        Complex long-horizon and sparse reward robotics tasks are challenging for scaling end-to-end learning methods.
+        By contrast, planning approaches have shown great potential to handle such complex tasks effectively.
+        One of the major criticisms of planning-based approaches has been the lack of availability of accurate world
+        models (aka abstractions) to utilize.
       </p>
       <p>
-      There has been a renewed interest in using learning-based approaches to learn symbolic representations that support planning. However, this research is often fragmented into disjoint sub-communities such as task and motion planning, reinforcement learning (hierarchical, model-based), planning with formal logic, planning with natural language (language models), and neuro-symbolic AI. As in previous years, LEAP will bring together researchers from disparate subfields to discuss how we can combine learning, planning, and abstractions to solve increasingly complex long-horizon and sparse-reward robotics tasks.
+        There has been a renewed interest in using learning-based approaches to learn symbolic representations that
+        support planning. However, this research is often fragmented into disjoint sub-communities such as task and
+        motion planning, reinforcement learning (hierarchical, model-based), planning with formal logic, planning with
+        natural language (language models), and neuro-symbolic AI. As in previous years, LEAP will bring together
+        researchers from disparate subfields to discuss how we can combine learning, planning, and abstractions to solve
+        increasingly complex long-horizon and sparse-reward robotics tasks.
       </p>
-      <!-- <p>
-      Following the remarkable success of our workshop series at CoRL 2023, CoRL 2024, and CoRL 2025, we are excited to organize the 4th CoRL Workshop on Learning Effective Abstractions for Planning (LEAP). Several papers submitted to and presented at LEAP have gone on to be accepted as conference and journal papers in successive years, including best paper award winners (e.g., SymSkill: LEAP 2025 → ICRA 2026) and finalists (e.g., Universal Visual Decomposer: LEAP 2023 → ICRA 2024; DiMSam: LEAP 2023 → IROS 2024; TOP-ERL: LEAP 2024 → ICLR 2025 Spotlight). Previous iterations also attracted large attendance, with 26 papers at LEAP 2023, 53 papers at LEAP 2024, and a record number of submissions at LEAP 2025.
-      </p> -->
-      <p>
-      As in prior editions, the workshop continues to engage with the foundational questions that have defined LEAP since its inception:
-      </p>
+      <p>As in prior editions, the workshop continues to engage with the foundational questions that have defined LEAP
+        since its inception:</p>
       <ol>
-      <li>
-      What is the right objective for abstraction learning for robotic planning? To what extent should we account for soundness, completeness, the target planner and its planning efficiency, and the task distribution?
-      </li>
-      <li>
-      What level of abstraction is necessary for effective robot decision-making? How general-purpose or specific must these abstractions be for long-term autonomy, and do learned abstractions need to be hierarchical?
-      </li>
-      <li>
-      When, where, and from what data should abstractions be learned? Should they be priors built in the robot factory, derived from expert demonstrations, or discovered "in the wild" through interaction between the robot and its environment? What are the trade-offs between top-down operator construction and bottom-up operator discovery, and how do they impact planning efficiency and generalization?
-      </li>
+        <li>What is the right objective for abstraction learning for robotic planning? To what extent should we account
+          for soundness, completeness, the target planner and its planning efficiency, and the task distribution?</li>
+        <li>What level of abstraction is necessary for effective robot decision-making? How general-purpose or specific
+          must these abstractions be for long-term autonomy, and do learned abstractions need to be hierarchical?</li>
+        <li>When, where, and from what data should abstractions be learned? Should they be priors built in the robot
+          factory, derived from expert demonstrations, or discovered "in the wild" through interaction between the robot
+          and its environment? What are the trade-offs between top-down operator construction and bottom-up operator
+          discovery, and how do they impact planning efficiency and generalization?</li>
       </ol>
 
-      <h3 style="text-align: center; margin-top: 30px;">Focal Themes of LEAP 2026</h3>
-      <p>
-      While the questions above ground the workshop, our key attention this year is deliberately focused on two specific, concrete, and timely challenges in learning abstractions for planning. We frame these as the focal discussion themes around which the program, panels, and breakout sessions will be organized.
+      <h3 class="focal-themes-header">Focal Themes of LEAP 2026</h3>
+      <p class="focal-themes-intro">
+        While the questions above ground the workshop, our key attention this year is deliberately focused on two
+        specific, concrete, and timely challenges in learning abstractions for planning.
       </p>
 
-      <h4>Theme #1: Code as Abstractions</h4>
-      <p>
-      Programs and code offer a uniquely powerful substrate for abstraction in robot planning. They are compositional, verifiable, reusable, and directly executable, and they interface naturally with modern foundation models that can read, write, and edit code. We are eager to explore and discuss when and how code is the right abstraction for robot decision-making, as well as to identify its limitations:
-      </p>
-      <ul>
-        <li>When is code (viz., programs, policies-as-code, reward and constraint specifications, and skill libraries) the right abstraction for robot planning? When does it break down? What soundness, completeness, and verifiability guarantees can code-based abstractions provide that other representations cannot?</li>
-        <li>How can pre-trained foundation models (LLMs, VLMs, VLAs) be used to write, refine, and repair code-based abstractions? How can we incorporate cost-sensitive reasoning, plan quality, and executability such that generated programs produce efficient, safe plans for embodied agents?</li>
-        <li>How should code-based abstractions be grounded in perception and action, learned and reused across tasks, and combined with bottom-up skill discovery, so that they facilitate imitation and reinforcement learning and remain reliable in open-world settings?</li>
-      </ul>
+      <div class="theme-card fade-in">
+        <h4><span class="theme-icon">💻</span> Theme #1: Code as Abstractions</h4>
+        <p>
+          Programs and code offer a uniquely powerful substrate for abstraction in robot planning. They are
+          compositional, verifiable, reusable, and directly executable, and they interface naturally with modern
+          foundation models that can read, write, and edit code. We are eager to explore and discuss when and how
+          code is the right abstraction for robot decision-making, as well as to identify its limitations:
+        </p>
+        <ul>
+          <li>When is code (viz., programs, policies-as-code, reward and constraint specifications, and skill libraries)
+            the right abstraction for robot planning? When does it break down? What soundness, completeness, and
+            verifiability guarantees can code-based abstractions provide that other representations cannot?</li>
+          <li>How can pre-trained foundation models (LLMs, VLMs, VLAs) be used to write, refine, and repair code-based
+            abstractions? How can we incorporate cost-sensitive reasoning, plan quality, and executability such that
+            generated programs produce efficient, safe plans for embodied agents?</li>
+          <li>How should code-based abstractions be grounded in perception and action, learned and reused across tasks,
+            and combined with bottom-up skill discovery, so that they facilitate imitation and reinforcement learning
+            and remain reliable in open-world settings?</li>
+        </ul>
+      </div>
 
-      <h4>Theme #2: World Models as Abstractions</h4>
-      <p>
-      Learned world models promise abstractions of environment dynamics that can be searched, simulated, and planned over. We want to examine what makes a world model a good abstraction for planning (rather than merely for prediction), and how planning can be performed in, on top of, or adjacent to such models:
-      </p>
-      <ul>
-        <li>What makes a world model a good abstraction for planning rather than merely for prediction? At what level of abstraction (state, latent, object-centric, symbolic) should world models operate, and do they need to be hierarchical?</li>
-        <li>How can we plan within, on top of, or adjacent to learned world models? What are the trade-offs between planning directly within a learned model, distilling it into a planner-friendly abstraction, and using it to guide reinforcement or imitation learning?</li>
-        <li>When, where, and from what data should world-model abstractions be learned (priors built in the factory, expert demonstrations, or "in the wild" interaction), and how do we ensure the resulting plans are safe, cost-effective, and robust to model error?</li>
-      </ul>
-
+      <div class="theme-card fade-in">
+        <h4><span class="theme-icon">🌐</span> Theme #2: World Models as Abstractions</h4>
+        <p>
+          Learned world models promise abstractions of environment dynamics that can be searched, simulated, and
+          planned over. We want to examine what makes a world model a good abstraction for planning (rather than
+          merely for prediction), and how planning can be performed in, on top of, or adjacent to such models:
+        </p>
+        <ul>
+          <li>What makes a world model a good abstraction for planning rather than merely for prediction? At what level
+            of abstraction (state, latent, object-centric, symbolic) should world models operate, and do they need to be
+            hierarchical?</li>
+          <li>How can we plan within, on top of, or adjacent to learned world models? What are the trade-offs between
+            planning directly within a learned model, distilling it into a planner-friendly abstraction, and using it to
+            guide reinforcement or imitation learning?</li>
+          <li>When, where, and from what data should world-model abstractions be learned (priors built in the factory,
+            expert demonstrations, or "in the wild" interaction), and how do we ensure the resulting plans are safe,
+            cost-effective, and robust to model error?</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="section" id="objectives">
+    <div class="section-sep"></div>
 
-
-      <h3 style="text-align: center;">Areas of Interest</h3>
-      <p>We solicit papers of the following topics:
-
-
-
-
-      <ul>
-
-
-        <li> Learning generalizable and composable representations for robot planning
-        <li> Learning for task and motion planning (TAMP)
-        <li> Learning state abstractions and action abstractions
-        <li> Natural language as an abstraction for learning-based planning
-        <li> Learning other knowledge representations for planning
-        <li> Learning for hierarchical planning
-        <li> Learning for LTL-based planning
-        <li> Neuro-symbolic approaches for task and motion planning
-        <li> Hierarchical reinforcement learning for robotics
+    <!-- Areas of Interest -->
+    <div class="section fade-in" id="objectives">
+      <h2>Areas of Interest</h2>
+      <p style="text-align:center; color: var(--color-text-muted);">We solicit papers on the following topics:</p>
+      <ul class="topics-grid">
+        <li>Generalizable &amp; composable representations</li>
+        <li>Task and motion planning (TAMP)</li>
+        <li>State &amp; action abstractions</li>
+        <li>Natural language for planning</li>
+        <li>Knowledge representations for planning</li>
+        <li>Hierarchical planning</li>
+        <li>LTL-based planning</li>
+        <li>Neuro-symbolic TAMP</li>
+        <li>Hierarchical reinforcement learning</li>
       </ul>
-      </p>
     </div>
 
-  
-    <div class="section" id="call" style="align-content: center;">
+    <div class="section-sep"></div>
+
+    <!-- Submission Guidelines -->
+    <div class="section fade-in" id="call">
       <h2>Submission Guidelines</h2>
-    <p> We solicit workshop paper submissions relevant to the above call of the following types: </p>
-      <ul>
-        <li> Long papers - up to 8 pages plus unlimited references / appendices </li>
-        <li>Short papers - up to 4 pages plus unlimited references / appendices </li>
-      </ul>
-    <p> Please format submissions in CoRL or IEEE conference (ICRA or IROS) styles. Submissions do not need to be anonymized. To authors submitting papers rejected from other conferences: please ensure that comments given by the reviewers are addressed prior to submission. </p>
-    <!-- </br> -->
-    <p> Note: Please feel free to submit work under review or accepted for presentation at other workshops and/or conferences as we will not require copyright transfer. </p>
-    <br>
-    <h3><b>Submission Link: </b><a href="https://openreview.net/group?id=robot-learning.org/CoRL/2026/Workshop/LEAP" target="_blank">OpenReview</a></h3>
+      <div class="submission-card">
+        <p>We solicit workshop paper submissions relevant to the above call of the following types:</p>
+        <ul>
+          <li><strong>Long papers</strong> — up to 8 pages plus unlimited references / appendices</li>
+          <li><strong>Short papers</strong> — up to 4 pages plus unlimited references / appendices</li>
+        </ul>
+        <p>Please format submissions in CoRL or IEEE conference (ICRA or IROS) styles. Submissions do not need to be
+          anonymized. To authors submitting papers rejected from other conferences: please ensure that comments given by
+          the reviewers are addressed prior to submission.</p>
+        <p>Note: Please feel free to submit work under review or accepted for presentation at other workshops and/or
+          conferences as we will not require copyright transfer.</p>
 
-   <p style="color: red; font-weight: bold;">
-  <strong>Note:</strong> The CoRL workshop organizers have requested that we do <em>not</em> accept submissions that are already accepted at the main CoRL conference. We kindly ask authors to respect this policy when submitting to our workshop.
-</p>
-  </div>
+        <div style="text-align:center; margin-top: 24px;">
+          <a href="https://openreview.net/group?id=robot-learning.org/CoRL/2026/Workshop/LEAP" target="_blank"
+            class="submission-link-cta">
+            📄 Submit on OpenReview →
+          </a>
+        </div>
 
-    <div class="section" id="dates" style="align-content: center;">
+        <div class="note-box">
+          <strong>Note:</strong> The CoRL workshop organizers have requested that we do <em>not</em> accept submissions
+          that are already accepted at the main CoRL conference. We kindly ask authors to respect this policy when
+          submitting to our workshop.
+        </div>
+      </div>
+    </div>
+
+    <div class="section-sep"></div>
+
+    <!-- Important Dates -->
+    <div class="section fade-in" id="dates">
       <h2>Important Dates</h2>
-      <table class="calculator table-borderless" style="text-align:center; margin: 0 auto;">
-        <tr>
-          <td class="noborder">Early Paper Submission Deadline
-          </td>
-          <td class="noborder"><b class="font-weight-bold">Sep 18, 2026</b>
-          </td>
-        </tr>
-        <tr>
-          <td class="noborder">Late Paper Submission Deadline
-          </td>
-          <td class="noborder"><b class="font-weight-bold">Oct 7, 2026</b>
-          </td>
-        </tr>
-        <tr>
-          <td class="noborder">Author Notification
-          </td>
-          <td class="noborder"><b class="font-weight-bold">Oct 22, 2026</b>
-          </td>
-        </tr>
-        <tr>
-          <td class="noborder">Camera-ready Version Due
-          </td>
-          <td class="noborder"><b class="font-weight-bold">Nov 6, 2026</b>
-          </td>
-        </tr>
-        <tr>
-          <td class="noborder">Workshop
-          </td>
-          <td class="noborder"><b class="font-weight-bold">Nov 12, 2026</b>
-          </td>
-        </tr>
-      </table>
-
-      <!--<p> Important dates for LEAP 2026 will be posted here soon. Please check back for the call for papers and submission deadlines.</p>-->
+      <ul class="timeline">
+        <li class="timeline-item past">
+          <div class="timeline-content">
+            <div class="timeline-label">Early Paper Submission Deadline</div>
+            <div class="timeline-date">Sep 18, 2026</div>
+          </div>
+        </li>
+        <li class="timeline-item past">
+          <div class="timeline-content">
+            <div class="timeline-label">Late Paper Submission Deadline</div>
+            <div class="timeline-date">Oct 7, 2026</div>
+          </div>
+        </li>
+        <li class="timeline-item upcoming">
+          <div class="timeline-content">
+            <div class="timeline-label">Author Notification</div>
+            <div class="timeline-date">Oct 22, 2026</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-label">Camera-ready Version Due</div>
+            <div class="timeline-date">Nov 6, 2026</div>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-label">Workshop</div>
+            <div class="timeline-date">Nov 12, 2026</div>
+          </div>
+        </li>
+      </ul>
     </div>
 
-    <div class="section" id="schedule" style="align-content: center;">
+    <div class="section-sep"></div>
+
+    <!-- Format & Schedule -->
+    <div class="section fade-in" id="schedule">
       <h2>Format &amp; Schedule</h2>
-      <p>
-      <!-- LEAP has always been organized as a working session rather than a sequence of talks. As a half-day event, our program is deliberately structured so that presentations seed discussion, and the majority of the time is spent with participants reasoning together about open problems. Concretely, we build interactivity into the workshop along four axes: -->
-      </p>
-      <ol>
-        <li><b>A small, focused set of invited talks.</b> We cap the number of invited speakers at three, giving each ample time for a substantive, thought-provoking talk. This year, we have asked our invited speakers to foreground the open questions in abstraction learning for robot planning, rather than recapping results, so that their talks directly set up the breakout and panel discussions that follow.</li>
-        <li><b>Spotlight and lightning talks for contributed work.</b> Every accepted paper receives a 2-minute lightning talk, and a selection of standout contributions receive a 5-minute spotlight, keeping the contributed program visible and energetic while protecting time for discussion.</li>
-        <li><b>Breakout sessions and a live idea board.</b> Attendees propose and upvote open problems and promising directions on a collaborative idea board. The highest-voted ideas seed a 40-minute breakout session, followed by a plenary group discussion in which the breakout groups report back and the room debates the most compelling threads.</li>
-        <li><b>Interactive demo track.</b> Alongside the traditional poster session, we host a demo track where participants showcase live, interactive systems, creating natural, informal venues for technical exchange.</li>
+      <ol class="format-list">
+        <li>
+          <div class="format-num">1</div>
+          <div>
+            <strong>A small, focused set of invited talks.</strong> We cap the number of invited speakers at three,
+            giving each ample time for a substantive, thought-provoking talk. This year, we have asked our invited
+            speakers to foreground the open questions in abstraction learning for robot planning, rather than recapping
+            results, so that their talks directly set up the breakout and panel discussions that follow.
+          </div>
+        </li>
+        <li>
+          <div class="format-num">2</div>
+          <div>
+            <strong>Spotlight and lightning talks for contributed work.</strong> Every accepted paper receives a
+            2-minute lightning talk, and a selection of standout contributions receive a 5-minute spotlight, keeping
+            the contributed program visible and energetic while protecting time for discussion.
+          </div>
+        </li>
+        <li>
+          <div class="format-num">3</div>
+          <div>
+            <strong>Breakout sessions and a live idea board.</strong> Attendees propose and upvote open problems and
+            promising directions on a collaborative idea board. The highest-voted ideas seed a 40-minute breakout
+            session, followed by a plenary group discussion in which the breakout groups report back and the room
+            debates the most compelling threads.
+          </div>
+        </li>
+        <li>
+          <div class="format-num">4</div>
+          <div>
+            <strong>Interactive demo track.</strong> Alongside the traditional poster session, we host a demo track
+            where participants showcase live, interactive systems, creating natural, informal venues for technical
+            exchange.
+          </div>
+        </li>
       </ol>
-      <p style="text-align: center;"><b>The detailed schedule for LEAP 2026 will be announced closer to the workshop date.</b></p>
+      <p style="text-align: center; color: var(--color-text-muted); margin-top: 16px;">
+        <strong style="color: var(--color-text);">The detailed schedule for LEAP 2026 will be announced closer to the
+          workshop date.</strong>
+      </p>
     </div>
 
+    <div class="section-sep"></div>
 
-    <!-- <div class = "secion" id="speakers" style="text-align: center; padding: 10px;">
-    <h2> Inivted Speakers</h2>
-
-  </div> -->
-
-    <div class="section" id="speakers" style="text-align: center; padding: 10px;">
+    <!-- Invited Speakers -->
+    <div class="section fade-in" id="speakers">
       <h2>Invited Speakers</h2>
-      <!-- <center><p style="color: #555;">(Tentative)</p></center> -->
-      <div class="grid">
-        <center>
-            <div class="row">
+      <div class="people-grid speakers-grid">
 
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://people.csail.mit.edu/tlp/" target="_blank"><img src="imgs/tomaz.png" class="rounded-circle"
-                  alt="Tomás Lozano-Pérez" width="140" height="140" style="object-fit:cover"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://people.csail.mit.edu/tlp/" target="_blank">Tomás Lozano-Pérez</a>
-              </h5>
-              MIT <br> USA
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://homes.cs.washington.edu/~fox/" target="_blank"><img src="imgs/dieter.jpg" class="rounded-circle"
-                  alt="Dieter Fox" width="140" height="140" style="object-fit:cover"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://homes.cs.washington.edu/~fox/" target="_blank">Dieter Fox</a>
-              </h5>
-              Ai2, University of Washington <br> USA
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://fabioramos.github.io/Home.html" target="_blank"><img src="imgs/fabio.jpg"
-                  class="rounded-circle" alt="Oier Mees" width="140" height="140" style="object-fit:cover"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://fabioramos.github.io/Home.html" target="_blank">Fabio Ramos</a>
-              </h5>
-              Nvidia, University of Sydney <br> USA/AUS
-            </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://cindycia.github.io/" target="_blank"><img src="imgs/panpan.jpg"
-                  class="rounded-circle" alt="Panpan Cai" width="140" height="140" style="object-fit:cover"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://cindycia.github.io/" target="_blank">Panpan Cai</a>
-              </h5>
-              Shanghai Jiao Tong University <br> China
-            </div>
-
+        <div class="person-card">
+          <div class="avatar-wrap">
+            <a href="https://people.csail.mit.edu/tlp/" target="_blank">
+              <img src="imgs/tomaz.png" class="rounded-circle" alt="Tomás Lozano-Pérez">
+            </a>
           </div>
-        </center>
-      </div>
+          <h5><a href="https://people.csail.mit.edu/tlp/" target="_blank">Tomás Lozano-Pérez</a></h5>
+          <div class="affil-badge">MIT · USA</div>
+        </div>
 
+        <div class="person-card">
+          <div class="avatar-wrap">
+            <a href="https://homes.cs.washington.edu/~fox/" target="_blank">
+              <img src="imgs/dieter.jpg" class="rounded-circle" alt="Dieter Fox">
+            </a>
+          </div>
+          <h5><a href="https://homes.cs.washington.edu/~fox/" target="_blank">Dieter Fox</a></h5>
+          <div class="affil-badge">Ai2 &amp; UW · USA</div>
+        </div>
+
+        <div class="person-card">
+          <div class="avatar-wrap">
+            <a href="https://fabioramos.github.io/Home.html" target="_blank">
+              <img src="imgs/fabio.jpg" class="rounded-circle" alt="Fabio Ramos">
+            </a>
+          </div>
+          <h5><a href="https://fabioramos.github.io/Home.html" target="_blank">Fabio Ramos</a></h5>
+          <div class="affil-badge">Nvidia &amp; U. Sydney · USA/AUS</div>
+        </div>
+
+        <div class="person-card">
+          <div class="avatar-wrap">
+            <a href="https://cindycia.github.io/" target="_blank">
+              <img src="imgs/panpan.jpg" class="rounded-circle" alt="Panpan Cai">
+            </a>
+          </div>
+          <h5><a href="https://cindycia.github.io/" target="_blank">Panpan Cai</a></h5>
+          <div class="affil-badge">Shanghai Jiao Tong U. · China</div>
+        </div>
+
+      </div>
     </div>
 
-    <div class="section" id="committee" style="text-align: center; padding: 10px;">
+    <div class="section-sep"></div>
+
+    <!-- Organizing Committee -->
+    <div class="section fade-in" id="committee">
       <h2>Organizing Committees</h2>
-      <!-- <h3>Organizing Committee</h3> -->
-      <br />
-
-      <div class="grid">
-        <center>
-          <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://namanshah.net/" target="_blank"><img src="imgs/naman.jpg" class="rounded-circle"
-                  alt="Naman Shah" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"> <a href="https://namanshah.net/" target="_blank">Naman Shah</a></h5>
-              AI2 <br> USA
-            </div>
-            <br /> <br />
-
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://tomsilver.github.io/" target="_blank"><img src="imgs/tom.jpg" class="rounded-circle"
-                  alt="Tom Silver" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://tomsilver.github.io/" target="_blank">Tom Silver</a>
-              </h5>
-              Princeton University <br> USA
-            </div>
-            <br /><br />
-
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://gjstein.com/" target="_blank"><img src="imgs/gregory.jpg" class="rounded-circle"
-                  alt="Gregory J. Stein" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://gjstein.com/" target="_blank">Gregory J. Stein</a>
-              </h5>
-              George Mason University <br> USA
-            </div>
-            <br /><br />
-
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://pearl-lab.com/people/georgia-chalvatzaki/" target="_blank"><img src="imgs/georgia.jpg"
-                  class="rounded-circle" alt="Georgia Chalvatzaki" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://pearl-lab.com/people/georgia-chalvatzaki/" target="_blank">Georgia Chalvatzaki</a>
-              </h5>
-              TU Darmstadt <br> Germany
-            </div>
-            <br /><br />
-
-          </div>
-          <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://davidpaulius.github.io/" target="_blank"><img src="imgs/david.jpg" class="rounded-circle"
-                  alt="David Paulius" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://davidpaulius.github.io/" target="_blank">David Paulius</a>
-              </h5>
-              University of Notre Dame <br> USA
-            </div>
-            <br /><br />
-
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <img src="imgs/yixuan.jpg" class="rounded-circle" alt="Yixuan Huang" width="140" height="140" style="object-fit:cover">
-              <h5 style="margin-bottom:0em;">Yixuan Huang</h5>
-              Princeton University <br> USA
-            </div>
-            <br /><br />
-
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://umishra.me/" target="_blank"><img src="imgs/utkarsh.jpeg" class="rounded-circle"
-                  alt="Utkarsh Mishra" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://umishra.me/" target="_blank">Utkarsh Mishra</a>
-              </h5>
-              Georgia Tech <br> USA
-            </div>
-            <br /><br />
-
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <a href="https://eeching.github.io/" target="_blank"><img src="imgs/yiqing.webp" class="rounded-circle"
-                  alt="Yiqing Xu" width="140" height="140"></a>
-              <h5 style="margin-bottom:0em;"><a href="https://eeching.github.io/" target="_blank">Yiqing Xu</a>
-              </h5>
-              Stanford University <br> USA
-            </div>
-            <br /><br />
-
-          </div>
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <img src="imgs/amber.jpg" class="rounded-circle" alt="Amber Li" width="140" height="140" style="object-fit:cover">
-              <h5 style="margin-bottom:0em;">Amber Li</h5>
-              Carnegie Mellon University <br> USA
-            </div>
-            <br /><br />
-
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-bottom: 30px;">
-              <img src="imgs/franziska.webp" class="rounded-circle" alt="Franziska Herbert" width="140" height="140" style="object-fit:cover">
-              <h5 style="margin-bottom:0em;">Franziska Herbert</h5>
-              TU Darmstadt <br> Germany
-            </div>
-            <br /><br />
-
-          </div>
-
-
-      </div>
+      <!-- Organizers injected by JS (randomized order) -->
+      <div class="people-grid" id="org-grid" style="margin-top: 32px;"></div>
     </div>
 
+  </div><!-- /.container -->
 
-      <script src="javascripts/scale.fix.js"></script>
-      <script>
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
+  <!-- ── Scripts ──────────────────────────────────────────────── -->
+  <script src="javascripts/scale.fix.js"></script>
+  <script>
+    // Collapsible support (legacy)
+    var coll = document.getElementsByClassName("collapsible");
+    for (var i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        content.style.display = (content.style.display === "block") ? "none" : "block";
+      });
+    }
 
-        for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-              content.style.display = "none";
-            } else {
-              content.style.display = "block";
-            }
-          });
+    // Scroll-triggered fade-in animations
+    var fadeEls = document.querySelectorAll('.fade-in');
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
-      </script>
+      });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(function (el) { observer.observe(el); });
+  </script>
+
 </body>
 
 </html>
