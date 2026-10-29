@@ -533,6 +533,140 @@ th { text-align: left; color: var(--color-heading); }
 .table-borderless > thead > tr > td,
 .table-borderless > thead > tr > th { border: none; }
 
+/* ── Schedule Table ──────────────────────────────────────────── */
+.schedule-container {
+  margin-top: 28px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow-x: auto;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.schedule-table thead th {
+  background: var(--color-surface-2);
+  color: var(--color-heading);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95em;
+  padding: 14px 20px;
+  border: none;
+  border-bottom: 2px solid var(--color-border);
+  text-align: left;
+}
+
+.schedule-table tbody tr {
+  background-color: transparent;
+  transition: background-color var(--transition);
+}
+
+.schedule-table tbody tr:nth-child(even) {
+  background-color: rgba(248, 250, 252, 0.7);
+}
+
+.schedule-table tbody tr:hover {
+  background-color: var(--color-card-hover);
+}
+
+.schedule-table tbody td {
+  padding: 14px 20px;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+  color: var(--color-text);
+  font-size: 0.95em;
+}
+
+.schedule-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.schedule-time {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-heading);
+  white-space: nowrap;
+  width: 170px;
+  font-variant-numeric: tabular-nums;
+}
+
+.session-name {
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.session-speaker {
+  margin-top: 4px;
+  font-size: 0.95em;
+}
+
+.session-speaker a {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.session-affil {
+  color: var(--color-text-muted);
+  font-size: 0.88em;
+  margin-left: 6px;
+}
+
+.session-title {
+  margin-top: 6px;
+  font-size: 0.9em;
+  color: var(--color-heading);
+  background: rgba(37, 99, 235, 0.06);
+  border-left: 3px solid var(--color-primary);
+  padding: 5px 12px;
+  border-radius: 0 6px 6px 0;
+  display: inline-block;
+}
+
+.session-title .title-label {
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-right: 4px;
+}
+
+.session-duration {
+  font-size: 0.88em;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.speaker-title-box {
+  margin-top: 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.8em;
+  line-height: 1.4;
+  text-align: center;
+  width: 100%;
+}
+
+.speaker-title-label {
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  font-size: 0.72em;
+  letter-spacing: 0.05em;
+  margin-bottom: 3px;
+}
+
+.speaker-title-text {
+  font-style: italic;
+  color: var(--color-heading);
+}
+
+
 /* ── Collapsible ─────────────────────────────────────────────── */
 .collapsible {
   background-color: var(--color-surface);
@@ -599,4 +733,6 @@ th { text-align: left; color: var(--color-heading); }
   .format-list li { gap: 12px; padding: 14px 16px; }
   .calculator tr { display: table; width: 100%; }
   .calculator td { width: 100%; display: table-row; }
+  .schedule-table td, .schedule-table thead th { padding: 10px 12px; }
+  .schedule-time { width: 110px; font-size: 0.9em; }
 }
